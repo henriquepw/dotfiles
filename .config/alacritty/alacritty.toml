@@ -1,0 +1,100 @@
+[[colors.indexed_colors]]
+color = "0xff9e64"
+index = 16
+
+[[colors.indexed_colors]]
+color = "0xdb4b4b"
+index = 17
+
+[colors.bright]
+black = "0x414868"
+blue = "0x7aa2f7"
+cyan = "0x7dcfff"
+green = "0x9ece6a"
+magenta = "0xbb9af7"
+red = "0xf7768e"
+white = "0xc0caf5"
+yellow = "0xe0af68"
+
+[colors.normal]
+black = "0x15161e"
+blue = "0x7aa2f7"
+cyan = "0x7dcfff"
+green = "0x9ece6a"
+magenta = "0xbb9af7"
+red = "0xf7768e"
+white = "0xa9b1d6"
+yellow = "0xe0af68"
+
+[colors.primary]
+background = "0x1a1b26"
+foreground = "0xc0caf5"
+
+[cursor]
+unfocused_hollow = true
+
+[cursor.style]
+blinking = "Never"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 18
+
+[font.glyph_offset]
+y = 9
+
+[font.normal]
+family = "SFMono Nerd Font"
+
+[font.offset]
+y = 16
+
+[[schemes.tokyo-night.indexed_colors]]
+color = "0xff9e64"
+index = 16
+
+[[schemes.tokyo-night.indexed_colors]]
+color = "0xdb4b4b"
+index = 17
+
+[schemes.tokyo-night.bright]
+black = "0x414868"
+blue = "0x7aa2f7"
+cyan = "0x7dcfff"
+green = "0x9ece6a"
+magenta = "0xbb9af7"
+red = "0xf7768e"
+white = "0xc0caf5"
+yellow = "0xe0af68"
+
+[schemes.tokyo-night.normal]
+black = "0x15161e"
+blue = "0x7aa2f7"
+cyan = "0x7dcfff"
+green = "0x9ece6a"
+magenta = "0xbb9af7"
+red = "0xf7768e"
+white = "0xa9b1d6"
+yellow = "0xe0af68"
+
+[schemes.tokyo-night.primary]
+background = "0x1a1b26"
+foreground = "0xc0caf5"
+
+[scrolling]
+auto_scroll = true
+history = 2000
+
+[window]
+decorations = "buttonless"
+opacity = 0.98
+
+[window.dimensions]
+columns = 120
+lines = 40
+
+[window.padding]
+x = 12
+y = 12
