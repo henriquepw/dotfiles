@@ -5,6 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Path
+export PATH=$PATH:$HOME/bin:$HOME/.local/bin
+
 # Aliases
 alias gf="sh ~/dotfiles/scripts/git-fetch.sh"
 alias gz="lazygit"
