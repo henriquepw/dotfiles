@@ -1,75 +1,56 @@
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Java and Android
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home"
-export ANDROID_HOME="/Users/henrique/Library/Android/sdk"
-export ANDROID_SDK_ROOT="/Users/henrique/Library/Android/sdk"
-
-export PATH="$PATH:$HOME/Android/android-studio/bin"
-export PATH="$PATH:$ANDROID_HOME/emulator"
-export PATH="$PATH:$ANDROID_HOME/tools"
-export PATH="$PATH:$ANDROID_HOME/tools/bin"
-export PATH="$PATH:$ANDROID_HOME/platform-tools"
-export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
-
-# Go lang
-export PATH="$PATH:/Users/henrique/go/bin"
-
-# Docker
-export DOCKER_DEFAULT_PLATFORM="linux/amd64"
-
-# Homebrew
-export PATH=/opt/homebrew/bin:$PATH
-export HOMEBREW_NO_INSTALL_FROM_API=1
-
-# Yarn
-export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
-
-# Node
-export NODE_OPTIONS="--max_old_space_size=4096"
-
-# Bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-[ -s "~/.bun/_bun" ] && source "~/.bun/_bun"
-
-# NVM
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-# Alias
-alias gf="sh ~/dotfiles/scripts/git-fetch.sh"
-alias gz="lazygit"
-
-# Init starship
-eval "$(starship init zsh)"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# Zinit
-ZINIT=$HOME/.zinit 
-
-if [[ ! -f $ZINIT/bin/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
-    command mkdir -p "$ZINIT" && command chmod g-rwX "$ZINIT"
-    command git clone https://github.com/zdharma/zinit "$ZINIT/bin" && \
-        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source "$ZINIT/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+# Aliases
+alias gf="sh ~/dotfiles/scripts/git-fetch.sh"
+alias gz="lazygit"
+alias ls="ls --color -a"
+alias c="clear"
 
-zinit light-mode for \
-    zinit-zsh/z-a-patch-dl \
-    zinit-zsh/z-a-as-monitor \
-    zinit-zsh/z-a-bin-gem-node
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 
-zinit light zdharma/fast-syntax-highlighting
-zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-history-substring-search
+source "${ZINIT_HOME}/zinit.zsh"
+
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
-zinit light buonomo/yarn-completion
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
 
-# Init Tmux
-[ -z "$TMUX" ] && exec tmux -a
+autoload -U compinit && compinit
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+bindkey '^l' forward-char 
+bindkey '^k' history-search-backward
+bindkey '^j' history-search-forward
+
+# Search Config
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# Completion styling 
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors '${(s.:.)LS_COLORS}'
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+eval "$(fzf --zsh)"
+eval "$(zoxide init --cmd cd zsh)"
