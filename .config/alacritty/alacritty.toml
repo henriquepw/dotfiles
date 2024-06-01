@@ -20,12 +20,11 @@ history = 2000
 
 [window]
 decorations = "buttonless"
-opacity = 0.98
 
 [window.dimensions]
 columns = 120
 lines = 40
 
 [window.padding]
-x = 14
-y = 14
+x = 12
+y = 12
