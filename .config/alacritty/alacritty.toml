@@ -10,7 +10,7 @@ blinking = "Never"
 TERM = "xterm-256color"
 
 [font]
-size = 16
+size = 18
 
 [font.normal]
 family = "JetBrainsMono NF"
@@ -20,12 +20,10 @@ history = 2000
 
 [window]
 decorations = "buttonless"
+dynamic_padding = true
 
 [window.dimensions]
 columns = 120
 lines = 40
 
-[window.padding]
-x = 10
-y = 12
 
