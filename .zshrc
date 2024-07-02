@@ -8,11 +8,14 @@ fi
 # Path
 export PATH=$PATH:$HOME/bin:$HOME/.local/bin
 
+# Go lang
+export PATH=$PATH:/usr/local/go/bin
+
 # Aliases
 alias gf="sh ~/dotfiles/scripts/git-fetch.sh"
 alias gz="lazygit"
-alias ls="ls --color -a"
 alias c="clear"
+alias ls="ls --color -a"
 
 ZINIT="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT ] && mkdir -p "$(dirname $ZINIT)"
@@ -51,6 +54,7 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # Completion styling 
+zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors '${(s.:.)LS_COLORS}'
 zstyle ':completion:*' menu no
@@ -58,7 +62,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
+eval "$(zoxide init zsh)"
 
 # NVM
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
