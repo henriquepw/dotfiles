@@ -4,6 +4,21 @@ export PATH=$PATH:$HOME/bin:$HOME/.local/bin
 # Go lang
 export PATH=$PATH:/usr/local/go/bin
 
+# NVM
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# bun completions
+[ -s "/home/henrique/.bun/_bun" ] && source "/home/henrique/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# fzf
+export PATH=$PATH:$HOME/.fzf/bin
+[[ ! -f ~/.fzf.zsh ]] || source ~/.fzf.zsh
+
 # Aliases
 alias gf="sh ~/dotfiles/scripts/git-fetch.sh"
 alias gz="lazygit"
@@ -18,19 +33,16 @@ source "${ZINIT}/zinit.zsh"
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-history-substring-search
 zinit light Aloxaf/fzf-tab
 
 autoload -U compinit && compinit
+zinit cdreplay -q
 
-export PATH=$PATH:$HOME/.fzf/bin
-[[ ! -f ~/.fzf.zsh ]] || source ~/.fzf.zsh
-
-bindkey '^l' forward-char 
+bindkey '^l' forward-char
 bindkey '^k' history-search-backward
 bindkey '^j' history-search-forward
 
-# Search Config
+# History
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
@@ -43,27 +55,13 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-# Completion styling 
-zstyle ':completion:*' special-dirs true
+# Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors '${(s.:.)LS_COLORS}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-eval "$(fzf --zsh)"
-eval "$(zoxide init zsh)"
-
-# NVM
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-# bun completions
-[ -s "/home/henrique/.bun/_bun" ] && source "/home/henrique/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
+# Shell integrations
+eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)"
-
