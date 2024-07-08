@@ -2,7 +2,7 @@
 export PATH=$PATH:$HOME/bin:$HOME/.local/bin
 
 # Go lang
-export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 
 # NVM
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
@@ -23,7 +23,9 @@ export PATH=$PATH:$HOME/.fzf/bin
 alias gf="sh ~/dotfiles/scripts/git-fetch.sh"
 alias gz="lazygit"
 alias c="clear"
+alias vim="nvim"
 alias ls="ls --color -a"
+alias air='$(go env GOPATH)/bin/air'
 
 ZINIT="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT ] && mkdir -p "$(dirname $ZINIT)"
@@ -65,3 +67,5 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Shell integrations
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)"
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
