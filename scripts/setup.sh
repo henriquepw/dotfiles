@@ -17,3 +17,4 @@ tar xf lazygit.tar.gz lazygit
 sudo install lazygit /usr/local/bin
 
 cd .. && stow .
+

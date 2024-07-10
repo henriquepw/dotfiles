@@ -1,7 +1,10 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
   opts = {
-    window = { position = "right" },
+    window = {
+      position = "right",
+      width = 30,
+    },
     filesystem = {
       filtered_items = {
         visible = true,
@@ -13,7 +16,9 @@ return {
           ".DS_Store",
           "thumbs.db",
         },
-        never_show = {},
+        never_show = {
+          ".git",
+        },
       },
     },
   },
