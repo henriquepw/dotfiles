@@ -1,19 +1,31 @@
+USER="henrique"
+
 # Path
 export PATH=$PATH:$HOME/bin:$HOME/.local/bin
 
+# Java and Android
+export ANDROID_HOME="$HOME/Android/sdk"
+export PATH="$PATH:$HOME/Android/android-studio/bin"
+export PATH="$PATH:$ANDROID_HOME/emulator"
+export PATH="$PATH:$ANDROID_HOME/tools"
+export PATH="$PATH:$ANDROID_HOME/tools/bin"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
+export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
+
 # Go lang
 export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
+
+# Docker
+export DOCKER_DEFAULT_PLATFORM="linux/amd64"
 
 # NVM
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-# bun completions
-[ -s "/home/henrique/.bun/_bun" ] && source "/home/henrique/.bun/_bun"
-
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+[ -s "~/.bun/_bun" ] && source "~/.bun/_bun"
 
 # fzf
 export PATH=$PATH:$HOME/.fzf/bin
@@ -65,7 +77,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Shell integrations
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)"
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
