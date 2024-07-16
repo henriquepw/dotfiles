@@ -1,5 +1,3 @@
-USER="henrique"
-
 # Path
 export PATH=$PATH:$HOME/bin:$HOME/.local/bin
 
