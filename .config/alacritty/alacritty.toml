@@ -13,7 +13,7 @@ TERM = "xterm-256color"
 size = 16
 
 [font.normal]
-family = "JetBrainsMono NF"
+family = "JetBrainsMono Nerd Font"
 
 [scrolling]
 history = 2000
