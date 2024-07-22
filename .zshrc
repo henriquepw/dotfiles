@@ -79,3 +79,6 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)"
 
+
+# bun completions
+[ -s "/home/henrique/.bun/_bun" ] && source "/home/henrique/.bun/_bun"
