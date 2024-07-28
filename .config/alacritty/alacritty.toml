@@ -10,7 +10,7 @@ blinking = "Never"
 TERM = "xterm-256color"
 
 [font]
-size = 16
+size = 19
 
 [font.normal]
 family = "JetBrainsMono Nerd Font"
@@ -23,8 +23,8 @@ decorations = "buttonless"
 dynamic_padding = true
 
 [window.padding]
-x = 10
-y = 10
+x = 8
+y = 8
 
 [window.dimensions]
 columns = 120
