@@ -80,3 +80,6 @@ eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)"
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# bun completions
+[ -s "/Users/henrique/.bun/_bun" ] && source "/Users/henrique/.bun/_bun"
