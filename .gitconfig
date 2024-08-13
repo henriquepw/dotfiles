@@ -1,3 +1,5 @@
 [user]
 	email = enrque.ns@gmail.com
 	name = Henrique Miranda
+[push]
+	autoSetupRemote = true
