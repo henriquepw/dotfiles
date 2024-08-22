@@ -1,5 +1,9 @@
 [user]
-	email = enrque.ns@gmail.com
+	email = henriquepw4@gmail.com
 	name = Henrique Miranda
 [push]
 	autoSetupRemote = true
+[rerere]
+	enabled = true
+[init]
+	defaultbranch = main
