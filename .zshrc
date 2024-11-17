@@ -2,8 +2,8 @@
 export PATH=$PATH:$HOME/bin:$HOME/.local/bin
 
 # Java and Android
-export ANDROID_HOME="$HOME/Android/sdk"
-export PATH="$PATH:$HOME/Android/android-studio/bin"
+export JAVA_HOME=`/usr/libexec/java_home`
+export ANDROID_HOME="$HOME/android/sdk"
 export PATH="$PATH:$ANDROID_HOME/emulator"
 export PATH="$PATH:$ANDROID_HOME/tools"
 export PATH="$PATH:$ANDROID_HOME/tools/bin"

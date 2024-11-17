@@ -28,7 +28,7 @@ return {
         },
         sections = {
           lualine_a = { "mode" },
-          lualine_b = { "branch" },
+          lualine_b = {},
           lualine_c = {
             {
               "diagnostics",
@@ -41,7 +41,7 @@ return {
               separator = "",
               padding = { left = 1, right = 0 },
             },
-            { "filename" },
+            { "filename", path = 1 },
           },
 
           lualine_x = {
@@ -88,8 +88,8 @@ return {
               end,
             },
           },
-          lualine_y = { "progress" },
-          lualine_z = { "location" },
+          lualine_y = { "branch" },
+          lualine_z = {},
         },
         extensions = { "neo-tree", "lazy" },
       }
