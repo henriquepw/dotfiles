@@ -3,4 +3,7 @@
 -- Add any additional options here
 
 vim.g.lazyvim_prettier_needs_config = true
+
 vim.opt.colorcolumn = "80,120"
+
+vim.g.snacks_animate = false -- Disable all animations
