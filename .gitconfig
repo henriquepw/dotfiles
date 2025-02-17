@@ -7,3 +7,5 @@
 	enabled = true
 [init]
 	defaultbranch = main
+[core]
+	ignorecase = false

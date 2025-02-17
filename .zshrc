@@ -10,7 +10,6 @@ export PATH="$PATH:$ANDROID_HOME/tools/bin"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
 export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
 
-
 # Go lang
 export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 
