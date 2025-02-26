@@ -1,5 +1,6 @@
 font-size = 20
 font-feature = -calt
 
-theme = catppuccin-mocha
+# theme = catppuccin-mocha
+theme = miasma 
 background = #141515
