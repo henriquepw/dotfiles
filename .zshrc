@@ -31,11 +31,11 @@ export PATH=$PATH:$HOME/.fzf/bin
 
 # Aliases
 alias gf="sh ~/dotfiles/scripts/git-fetch.sh"
+alias update="sh ~/dotfiles/scripts/update-all.sh"
 alias gz="lazygit"
 alias c="clear"
 alias vim="nvim"
 alias ls="ls --color -a"
-alias air='$(go env GOPATH)/bin/air'
 
 ZINIT="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT ] && mkdir -p "$(dirname $ZINIT)"
