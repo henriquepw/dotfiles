@@ -2,6 +2,9 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
+    dependencies = {
+      "ficcdaf/ashen.nvim",
+    },
     init = function()
       vim.g.lualine_laststatus = vim.o.laststatus
       if vim.fn.argc(-1) > 0 then
@@ -13,6 +16,8 @@ return {
       end
     end,
     opts = function()
+      local ashen = require("ashen.plugins.lualine").lualine_opts
+
       local lualine_require = require("lualine_require")
       lualine_require.require = require
 
@@ -22,7 +27,7 @@ return {
 
       local opts = {
         options = {
-          theme = "auto",
+          theme = ashen.options.theme,
           globalstatus = vim.o.laststatus == 3,
           disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter" } },
         },
@@ -63,54 +68,12 @@ return {
             cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
             color = function() return { fg = Snacks.util.color("Debug") } end,
           },
-          -- stylua: ignore
-          {
-            require("lazy.status").updates,
-            cond = require("lazy.status").has_updates,
-            color = function() return { fg = Snacks.util.color("Special") } end,
-          },
-            {
-              "diff",
-              symbols = {
-                added = icons.git.added,
-                modified = icons.git.modified,
-                removed = icons.git.removed,
-              },
-              source = function()
-                local gitsigns = vim.b.gitsigns_status_dict
-                if gitsigns then
-                  return {
-                    added = gitsigns.added,
-                    modified = gitsigns.changed,
-                    removed = gitsigns.removed,
-                  }
-                end
-              end,
-            },
           },
           lualine_y = { "branch" },
           lualine_z = {},
         },
         extensions = { "neo-tree", "lazy" },
       }
-
-      -- do not add trouble symbols if aerial is enabled
-      if vim.g.trouble_lualine and LazyVim.has("trouble.nvim") then
-        local trouble = require("trouble")
-        local symbols = trouble.statusline
-          and trouble.statusline({
-            mode = "symbols",
-            groups = {},
-            title = false,
-            filter = { range = true },
-            format = "{kind_icon}{symbol.name:Normal}",
-            hl_group = "lualine_c_normal",
-          })
-        table.insert(opts.sections.lualine_c, {
-          symbols and symbols.get,
-          cond = symbols and symbols.has,
-        })
-      end
 
       return opts
     end,
