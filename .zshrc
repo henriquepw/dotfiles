@@ -1,5 +1,5 @@
 # Path
-export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.cargo/bin/
+export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.cargo/bin/:/opt/homebrew/bin:q
 
 # Java and Android
 export JAVA_HOME=`/usr/libexec/java_home`
