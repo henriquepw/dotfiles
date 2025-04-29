@@ -29,6 +29,7 @@ return {
             experimental = {
               classRegex = {
                 'tw!\\("([^"]*)"\\)',
+                'tva!\\("([^"]*)"\\)',
                 '"([^"]*)"',
                 'class: "(.*)"',
               },
