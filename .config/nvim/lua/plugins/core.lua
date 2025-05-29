@@ -1,3 +1,3 @@
 return {
-  { "LazyVim/LazyVim", version = "v14.6.0" },
+  -- { "LazyVim/LazyVim", version = "v14.6.0" },
 }
