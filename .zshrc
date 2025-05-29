@@ -3,6 +3,7 @@ export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.cargo/bin/:/opt/homebrew/bin
 
 # Java and Android
 export JAVA_HOME=`/usr/libexec/java_home`
+# export ANDROID_HOME="/Volumes/Data/apps/android/sdk"
 export ANDROID_HOME="$HOME/android/sdk"
 export PATH="$PATH:$ANDROID_HOME/emulator"
 export PATH="$PATH:$ANDROID_HOME/tools"
@@ -11,10 +12,17 @@ export PATH="$PATH:$ANDROID_HOME/platform-tools"
 export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
 
 # Go lang
-export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
+export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
 
 # Docker
 export DOCKER_DEFAULT_PLATFORM="linux/amd64"
+export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
+
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/henrique/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
 
 # NVM
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
