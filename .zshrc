@@ -1,3 +1,5 @@
+export DOC="/Volumes/Data/documents"
+
 # Path
 export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.cargo/bin/:/opt/homebrew/bin:q
 
