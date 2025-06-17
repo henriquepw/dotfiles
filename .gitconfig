@@ -3,7 +3,6 @@
 	name = Henrique Miranda
 [core]
   compression = 9
-  whitespace = error
   preloadIndex = true
 [pull]
   default = current
@@ -21,4 +20,7 @@
   branch = true
   showStash = true
   showUntrackedFiles = all
-
+[branch]
+  sort = -committerdate
+[tag]
+  sort = -taggerdate
