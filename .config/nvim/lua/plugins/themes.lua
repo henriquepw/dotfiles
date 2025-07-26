@@ -3,7 +3,9 @@ return {
     "ashen-org/ashen.nvim",
     lazy = false,
     priority = 1000,
-    opts = {},
+    opts = {
+      transparent = true,
+    },
   },
   {
     "LazyVim/LazyVim",
