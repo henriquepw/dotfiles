@@ -9,12 +9,13 @@ return {
       picker = {
         sources = {
           explorer = {
+            auto_close = true,
             layout = {
               { preview = true },
               layout = {
                 box = "horizontal",
-                width = 0.8,
-                height = 0.8,
+                width = 0.90,
+                height = 0.90,
                 {
                   box = "vertical",
                   border = "rounded",
@@ -23,7 +24,7 @@ return {
                   { win = "input", height = 1, border = "bottom" },
                   { win = "list", border = "none" },
                 },
-                { win = "preview", border = "rounded", width = 0.7, title = "{preview}" },
+                { win = "preview", border = "rounded", width = 0.65, title = "{preview}" },
               },
             },
           },
