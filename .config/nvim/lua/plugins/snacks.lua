@@ -9,13 +9,14 @@ return {
       picker = {
         sources = {
           explorer = {
+            ignored = true,
+            hidden = true,
             auto_close = true,
             layout = {
-              { preview = true },
               layout = {
                 box = "horizontal",
-                width = 0.90,
-                height = 0.90,
+                width = 0.9,
+                height = 0.8,
                 {
                   box = "vertical",
                   border = "rounded",

@@ -6,3 +6,4 @@ theme = miasma
 background = #141515
 
 keybind = super+t=unbind
+
