@@ -1,0 +1,15 @@
+include "%H/.local/share/omarchy/default/xcompose"
+
+# Identification
+<Multi_key> <space> <n> : "Henrique Miranda"
+<Multi_key> <space> <e> : "henriquepw4@gmail.com"
+
+<dead_cedilla> <C>			: "Ç"	Ccedilla # LATIN CAPITAL LETTER C WITH CEDILLA
+<Multi_key> <comma> <C>			: "Ç"	Ccedilla # LATIN CAPITAL LETTER C WITH CEDILLA
+<Multi_key> <C> <comma>			: "Ç"	Ccedilla # LATIN CAPITAL LETTER C WITH CEDILLA
+<Multi_key> <cedilla> <C>		: "Ç"	Ccedilla # LATIN CAPITAL LETTER C WITH CEDILLA
+
+<dead_cedilla> <c>			: "ç"	ccedilla # LATIN SMALL LETTER C WITH CEDILLA
+<Multi_key> <comma> <c>			: "ç"	ccedilla # LATIN SMALL LETTER C WITH CEDILLA
+<Multi_key> <c> <comma>			: "ç"	ccedilla # LATIN SMALL LETTER C WITH CEDILLA
+<Multi_key> <cedilla> <c>		: "ç"	ccedilla # LATIN SMALL LETTER C WITH CEDILLA

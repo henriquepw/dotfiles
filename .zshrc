@@ -1,11 +1,7 @@
-export DOC="/Volumes/Data/documents"
-
 # Path
 export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.cargo/bin/:/opt/homebrew/bin:q
 
 # Java and Android
-export JAVA_HOME=`/usr/libexec/java_home`
-# export ANDROID_HOME="/Volumes/Data/apps/android/sdk"
 export ANDROID_HOME="$HOME/android/sdk"
 export PATH="$PATH:$ANDROID_HOME/emulator"
 export PATH="$PATH:$ANDROID_HOME/tools"
@@ -15,10 +11,6 @@ export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
 
 # Go lang
 export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
-
-# Docker
-export DOCKER_DEFAULT_PLATFORM="linux/amd64"
-export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(/Users/henrique/.docker/completions $fpath)
@@ -40,7 +32,7 @@ export PATH=$PATH:$HOME/.fzf/bin
 [[ ! -f ~/.fzf.zsh ]] || source ~/.fzf.zsh
 
 # Aliases
-alias gf="sh ~/dotfiles/scripts/git-fetch.sh"
+alias gf="sh $HOME/dotfiles/scripts/git-fetch.sh"
 alias gz="lazygit"
 alias c="clear"
 alias vim="nvim"
@@ -85,19 +77,11 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Shell integrations
-eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)"
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # bun completions
-[ -s "/Users/henrique/.bun/_bun" ] && source "/Users/henrique/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
-# pnpm
-export PNPM_HOME="/Users/henrique/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
