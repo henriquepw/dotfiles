@@ -1,5 +1,13 @@
 #!/bin/bash
 
+set +e
+echo "▶ Remove unused packages"
+yay -Rs kitty
+yay -Rs alacritty
+yay -Rs localsend
+yay -Rs typora
+yay -Rs spotify
+yay -Rs 1-password
 set -e
 
 echo "▶ Installing NVM"
@@ -22,6 +30,7 @@ fi
 
 echo "▶ Installing packages"
 yay -S --noconfirm \
+  meson systemd git dbus libinih gcc pkgconf \
   stow \
   fzf \
   zoxide \
@@ -30,9 +39,11 @@ yay -S --noconfirm \
   rust \
   bun \
   brave \
+  steam \
   protonplus \
-  wine \
-  lutris
+  heroic-games-launcher \
+  mangohud \
+  gamemode
 
 # Run stow
 echo "▶ Running stow"
