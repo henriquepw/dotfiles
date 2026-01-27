@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     -- Run biome check if the repository has a biome config file
     local biome_config_path = project_root .. "/biome.json"
     if vim.fn.filereadable(biome_config_path) == 1 then
-      vim.cmd("silent !biome check --write " .. vim.fn.expand("%:p"))
+      vim.cmd("silent !biome check --write --unsafe " .. vim.fn.expand("%:p"))
     end
   end,
 })

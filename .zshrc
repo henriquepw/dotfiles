@@ -1,17 +1,24 @@
-export DOC="/Volumes/Data/documents"
+export DOC="/Volumes/server/documents"
 
 # Path
 export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.cargo/bin/:/opt/homebrew/bin:q
 
 # Java and Android
 export JAVA_HOME=`/usr/libexec/java_home`
-# export ANDROID_HOME="/Volumes/Data/apps/android/sdk"
-export ANDROID_HOME="$HOME/android/sdk"
+# export ANDROID_HOME="$HOME/android/sdk"
+export ANDROID_HOME="/Volumes/server/apps/android/sdk"
 export PATH="$PATH:$ANDROID_HOME/emulator"
 export PATH="$PATH:$ANDROID_HOME/tools"
 export PATH="$PATH:$ANDROID_HOME/tools/bin"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
 export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
+
+
+# Tailscale
+export PATH="$PATH:/usr/local/bin/tailscale"
+
+# MySQL client
+export PATH="$PATH:/opt/homebrew/opt/mysql-client/bin"
 
 # Go lang
 export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
@@ -46,6 +53,7 @@ alias c="clear"
 alias vim="nvim"
 alias ls="ls --color -a"
 alias air='$(go env GOPATH)/bin/air'
+alias up="brew update && brew upgrade && brew cleanup"
 
 ZINIT="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT ] && mkdir -p "$(dirname $ZINIT)"
