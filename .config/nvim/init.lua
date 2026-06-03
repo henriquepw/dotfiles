@@ -1,5 +1,12 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
-require("config.lazy")
+require("config/options")
+require("config/keymap")
+require("config/statusline")
+require("config/autocmds")
+require("config/spell")
 
-vim.opt.spell = true
-vim.opt.spelllang = "en_us,pt_br" -- Inglês e Português
+require("plugins/theme")
+require("plugins/gitsigns")
+require("plugins/harpoon")
+require("plugins/snacks")
+require("plugins/mini")
+require("plugins/lsp")
