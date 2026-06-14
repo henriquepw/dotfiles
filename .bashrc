@@ -1,13 +1,16 @@
-# If not running interactively, don't do anything (leave this at the top of this file)
-[[ $- != *i* ]] && return
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
 
-# All the default Omarchy aliases and functions
-# (don't mess with these directly, just overwrite them here!)
-source ~/.local/share/omarchy/default/bash/rc
-set -h
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
 
 # Aliases
-alias gf="sh $HOME/dotfiles/scripts/git-fetch.sh"
+alias gf="sh git-fetch.sh"
 alias gz="lazygit"
 alias c="clear"
 alias vim="nvim"
@@ -24,3 +27,7 @@ export NVM_DIR="$HOME/.config/nvm"
 if command -v tmux >/dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux
 fi
+
+# opencode
+export PATH=$HOME/.opencode/bin:$PATH
+export YDOTOOL_SOCKET=/tmp/.ydotool_socket

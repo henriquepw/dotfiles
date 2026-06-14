@@ -6,11 +6,6 @@
 [core]
   compression = 9
   preloadIndex = true
-[alias]
-	co = checkout
-	br = branch
-	ci = commit
-	st = status
 [init]
 	defaultBranch = master
 [pull]

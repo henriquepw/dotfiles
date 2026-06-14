@@ -2,4 +2,6 @@
 .gitignore
 .DS_Store
 
+Makefile
 scripts
+.config/sunshine/credentials
