@@ -1,0 +1,77 @@
+[2026-06-13 15:42:40.686]: Info: Sunshine version: 2026.611.125516 commit: ea88d71c29123a7f799aa77ee615351872c936e6
+[2026-06-13 15:42:40.686]: Info: Package Publisher: LizardByte
+[2026-06-13 15:42:40.686]: Info: Publisher Website: https://app.lizardbyte.dev
+[2026-06-13 15:42:40.686]: Info: Get support: https://app.lizardbyte.dev/support
+[2026-06-13 15:42:40.686]: Info: config: 'capture' = wlr
+[2026-06-13 15:42:40.686]: Info: config: 'gamepad' = xone
+[2026-06-13 15:42:40.686]: Info: config: 'output_name' = HEADLESS-2
+[2026-06-13 15:42:40.688]: Info: [wayland] Found display [wayland-0]
+[2026-06-13 15:42:40.688]: Info: [wayland] Found interface: zxdg_output_manager_v1(31) version 3
+[2026-06-13 15:42:40.688]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(57) version 5
+[2026-06-13 15:42:40.688]: Info: [wayland] Found interface: wl_output(64) version 4
+[2026-06-13 15:42:40.688]: Warning: [wlgrab] Missing Wayland wire for wlr-export-dmabuf
+[2026-06-13 15:42:40.688]: Error: Unable to initialize capture method
+[2026-06-13 15:42:40.688]: Error: Platform failed to initialize
+[2026-06-13 15:42:40.690]: Info: // Testing for available encoders, this may generate errors. You can safely ignore those errors. //
+[2026-06-13 15:42:40.690]: Info: Trying encoder [nvenc]
+[2026-06-13 15:42:40.690]: Info: [misc] drop_elevated_privileges succeeded in dropping capabilities
+[2026-06-13 15:42:41.090]: Info: Encoder [nvenc] failed
+[2026-06-13 15:42:41.090]: Info: Trying encoder [vulkan]
+[2026-06-13 15:42:41.490]: Info: Encoder [vulkan] failed
+[2026-06-13 15:42:41.490]: Info: Trying encoder [vaapi]
+[2026-06-13 15:42:41.890]: Info: Encoder [vaapi] failed
+[2026-06-13 15:42:41.890]: Info: Trying encoder [software]
+[2026-06-13 15:42:42.290]: Info: Encoder [software] failed
+[2026-06-13 15:42:42.290]: Fatal: Unable to find display or encoder during startup.
+[2026-06-13 15:42:42.290]: Fatal: Please ensure your manually chosen GPU and monitor are connected and powered on.
+[2026-06-13 15:42:42.290]: Error: Video failed to find working encoder
+[2026-06-13 15:42:42.290]: Info: Open the Web UI to set your new username and password and getting started
+[2026-06-13 15:42:42.291]: Info: File /home/henrique/.config/sunshine/sunshine_state.json doesn't exist
+[2026-06-13 15:42:42.291]: Info: Starting system tray
+[2026-06-13 15:42:42.292]: Info: Adding avahi service citadel
+[2026-06-13 15:42:42.296]: Info: Configuration UI available at [https://localhost:47990]
+[2026-06-13 15:42:42.431]: Info: System tray created
+[2026-06-13 15:42:42.431]: Info: Starting main loop
+[2026-06-13 15:42:43.113]: Info: Avahi service citadel successfully established.
+[2026-06-14 10:05:20.940]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:20.947]: Warning: Qt: AtSpiAdaptor::applicationInterface does not implement "GetApplicationBusAddress" "/org/a11y/atspi/accessible/root"
+[2026-06-14 10:05:22.198]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.333]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.334]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.335]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.336]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.337]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.338]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.338]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.339]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.340]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.341]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.342]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.343]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.343]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.344]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.345]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.346]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.347]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.348]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.349]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.349]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.350]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.351]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.352]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.353]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.354]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.355]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.356]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.357]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.358]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.358]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.359]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.360]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.361]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.361]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.362]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.363]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.363]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.364]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-14 10:05:22.364]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
