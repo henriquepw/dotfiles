@@ -25,8 +25,9 @@ cursor-style-blink = false
 shell-integration-features = no-cursor,ssh-env
 
 # Keyboard bindings
-keybind = super+v=paste_from_clipboard
-keybind = super+c=copy_to_clipboard
+keybind = shift+insert=paste_from_clipboard
+keybind = control+insert=copy_to_clipboard
 
 # Slowdown mouse scrolling
 mouse-scroll-multiplier = 0.95
+

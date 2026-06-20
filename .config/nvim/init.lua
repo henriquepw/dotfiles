@@ -5,6 +5,7 @@ require("config/autocmds")
 require("config/spell")
 
 require("plugins/theme")
+require("plugins/blink")
 require("plugins/gitsigns")
 require("plugins/harpoon")
 require("plugins/snacks")

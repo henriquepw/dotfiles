@@ -1,77 +1,741 @@
-[2026-06-13 15:42:40.686]: Info: Sunshine version: 2026.611.125516 commit: ea88d71c29123a7f799aa77ee615351872c936e6
-[2026-06-13 15:42:40.686]: Info: Package Publisher: LizardByte
-[2026-06-13 15:42:40.686]: Info: Publisher Website: https://app.lizardbyte.dev
-[2026-06-13 15:42:40.686]: Info: Get support: https://app.lizardbyte.dev/support
-[2026-06-13 15:42:40.686]: Info: config: 'capture' = wlr
-[2026-06-13 15:42:40.686]: Info: config: 'gamepad' = xone
-[2026-06-13 15:42:40.686]: Info: config: 'output_name' = HEADLESS-2
-[2026-06-13 15:42:40.688]: Info: [wayland] Found display [wayland-0]
-[2026-06-13 15:42:40.688]: Info: [wayland] Found interface: zxdg_output_manager_v1(31) version 3
-[2026-06-13 15:42:40.688]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(57) version 5
-[2026-06-13 15:42:40.688]: Info: [wayland] Found interface: wl_output(64) version 4
-[2026-06-13 15:42:40.688]: Warning: [wlgrab] Missing Wayland wire for wlr-export-dmabuf
-[2026-06-13 15:42:40.688]: Error: Unable to initialize capture method
-[2026-06-13 15:42:40.688]: Error: Platform failed to initialize
-[2026-06-13 15:42:40.690]: Info: // Testing for available encoders, this may generate errors. You can safely ignore those errors. //
-[2026-06-13 15:42:40.690]: Info: Trying encoder [nvenc]
-[2026-06-13 15:42:40.690]: Info: [misc] drop_elevated_privileges succeeded in dropping capabilities
-[2026-06-13 15:42:41.090]: Info: Encoder [nvenc] failed
-[2026-06-13 15:42:41.090]: Info: Trying encoder [vulkan]
-[2026-06-13 15:42:41.490]: Info: Encoder [vulkan] failed
-[2026-06-13 15:42:41.490]: Info: Trying encoder [vaapi]
-[2026-06-13 15:42:41.890]: Info: Encoder [vaapi] failed
-[2026-06-13 15:42:41.890]: Info: Trying encoder [software]
-[2026-06-13 15:42:42.290]: Info: Encoder [software] failed
-[2026-06-13 15:42:42.290]: Fatal: Unable to find display or encoder during startup.
-[2026-06-13 15:42:42.290]: Fatal: Please ensure your manually chosen GPU and monitor are connected and powered on.
-[2026-06-13 15:42:42.290]: Error: Video failed to find working encoder
-[2026-06-13 15:42:42.290]: Info: Open the Web UI to set your new username and password and getting started
-[2026-06-13 15:42:42.291]: Info: File /home/henrique/.config/sunshine/sunshine_state.json doesn't exist
-[2026-06-13 15:42:42.291]: Info: Starting system tray
-[2026-06-13 15:42:42.292]: Info: Adding avahi service citadel
-[2026-06-13 15:42:42.296]: Info: Configuration UI available at [https://localhost:47990]
-[2026-06-13 15:42:42.431]: Info: System tray created
-[2026-06-13 15:42:42.431]: Info: Starting main loop
-[2026-06-13 15:42:43.113]: Info: Avahi service citadel successfully established.
-[2026-06-14 10:05:20.940]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:20.947]: Warning: Qt: AtSpiAdaptor::applicationInterface does not implement "GetApplicationBusAddress" "/org/a11y/atspi/accessible/root"
-[2026-06-14 10:05:22.198]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.333]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.334]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.335]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.336]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.337]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.338]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.338]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.339]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.340]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.341]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.342]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.343]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.343]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.344]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.345]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.346]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.347]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.348]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.349]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.349]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.350]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.351]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.352]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.353]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.354]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.355]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.356]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.357]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.358]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.358]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.359]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.360]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.361]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.361]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.362]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.363]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.363]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.364]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
-[2026-06-14 10:05:22.364]: Warning: Qt: Subscription string not handled: "Window:Destroy:"
+[2026-06-20 13:57:25.119]: Info: Sunshine version: 2026.619.155209 commit: 1fce18d99a1dfc925b501a6a9b8bc280b6675fc5
+[2026-06-20 13:57:25.120]: Info: Package Publisher: LizardByte
+[2026-06-20 13:57:25.120]: Info: Publisher Website: https://app.lizardbyte.dev
+[2026-06-20 13:57:25.120]: Info: Get support: https://app.lizardbyte.dev/support
+[2026-06-20 13:57:25.120]: Info: config: 'capture' = kwin
+[2026-06-20 13:57:25.120]: Info: config: 'gamepad' = xone
+[2026-06-20 13:57:25.137]: Info: // Testing for available encoders, this may generate errors. You can safely ignore those errors. //
+[2026-06-20 13:57:25.137]: Info: Trying encoder [nvenc]
+[2026-06-20 13:57:25.137]: Info: [misc] drop_elevated_privileges succeeded in dropping capabilities
+[2026-06-20 13:57:25.137]: Info: Screencasting with KWin ScreenCast
+[2026-06-20 13:57:25.138]: Info: [pipewire] Requested frame rate [60/1, approx. 60 fps]
+[2026-06-20 13:57:25.138]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 13:57:25.156]: Info: [kwingrab] Found matching system KWin desktop permission file: /usr/share/applications/dev.lizardbyte.app.Sunshine.kwin.desktop
+[2026-06-20 13:57:25.161]: Info: [kwingrab] stream created, PipeWire node 84
+[2026-06-20 13:57:25.161]: Info: [kwingrab] Screencasting output name DP-3 position 0x0 resolution 2560x1440
+[2026-06-20 13:57:25.161]: Info: [pipewire] Streaming display '' offset: 0x0 resolution: 2560x1440
+[2026-06-20 13:57:25.161]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 13:57:25.164]: Info: [wayland] Found interface: zxdg_output_manager_v1(33) version 3
+[2026-06-20 13:57:25.164]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(59) version 5
+[2026-06-20 13:57:25.164]: Info: [wayland] Found interface: wl_output(65) version 4
+[2026-06-20 13:57:25.165]: Info: [wayland] Resolution: 2560x1440
+[2026-06-20 13:57:25.165]: Info: [wayland] Offset: 0x0
+[2026-06-20 13:57:25.165]: Info: [wayland] Logical size: 2560x1440
+[2026-06-20 13:57:25.165]: Info: [wayland] Name: DP-3
+[2026-06-20 13:57:25.165]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W
+[2026-06-20 13:57:25.168]: Info: [pipewire] Connected to pipewire version 1.6.7
+[2026-06-20 13:57:25.171]: Info: [pipewire] Video format: 12
+[2026-06-20 13:57:25.171]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 13:57:25.171]: Info: [pipewire] Color primaries: 0
+[2026-06-20 13:57:25.171]: Info: [pipewire] Transfer function: 0
+[2026-06-20 13:57:25.171]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 13:57:25.171]: Info: [pipewire] using memory buffers
+[2026-06-20 13:57:25.177]: Info: Creating encoder [h264_nvenc]
+[2026-06-20 13:57:25.177]: Info: Color coding: SDR (Rec. 601)
+[2026-06-20 13:57:25.177]: Info: Color depth: 8-bit
+[2026-06-20 13:57:25.177]: Info: Color range: JPEG
+[2026-06-20 13:57:25.177]: Error: Couldn't load cuda: -1
+[2026-06-20 13:57:25.177]: Info: Creating encoder [h264_nvenc]
+[2026-06-20 13:57:25.177]: Info: Color coding: SDR (Rec. 601)
+[2026-06-20 13:57:25.177]: Info: Color depth: 8-bit
+[2026-06-20 13:57:25.177]: Info: Color range: JPEG
+[2026-06-20 13:57:25.177]: Error: Couldn't load cuda: -1
+[2026-06-20 13:57:25.178]: Info: Encoder [nvenc] failed
+[2026-06-20 13:57:25.178]: Info: Trying encoder [vulkan]
+[2026-06-20 13:57:25.178]: Info: Screencasting with KWin ScreenCast
+[2026-06-20 13:57:25.178]: Info: [pipewire] Requested frame rate [60/1, approx. 60 fps]
+[2026-06-20 13:57:25.178]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 13:57:25.198]: Info: [kwingrab] stream created, PipeWire node 84
+[2026-06-20 13:57:25.198]: Info: [kwingrab] Screencasting output name DP-3 position 0x0 resolution 2560x1440
+[2026-06-20 13:57:25.198]: Info: [pipewire] Streaming display '' offset: 0x0 resolution: 2560x1440
+[2026-06-20 13:57:25.198]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 13:57:25.200]: Info: [wayland] Found interface: zxdg_output_manager_v1(33) version 3
+[2026-06-20 13:57:25.200]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(59) version 5
+[2026-06-20 13:57:25.200]: Info: [wayland] Found interface: wl_output(65) version 4
+[2026-06-20 13:57:25.200]: Info: [wayland] Resolution: 2560x1440
+[2026-06-20 13:57:25.200]: Info: [wayland] Offset: 0x0
+[2026-06-20 13:57:25.200]: Info: [wayland] Logical size: 2560x1440
+[2026-06-20 13:57:25.200]: Info: [wayland] Name: DP-3
+[2026-06-20 13:57:25.200]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W
+[2026-06-20 13:57:25.202]: Info: [pipewire] Connected to pipewire version 1.6.7
+[2026-06-20 13:57:25.205]: Info: [pipewire] Video format: 12
+[2026-06-20 13:57:25.205]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 13:57:25.205]: Info: [pipewire] Color primaries: 0
+[2026-06-20 13:57:25.205]: Info: [pipewire] Transfer function: 0
+[2026-06-20 13:57:25.205]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 13:57:25.205]: Info: [pipewire] using DMA-BUF buffers
+[2026-06-20 13:57:25.205]: Info: [pipewire] Video format: 12
+[2026-06-20 13:57:25.205]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 13:57:25.205]: Info: [pipewire] Color primaries: 0
+[2026-06-20 13:57:25.205]: Info: [pipewire] Transfer function: 0
+[2026-06-20 13:57:25.205]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 13:57:25.205]: Info: [pipewire] using DMA-BUF buffers
+[2026-06-20 13:57:25.212]: Info: Creating encoder [h264_vulkan]
+[2026-06-20 13:57:25.212]: Info: Color coding: SDR (Rec. 601)
+[2026-06-20 13:57:25.212]: Info: Color depth: 8-bit
+[2026-06-20 13:57:25.212]: Info: Color range: JPEG
+[2026-06-20 13:57:25.252]: Info: Streaming bitrate is 1000000
+[2026-06-20 13:57:25.252]: Error: [h264_vulkan @ 0x2639ef40] Device does not support encoding h264!
+[2026-06-20 13:57:25.254]: Error: Could not open codec [h264_vulkan]: Function not implemented
+[2026-06-20 13:57:25.254]: Info: Creating encoder [h264_vulkan]
+[2026-06-20 13:57:25.254]: Info: Color coding: SDR (Rec. 601)
+[2026-06-20 13:57:25.254]: Info: Color depth: 8-bit
+[2026-06-20 13:57:25.254]: Info: Color range: JPEG
+[2026-06-20 13:57:25.284]: Info: Streaming bitrate is 1000000
+[2026-06-20 13:57:25.284]: Error: [h264_vulkan @ 0x2639ef40] Device does not support encoding h264!
+[2026-06-20 13:57:25.286]: Error: Could not open codec [h264_vulkan]: Function not implemented
+[2026-06-20 13:57:25.286]: Info: Encoder [vulkan] failed
+[2026-06-20 13:57:25.287]: Info: Trying encoder [vaapi]
+[2026-06-20 13:57:25.287]: Info: Screencasting with KWin ScreenCast
+[2026-06-20 13:57:25.287]: Info: [pipewire] Requested frame rate [60/1, approx. 60 fps]
+[2026-06-20 13:57:25.287]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 13:57:25.299]: Info: [kwingrab] stream created, PipeWire node 84
+[2026-06-20 13:57:25.299]: Info: [kwingrab] Screencasting output name DP-3 position 0x0 resolution 2560x1440
+[2026-06-20 13:57:25.299]: Info: [pipewire] Streaming display '' offset: 0x0 resolution: 2560x1440
+[2026-06-20 13:57:25.299]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 13:57:25.301]: Info: [wayland] Found interface: zxdg_output_manager_v1(33) version 3
+[2026-06-20 13:57:25.301]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(59) version 5
+[2026-06-20 13:57:25.301]: Info: [wayland] Found interface: wl_output(65) version 4
+[2026-06-20 13:57:25.301]: Info: [wayland] Resolution: 2560x1440
+[2026-06-20 13:57:25.301]: Info: [wayland] Offset: 0x0
+[2026-06-20 13:57:25.301]: Info: [wayland] Logical size: 2560x1440
+[2026-06-20 13:57:25.301]: Info: [wayland] Name: DP-3
+[2026-06-20 13:57:25.301]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W
+[2026-06-20 13:57:25.303]: Info: [pipewire] Connected to pipewire version 1.6.7
+[2026-06-20 13:57:25.306]: Info: [pipewire] Video format: 12
+[2026-06-20 13:57:25.306]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 13:57:25.306]: Info: [pipewire] Color primaries: 0
+[2026-06-20 13:57:25.306]: Info: [pipewire] Transfer function: 0
+[2026-06-20 13:57:25.306]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 13:57:25.306]: Info: [pipewire] using DMA-BUF buffers
+[2026-06-20 13:57:25.306]: Info: [pipewire] Video format: 12
+[2026-06-20 13:57:25.306]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 13:57:25.306]: Info: [pipewire] Color primaries: 0
+[2026-06-20 13:57:25.306]: Info: [pipewire] Transfer function: 0
+[2026-06-20 13:57:25.306]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 13:57:25.306]: Info: [pipewire] using DMA-BUF buffers
+[2026-06-20 13:57:25.313]: Info: Creating encoder [h264_vaapi]
+[2026-06-20 13:57:25.313]: Info: Color coding: SDR (Rec. 601)
+[2026-06-20 13:57:25.313]: Info: Color depth: 8-bit
+[2026-06-20 13:57:25.313]: Info: Color range: JPEG
+[2026-06-20 13:57:25.320]: Info: EGL: context priority set to HIGH
+[2026-06-20 13:57:25.324]: Info: vaapi vendor: Mesa Gallium driver 26.2.0-devel for AMD Radeon RX 9070 XT (radeonsi, gfx1201, ACO, DRM 3.64, 7.0.12-201.fc44.x86_64)
+[2026-06-20 13:57:25.325]: Info: Streaming bitrate is 1000000
+[2026-06-20 13:57:25.325]: Error: [h264_vaapi @ 0x2639ef40] No usable encoding profile found.
+[2026-06-20 13:57:25.325]: Error: Could not open codec [h264_vaapi]: Function not implemented
+[2026-06-20 13:57:25.326]: Info: Creating encoder [h264_vaapi]
+[2026-06-20 13:57:25.326]: Info: Color coding: SDR (Rec. 601)
+[2026-06-20 13:57:25.326]: Info: Color depth: 8-bit
+[2026-06-20 13:57:25.326]: Info: Color range: JPEG
+[2026-06-20 13:57:25.332]: Info: EGL: context priority set to HIGH
+[2026-06-20 13:57:25.335]: Info: vaapi vendor: Mesa Gallium driver 26.2.0-devel for AMD Radeon RX 9070 XT (radeonsi, gfx1201, ACO, DRM 3.64, 7.0.12-201.fc44.x86_64)
+[2026-06-20 13:57:25.335]: Info: Streaming bitrate is 1000000
+[2026-06-20 13:57:25.335]: Error: [h264_vaapi @ 0x2639ef40] No usable encoding profile found.
+[2026-06-20 13:57:25.336]: Error: Could not open codec [h264_vaapi]: Function not implemented
+[2026-06-20 13:57:25.336]: Info: Encoder [vaapi] failed
+[2026-06-20 13:57:25.337]: Info: Trying encoder [software]
+[2026-06-20 13:57:25.337]: Info: Screencasting with KWin ScreenCast
+[2026-06-20 13:57:25.337]: Info: [pipewire] Requested frame rate [60/1, approx. 60 fps]
+[2026-06-20 13:57:25.337]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 13:57:25.349]: Info: [kwingrab] stream created, PipeWire node 84
+[2026-06-20 13:57:25.349]: Info: [kwingrab] Screencasting output name DP-3 position 0x0 resolution 2560x1440
+[2026-06-20 13:57:25.349]: Info: [pipewire] Streaming display '' offset: 0x0 resolution: 2560x1440
+[2026-06-20 13:57:25.349]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 13:57:25.350]: Info: [wayland] Found interface: zxdg_output_manager_v1(33) version 3
+[2026-06-20 13:57:25.350]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(59) version 5
+[2026-06-20 13:57:25.350]: Info: [wayland] Found interface: wl_output(65) version 4
+[2026-06-20 13:57:25.351]: Info: [wayland] Resolution: 2560x1440
+[2026-06-20 13:57:25.351]: Info: [wayland] Offset: 0x0
+[2026-06-20 13:57:25.351]: Info: [wayland] Logical size: 2560x1440
+[2026-06-20 13:57:25.351]: Info: [wayland] Name: DP-3
+[2026-06-20 13:57:25.351]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W
+[2026-06-20 13:57:25.352]: Info: [pipewire] Connected to pipewire version 1.6.7
+[2026-06-20 13:57:25.355]: Info: [pipewire] Video format: 12
+[2026-06-20 13:57:25.355]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 13:57:25.355]: Info: [pipewire] Color primaries: 0
+[2026-06-20 13:57:25.355]: Info: [pipewire] Transfer function: 0
+[2026-06-20 13:57:25.355]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 13:57:25.355]: Info: [pipewire] using memory buffers
+[2026-06-20 13:57:25.362]: Info: Creating encoder [libx264]
+[2026-06-20 13:57:25.362]: Info: Color coding: SDR (Rec. 601)
+[2026-06-20 13:57:25.362]: Info: Color depth: 8-bit
+[2026-06-20 13:57:25.362]: Info: Color range: JPEG
+[2026-06-20 13:57:25.362]: Info: Streaming bitrate is 1000000
+[2026-06-20 13:57:25.363]: Info: [libx264 @ 0x2639ef40] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+[2026-06-20 13:57:25.365]: Info: [libx264 @ 0x2639ef40] profile High, level 4.2, 4:2:0, 8-bit
+[2026-06-20 13:57:25.393]: Info: [libx264 @ 0x2639ef40] frame I:1     Avg QP:31.00  size:  1203
+[2026-06-20 13:57:25.393]: Info: [libx264 @ 0x2639ef40] mb I  I16..4: 99.9%  0.0%  0.0%
+[2026-06-20 13:57:25.393]: Info: [libx264 @ 0x2639ef40] 8x8 transform intra:0.0%
+[2026-06-20 13:57:25.393]: Info: [libx264 @ 0x2639ef40] coded y,uvDC,uvAC intra: 0.0% 0.0% 0.0%
+[2026-06-20 13:57:25.393]: Info: [libx264 @ 0x2639ef40] i16 v,h,dc,p: 97%  0%  3%  0%
+[2026-06-20 13:57:25.393]: Info: [libx264 @ 0x2639ef40] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu:  0%  0% 75% 12%  0%  0%  0%  0% 12%
+[2026-06-20 13:57:25.393]: Info: [libx264 @ 0x2639ef40] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu:  0%  0% 100%  0%  0%  0%  0%  0%  0%
+[2026-06-20 13:57:25.393]: Info: [libx264 @ 0x2639ef40] i8c dc,h,v,p: 100%  0%  0%  0%
+[2026-06-20 13:57:25.393]: Info: [libx264 @ 0x2639ef40] kb/s:577.44
+[2026-06-20 13:57:25.397]: Info: Screencasting with KWin ScreenCast
+[2026-06-20 13:57:25.397]: Info: [pipewire] Requested frame rate [60/1, approx. 60 fps]
+[2026-06-20 13:57:25.397]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 13:57:25.408]: Info: [kwingrab] stream created, PipeWire node 84
+[2026-06-20 13:57:25.408]: Info: [kwingrab] Screencasting output name DP-3 position 0x0 resolution 2560x1440
+[2026-06-20 13:57:25.408]: Info: [pipewire] Streaming display '' offset: 0x0 resolution: 2560x1440
+[2026-06-20 13:57:25.408]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 13:57:25.410]: Info: [wayland] Found interface: zxdg_output_manager_v1(33) version 3
+[2026-06-20 13:57:25.410]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(59) version 5
+[2026-06-20 13:57:25.410]: Info: [wayland] Found interface: wl_output(65) version 4
+[2026-06-20 13:57:25.410]: Info: [wayland] Resolution: 2560x1440
+[2026-06-20 13:57:25.410]: Info: [wayland] Offset: 0x0
+[2026-06-20 13:57:25.410]: Info: [wayland] Logical size: 2560x1440
+[2026-06-20 13:57:25.410]: Info: [wayland] Name: DP-3
+[2026-06-20 13:57:25.410]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W
+[2026-06-20 13:57:25.412]: Info: [pipewire] Connected to pipewire version 1.6.7
+[2026-06-20 13:57:25.414]: Info: [pipewire] Video format: 12
+[2026-06-20 13:57:25.414]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 13:57:25.414]: Info: [pipewire] Color primaries: 0
+[2026-06-20 13:57:25.414]: Info: [pipewire] Transfer function: 0
+[2026-06-20 13:57:25.414]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 13:57:25.415]: Info: [pipewire] using memory buffers
+[2026-06-20 13:57:25.421]: Info: Creating encoder [libx264]
+[2026-06-20 13:57:25.421]: Info: Color coding: SDR (Rec. 601)
+[2026-06-20 13:57:25.421]: Info: Color depth: 8-bit
+[2026-06-20 13:57:25.422]: Info: Color range: JPEG
+[2026-06-20 13:57:25.422]: Info: Streaming bitrate is 1000000
+[2026-06-20 13:57:25.422]: Info: [libx264 @ 0x2639ef40] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+[2026-06-20 13:57:25.423]: Info: [libx264 @ 0x2639ef40] profile High 4:4:4 Predictive, level 4.2, 4:4:4, 8-bit
+[2026-06-20 13:57:25.455]: Info: [libx264 @ 0x2639ef40] frame I:1     Avg QP:31.00  size:  1312
+[2026-06-20 13:57:25.455]: Info: [libx264 @ 0x2639ef40] mb I  I16..4: 99.9%  0.0%  0.0%
+[2026-06-20 13:57:25.455]: Info: [libx264 @ 0x2639ef40] 8x8 transform intra:0.0%
+[2026-06-20 13:57:25.455]: Info: [libx264 @ 0x2639ef40] coded y,u,v intra: 0.0% 0.0% 0.0%
+[2026-06-20 13:57:25.455]: Info: [libx264 @ 0x2639ef40] i16 v,h,dc,p: 97%  0%  3%  0%
+[2026-06-20 13:57:25.455]: Info: [libx264 @ 0x2639ef40] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu:  0%  0% 75% 12%  0%  0%  0%  0% 12%
+[2026-06-20 13:57:25.455]: Info: [libx264 @ 0x2639ef40] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu:  0%  0% 100%  0%  0%  0%  0%  0%  0%
+[2026-06-20 13:57:25.455]: Info: [libx264 @ 0x2639ef40] kb/s:629.76
+[2026-06-20 13:57:25.463]: Info: Screencasting with KWin ScreenCast
+[2026-06-20 13:57:25.463]: Info: [pipewire] Requested frame rate [60/1, approx. 60 fps]
+[2026-06-20 13:57:25.463]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 13:57:25.475]: Info: [kwingrab] stream created, PipeWire node 86
+[2026-06-20 13:57:25.475]: Info: [kwingrab] Screencasting output name DP-3 position 0x0 resolution 2560x1440
+[2026-06-20 13:57:25.475]: Info: [pipewire] Streaming display '' offset: 0x0 resolution: 2560x1440
+[2026-06-20 13:57:25.475]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 13:57:25.476]: Info: [wayland] Found interface: zxdg_output_manager_v1(33) version 3
+[2026-06-20 13:57:25.476]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(59) version 5
+[2026-06-20 13:57:25.476]: Info: [wayland] Found interface: wl_output(65) version 4
+[2026-06-20 13:57:25.477]: Info: [wayland] Resolution: 2560x1440
+[2026-06-20 13:57:25.477]: Info: [wayland] Offset: 0x0
+[2026-06-20 13:57:25.477]: Info: [wayland] Logical size: 2560x1440
+[2026-06-20 13:57:25.477]: Info: [wayland] Name: DP-3
+[2026-06-20 13:57:25.477]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W
+[2026-06-20 13:57:25.478]: Info: [pipewire] Connected to pipewire version 1.6.7
+[2026-06-20 13:57:25.481]: Info: [pipewire] Video format: 12
+[2026-06-20 13:57:25.481]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 13:57:25.481]: Info: [pipewire] Color primaries: 0
+[2026-06-20 13:57:25.481]: Info: [pipewire] Transfer function: 0
+[2026-06-20 13:57:25.481]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 13:57:25.481]: Info: [pipewire] using memory buffers
+[2026-06-20 13:57:25.489]: Info: Screencasting with KWin ScreenCast
+[2026-06-20 13:57:25.489]: Info: [pipewire] Requested frame rate [60/1, approx. 60 fps]
+[2026-06-20 13:57:25.489]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 13:57:25.505]: Info: [kwingrab] stream created, PipeWire node 86
+[2026-06-20 13:57:25.505]: Info: [kwingrab] Screencasting output name DP-3 position 0x0 resolution 2560x1440
+[2026-06-20 13:57:25.505]: Info: [pipewire] Streaming display '' offset: 0x0 resolution: 2560x1440
+[2026-06-20 13:57:25.505]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 13:57:25.506]: Info: [wayland] Found interface: zxdg_output_manager_v1(33) version 3
+[2026-06-20 13:57:25.507]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(59) version 5
+[2026-06-20 13:57:25.507]: Info: [wayland] Found interface: wl_output(65) version 4
+[2026-06-20 13:57:25.507]: Info: [wayland] Resolution: 2560x1440
+[2026-06-20 13:57:25.507]: Info: [wayland] Offset: 0x0
+[2026-06-20 13:57:25.507]: Info: [wayland] Logical size: 2560x1440
+[2026-06-20 13:57:25.507]: Info: [wayland] Name: DP-3
+[2026-06-20 13:57:25.507]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W
+[2026-06-20 13:57:25.509]: Info: [pipewire] Connected to pipewire version 1.6.7
+[2026-06-20 13:57:25.511]: Info: [pipewire] Video format: 12
+[2026-06-20 13:57:25.511]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 13:57:25.511]: Info: [pipewire] Color primaries: 0
+[2026-06-20 13:57:25.511]: Info: [pipewire] Transfer function: 0
+[2026-06-20 13:57:25.511]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 13:57:25.511]: Info: [pipewire] using memory buffers
+[2026-06-20 13:57:25.519]: Info: Screencasting with KWin ScreenCast
+[2026-06-20 13:57:25.519]: Info: [pipewire] Requested frame rate [60/1, approx. 60 fps]
+[2026-06-20 13:57:25.519]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 13:57:25.535]: Info: [kwingrab] stream created, PipeWire node 86
+[2026-06-20 13:57:25.535]: Info: [kwingrab] Screencasting output name DP-3 position 0x0 resolution 2560x1440
+[2026-06-20 13:57:25.535]: Info: [pipewire] Streaming display '' offset: 0x0 resolution: 2560x1440
+[2026-06-20 13:57:25.535]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 13:57:25.537]: Info: [wayland] Found interface: zxdg_output_manager_v1(33) version 3
+[2026-06-20 13:57:25.537]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(59) version 5
+[2026-06-20 13:57:25.537]: Info: [wayland] Found interface: wl_output(65) version 4
+[2026-06-20 13:57:25.537]: Info: [wayland] Resolution: 2560x1440
+[2026-06-20 13:57:25.537]: Info: [wayland] Offset: 0x0
+[2026-06-20 13:57:25.537]: Info: [wayland] Logical size: 2560x1440
+[2026-06-20 13:57:25.537]: Info: [wayland] Name: DP-3
+[2026-06-20 13:57:25.537]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W
+[2026-06-20 13:57:25.539]: Info: [pipewire] Connected to pipewire version 1.6.7
+[2026-06-20 13:57:25.542]: Info: [pipewire] Video format: 12
+[2026-06-20 13:57:25.542]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 13:57:25.542]: Info: [pipewire] Color primaries: 0
+[2026-06-20 13:57:25.542]: Info: [pipewire] Transfer function: 0
+[2026-06-20 13:57:25.542]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 13:57:25.542]: Info: [pipewire] using memory buffers
+[2026-06-20 13:57:25.550]: Info: Screencasting with KWin ScreenCast
+[2026-06-20 13:57:25.550]: Info: [pipewire] Requested frame rate [60/1, approx. 60 fps]
+[2026-06-20 13:57:25.550]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 13:57:25.565]: Info: [kwingrab] stream created, PipeWire node 86
+[2026-06-20 13:57:25.565]: Info: [kwingrab] Screencasting output name DP-3 position 0x0 resolution 2560x1440
+[2026-06-20 13:57:25.566]: Info: [pipewire] Streaming display '' offset: 0x0 resolution: 2560x1440
+[2026-06-20 13:57:25.566]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 13:57:25.567]: Info: [wayland] Found interface: zxdg_output_manager_v1(33) version 3
+[2026-06-20 13:57:25.567]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(59) version 5
+[2026-06-20 13:57:25.567]: Info: [wayland] Found interface: wl_output(65) version 4
+[2026-06-20 13:57:25.567]: Info: [wayland] Resolution: 2560x1440
+[2026-06-20 13:57:25.567]: Info: [wayland] Offset: 0x0
+[2026-06-20 13:57:25.567]: Info: [wayland] Logical size: 2560x1440
+[2026-06-20 13:57:25.567]: Info: [wayland] Name: DP-3
+[2026-06-20 13:57:25.567]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W
+[2026-06-20 13:57:25.569]: Info: [pipewire] Connected to pipewire version 1.6.7
+[2026-06-20 13:57:25.572]: Info: [pipewire] Video format: 12
+[2026-06-20 13:57:25.572]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 13:57:25.572]: Info: [pipewire] Color primaries: 0
+[2026-06-20 13:57:25.572]: Info: [pipewire] Transfer function: 0
+[2026-06-20 13:57:25.572]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 13:57:25.572]: Info: [pipewire] using memory buffers
+[2026-06-20 13:57:25.580]: Info: Screencasting with KWin ScreenCast
+[2026-06-20 13:57:25.580]: Info: [pipewire] Requested frame rate [60/1, approx. 60 fps]
+[2026-06-20 13:57:25.580]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 13:57:25.596]: Info: [kwingrab] stream created, PipeWire node 86
+[2026-06-20 13:57:25.597]: Info: [kwingrab] Screencasting output name DP-3 position 0x0 resolution 2560x1440
+[2026-06-20 13:57:25.597]: Info: [pipewire] Streaming display '' offset: 0x0 resolution: 2560x1440
+[2026-06-20 13:57:25.597]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 13:57:25.598]: Info: [wayland] Found interface: zxdg_output_manager_v1(33) version 3
+[2026-06-20 13:57:25.598]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(59) version 5
+[2026-06-20 13:57:25.598]: Info: [wayland] Found interface: wl_output(65) version 4
+[2026-06-20 13:57:25.598]: Info: [wayland] Resolution: 2560x1440
+[2026-06-20 13:57:25.598]: Info: [wayland] Offset: 0x0
+[2026-06-20 13:57:25.598]: Info: [wayland] Logical size: 2560x1440
+[2026-06-20 13:57:25.598]: Info: [wayland] Name: DP-3
+[2026-06-20 13:57:25.598]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W
+[2026-06-20 13:57:25.600]: Info: [pipewire] Connected to pipewire version 1.6.7
+[2026-06-20 13:57:25.603]: Info: [pipewire] Video format: 12
+[2026-06-20 13:57:25.603]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 13:57:25.603]: Info: [pipewire] Color primaries: 0
+[2026-06-20 13:57:25.603]: Info: [pipewire] Transfer function: 0
+[2026-06-20 13:57:25.603]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 13:57:25.603]: Info: [pipewire] using memory buffers
+[2026-06-20 13:57:25.611]: Info: Screencasting with KWin ScreenCast
+[2026-06-20 13:57:25.611]: Info: [pipewire] Requested frame rate [60/1, approx. 60 fps]
+[2026-06-20 13:57:25.611]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 13:57:25.627]: Info: [kwingrab] stream created, PipeWire node 86
+[2026-06-20 13:57:25.627]: Info: [kwingrab] Screencasting output name DP-3 position 0x0 resolution 2560x1440
+[2026-06-20 13:57:25.627]: Info: [pipewire] Streaming display '' offset: 0x0 resolution: 2560x1440
+[2026-06-20 13:57:25.627]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 13:57:25.629]: Info: [wayland] Found interface: zxdg_output_manager_v1(33) version 3
+[2026-06-20 13:57:25.629]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(59) version 5
+[2026-06-20 13:57:25.629]: Info: [wayland] Found interface: wl_output(65) version 4
+[2026-06-20 13:57:25.630]: Info: [wayland] Resolution: 2560x1440
+[2026-06-20 13:57:25.630]: Info: [wayland] Offset: 0x0
+[2026-06-20 13:57:25.630]: Info: [wayland] Logical size: 2560x1440
+[2026-06-20 13:57:25.630]: Info: [wayland] Name: DP-3
+[2026-06-20 13:57:25.630]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W
+[2026-06-20 13:57:25.631]: Info: [pipewire] Connected to pipewire version 1.6.7
+[2026-06-20 13:57:25.635]: Info: [pipewire] Video format: 12
+[2026-06-20 13:57:25.635]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 13:57:25.635]: Info: [pipewire] Color primaries: 0
+[2026-06-20 13:57:25.635]: Info: [pipewire] Transfer function: 0
+[2026-06-20 13:57:25.635]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 13:57:25.635]: Info: [pipewire] using memory buffers
+[2026-06-20 13:57:25.642]: Info: 
+[2026-06-20 13:57:25.642]: Info: // Ignore any errors mentioned above, they are not relevant. //
+[2026-06-20 13:57:25.642]: Info: 
+[2026-06-20 13:57:25.642]: Info: Found H.264 encoder: libx264 [software]
+[2026-06-20 13:57:25.642]: Info: Open the Web UI to set your new username and password and getting started
+[2026-06-20 13:57:25.642]: Info: File /home/henrique/.config/sunshine/sunshine_state.json doesn't exist
+[2026-06-20 13:57:25.644]: Info: Starting system tray
+[2026-06-20 13:57:25.644]: Info: Configuration UI available at [https://localhost:47990]
+[2026-06-20 13:57:25.645]: Info: Adding avahi service citadel
+[2026-06-20 13:57:25.750]: Info: System tray created
+[2026-06-20 13:57:25.750]: Info: Starting main loop
+[2026-06-20 13:57:26.464]: Info: Avahi service citadel successfully established.
+[2026-06-20 14:29:58.298]: Warning: Qt: Failed to create grabbing popup. Ensure popup  QWidgetWindow(0x26584b80, name="QMenuClassWindow") has a transientParent set and that parent window has received input.
+[2026-06-20 14:29:59.706]: Info: Opening UI from system tray
+[2026-06-20 14:29:59.717]: Info: Opened url [https://localhost:47990]
+[2026-06-20 14:30:04.453]: Info: Web UI: [127.0.0.1] -- not authorized
+[2026-06-20 14:30:14.994]: Info: New credentials have been created
+[2026-06-20 14:30:17.243]: Info: Web UI: [127.0.0.1] -- not authorized
+[2026-06-20 14:30:20.004]: Info: Web UI: [127.0.0.1] -- not authorized
+[2026-06-20 14:30:20.006]: Info: Web UI: [127.0.0.1] -- not authorized
+[2026-06-20 14:30:20.148]: Info: Web UI: [127.0.0.1] -- not authorized
+[2026-06-20 14:39:30.926]: Info: // Testing for available encoders, this may generate errors. You can safely ignore those errors. //
+[2026-06-20 14:39:30.926]: Info: Trying encoder [nvenc]
+[2026-06-20 14:39:30.926]: Info: Screencasting with KWin ScreenCast
+[2026-06-20 14:39:30.926]: Info: [pipewire] Requested frame rate [60/1, approx. 60 fps]
+[2026-06-20 14:39:30.926]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 14:39:30.941]: Info: [kwingrab] stream created, PipeWire node 86
+[2026-06-20 14:39:30.941]: Info: [kwingrab] Screencasting output name DP-3 position 0x0 resolution 2560x1440
+[2026-06-20 14:39:30.941]: Info: [pipewire] Streaming display '' offset: 0x0 resolution: 2560x1440
+[2026-06-20 14:39:30.941]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 14:39:30.943]: Info: [wayland] Found interface: zxdg_output_manager_v1(33) version 3
+[2026-06-20 14:39:30.943]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(59) version 5
+[2026-06-20 14:39:30.943]: Info: [wayland] Found interface: wl_output(65) version 4
+[2026-06-20 14:39:30.943]: Info: [wayland] Resolution: 2560x1440
+[2026-06-20 14:39:30.943]: Info: [wayland] Offset: 0x0
+[2026-06-20 14:39:30.943]: Info: [wayland] Logical size: 2560x1440
+[2026-06-20 14:39:30.943]: Info: [wayland] Name: DP-3
+[2026-06-20 14:39:30.943]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W
+[2026-06-20 14:39:30.945]: Info: [pipewire] Connected to pipewire version 1.6.7
+[2026-06-20 14:39:30.949]: Info: [pipewire] Video format: 12
+[2026-06-20 14:39:30.949]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 14:39:30.949]: Info: [pipewire] Color primaries: 0
+[2026-06-20 14:39:30.949]: Info: [pipewire] Transfer function: 0
+[2026-06-20 14:39:30.949]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 14:39:30.949]: Info: [pipewire] using memory buffers
+[2026-06-20 14:39:30.955]: Info: Creating encoder [h264_nvenc]
+[2026-06-20 14:39:30.955]: Info: Color coding: SDR (Rec. 601)
+[2026-06-20 14:39:30.955]: Info: Color depth: 8-bit
+[2026-06-20 14:39:30.955]: Info: Color range: JPEG
+[2026-06-20 14:39:30.955]: Error: Couldn't load cuda: -1
+[2026-06-20 14:39:30.955]: Info: Encoder [nvenc] failed
+[2026-06-20 14:39:30.957]: Info: Trying encoder [vulkan]
+[2026-06-20 14:39:30.957]: Info: Screencasting with KWin ScreenCast
+[2026-06-20 14:39:30.957]: Info: [pipewire] Requested frame rate [60/1, approx. 60 fps]
+[2026-06-20 14:39:30.957]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 14:39:30.977]: Info: [kwingrab] stream created, PipeWire node 86
+[2026-06-20 14:39:30.977]: Info: [kwingrab] Screencasting output name DP-3 position 0x0 resolution 2560x1440
+[2026-06-20 14:39:30.977]: Info: [pipewire] Streaming display '' offset: 0x0 resolution: 2560x1440
+[2026-06-20 14:39:30.977]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 14:39:30.979]: Info: [wayland] Found interface: zxdg_output_manager_v1(33) version 3
+[2026-06-20 14:39:30.979]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(59) version 5
+[2026-06-20 14:39:30.979]: Info: [wayland] Found interface: wl_output(65) version 4
+[2026-06-20 14:39:30.979]: Info: [wayland] Resolution: 2560x1440
+[2026-06-20 14:39:30.979]: Info: [wayland] Offset: 0x0
+[2026-06-20 14:39:30.979]: Info: [wayland] Logical size: 2560x1440
+[2026-06-20 14:39:30.979]: Info: [wayland] Name: DP-3
+[2026-06-20 14:39:30.979]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W
+[2026-06-20 14:39:30.981]: Info: [pipewire] Connected to pipewire version 1.6.7
+[2026-06-20 14:39:30.984]: Info: [pipewire] Video format: 12
+[2026-06-20 14:39:30.984]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 14:39:30.984]: Info: [pipewire] Color primaries: 0
+[2026-06-20 14:39:30.984]: Info: [pipewire] Transfer function: 0
+[2026-06-20 14:39:30.984]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 14:39:30.985]: Info: [pipewire] using DMA-BUF buffers
+[2026-06-20 14:39:30.985]: Info: [pipewire] Video format: 12
+[2026-06-20 14:39:30.985]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 14:39:30.985]: Info: [pipewire] Color primaries: 0
+[2026-06-20 14:39:30.985]: Info: [pipewire] Transfer function: 0
+[2026-06-20 14:39:30.985]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 14:39:30.985]: Info: [pipewire] using DMA-BUF buffers
+[2026-06-20 14:39:30.991]: Info: Creating encoder [h264_vulkan]
+[2026-06-20 14:39:30.991]: Info: Color coding: SDR (Rec. 601)
+[2026-06-20 14:39:30.991]: Info: Color depth: 8-bit
+[2026-06-20 14:39:30.991]: Info: Color range: JPEG
+[2026-06-20 14:39:31.023]: Info: Streaming bitrate is 1000000
+[2026-06-20 14:39:31.023]: Error: [h264_vulkan @ 0x7fc0d8024180] Device does not support encoding h264!
+[2026-06-20 14:39:31.025]: Error: Could not open codec [h264_vulkan]: Função não implementada
+[2026-06-20 14:39:31.025]: Info: Encoder [vulkan] failed
+[2026-06-20 14:39:31.026]: Info: Trying encoder [vaapi]
+[2026-06-20 14:39:31.026]: Info: Screencasting with KWin ScreenCast
+[2026-06-20 14:39:31.026]: Info: [pipewire] Requested frame rate [60/1, approx. 60 fps]
+[2026-06-20 14:39:31.026]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 14:39:31.039]: Info: [kwingrab] stream created, PipeWire node 86
+[2026-06-20 14:39:31.039]: Info: [kwingrab] Screencasting output name DP-3 position 0x0 resolution 2560x1440
+[2026-06-20 14:39:31.039]: Info: [pipewire] Streaming display '' offset: 0x0 resolution: 2560x1440
+[2026-06-20 14:39:31.039]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 14:39:31.041]: Info: [wayland] Found interface: zxdg_output_manager_v1(33) version 3
+[2026-06-20 14:39:31.041]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(59) version 5
+[2026-06-20 14:39:31.041]: Info: [wayland] Found interface: wl_output(65) version 4
+[2026-06-20 14:39:31.041]: Info: [wayland] Resolution: 2560x1440
+[2026-06-20 14:39:31.041]: Info: [wayland] Offset: 0x0
+[2026-06-20 14:39:31.041]: Info: [wayland] Logical size: 2560x1440
+[2026-06-20 14:39:31.041]: Info: [wayland] Name: DP-3
+[2026-06-20 14:39:31.041]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W
+[2026-06-20 14:39:31.043]: Info: [pipewire] Connected to pipewire version 1.6.7
+[2026-06-20 14:39:31.046]: Info: [pipewire] Video format: 12
+[2026-06-20 14:39:31.046]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 14:39:31.046]: Info: [pipewire] Color primaries: 0
+[2026-06-20 14:39:31.046]: Info: [pipewire] Transfer function: 0
+[2026-06-20 14:39:31.046]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 14:39:31.046]: Info: [pipewire] using DMA-BUF buffers
+[2026-06-20 14:39:31.047]: Info: [pipewire] Video format: 12
+[2026-06-20 14:39:31.047]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 14:39:31.047]: Info: [pipewire] Color primaries: 0
+[2026-06-20 14:39:31.047]: Info: [pipewire] Transfer function: 0
+[2026-06-20 14:39:31.047]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 14:39:31.047]: Info: [pipewire] using DMA-BUF buffers
+[2026-06-20 14:39:31.053]: Info: Creating encoder [h264_vaapi]
+[2026-06-20 14:39:31.053]: Info: Color coding: SDR (Rec. 601)
+[2026-06-20 14:39:31.053]: Info: Color depth: 8-bit
+[2026-06-20 14:39:31.053]: Info: Color range: JPEG
+[2026-06-20 14:39:31.060]: Info: EGL: context priority set to HIGH
+[2026-06-20 14:39:31.064]: Info: vaapi vendor: Mesa Gallium driver 26.2.0-devel for AMD Radeon RX 9070 XT (radeonsi, gfx1201, ACO, DRM 3.64, 7.0.12-201.fc44.x86_64)
+[2026-06-20 14:39:31.064]: Info: Streaming bitrate is 1000000
+[2026-06-20 14:39:31.064]: Error: [h264_vaapi @ 0x7fc0d80b7fc0] No usable encoding profile found.
+[2026-06-20 14:39:31.065]: Error: Could not open codec [h264_vaapi]: Função não implementada
+[2026-06-20 14:39:31.065]: Info: Encoder [vaapi] failed
+[2026-06-20 14:39:31.066]: Info: Trying encoder [software]
+[2026-06-20 14:39:31.066]: Info: Screencasting with KWin ScreenCast
+[2026-06-20 14:39:31.066]: Info: [pipewire] Requested frame rate [60/1, approx. 60 fps]
+[2026-06-20 14:39:31.066]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 14:39:31.078]: Info: [kwingrab] stream created, PipeWire node 86
+[2026-06-20 14:39:31.078]: Info: [kwingrab] Screencasting output name DP-3 position 0x0 resolution 2560x1440
+[2026-06-20 14:39:31.078]: Info: [pipewire] Streaming display '' offset: 0x0 resolution: 2560x1440
+[2026-06-20 14:39:31.078]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 14:39:31.080]: Info: [wayland] Found interface: zxdg_output_manager_v1(33) version 3
+[2026-06-20 14:39:31.080]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(59) version 5
+[2026-06-20 14:39:31.080]: Info: [wayland] Found interface: wl_output(65) version 4
+[2026-06-20 14:39:31.080]: Info: [wayland] Resolution: 2560x1440
+[2026-06-20 14:39:31.080]: Info: [wayland] Offset: 0x0
+[2026-06-20 14:39:31.080]: Info: [wayland] Logical size: 2560x1440
+[2026-06-20 14:39:31.080]: Info: [wayland] Name: DP-3
+[2026-06-20 14:39:31.080]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W
+[2026-06-20 14:39:31.083]: Info: [pipewire] Connected to pipewire version 1.6.7
+[2026-06-20 14:39:31.086]: Info: [pipewire] Video format: 12
+[2026-06-20 14:39:31.086]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 14:39:31.086]: Info: [pipewire] Color primaries: 0
+[2026-06-20 14:39:31.086]: Info: [pipewire] Transfer function: 0
+[2026-06-20 14:39:31.086]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 14:39:31.086]: Info: [pipewire] using memory buffers
+[2026-06-20 14:39:31.092]: Info: Creating encoder [libx264]
+[2026-06-20 14:39:31.092]: Info: Color coding: SDR (Rec. 601)
+[2026-06-20 14:39:31.092]: Info: Color depth: 8-bit
+[2026-06-20 14:39:31.092]: Info: Color range: JPEG
+[2026-06-20 14:39:31.092]: Info: Streaming bitrate is 1000000
+[2026-06-20 14:39:31.093]: Info: [libx264 @ 0x7fc0d801fbc0] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+[2026-06-20 14:39:31.094]: Info: [libx264 @ 0x7fc0d801fbc0] profile High, level 4.2, 4:2:0, 8-bit
+[2026-06-20 14:39:31.123]: Info: [libx264 @ 0x7fc0d801fbc0] frame I:1     Avg QP:31,00  size:  1203
+[2026-06-20 14:39:31.123]: Info: [libx264 @ 0x7fc0d801fbc0] mb I  I16..4: 99,9%  0,0%  0,0%
+[2026-06-20 14:39:31.124]: Info: [libx264 @ 0x7fc0d801fbc0] 8x8 transform intra:0,0%
+[2026-06-20 14:39:31.124]: Info: [libx264 @ 0x7fc0d801fbc0] coded y,uvDC,uvAC intra: 0,0% 0,0% 0,0%
+[2026-06-20 14:39:31.124]: Info: [libx264 @ 0x7fc0d801fbc0] i16 v,h,dc,p: 97%  0%  3%  0%
+[2026-06-20 14:39:31.124]: Info: [libx264 @ 0x7fc0d801fbc0] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu:  0%  0% 75% 12%  0%  0%  0%  0% 12%
+[2026-06-20 14:39:31.124]: Info: [libx264 @ 0x7fc0d801fbc0] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu:  0%  0% 100%  0%  0%  0%  0%  0%  0%
+[2026-06-20 14:39:31.124]: Info: [libx264 @ 0x7fc0d801fbc0] i8c dc,h,v,p: 100%  0%  0%  0%
+[2026-06-20 14:39:31.124]: Info: [libx264 @ 0x7fc0d801fbc0] kb/s:577,44
+[2026-06-20 14:39:31.130]: Info: Screencasting with KWin ScreenCast
+[2026-06-20 14:39:31.130]: Info: [pipewire] Requested frame rate [60/1, approx. 60 fps]
+[2026-06-20 14:39:31.131]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 14:39:31.143]: Info: [kwingrab] stream created, PipeWire node 89
+[2026-06-20 14:39:31.143]: Info: [kwingrab] Screencasting output name DP-3 position 0x0 resolution 2560x1440
+[2026-06-20 14:39:31.144]: Info: [pipewire] Streaming display '' offset: 0x0 resolution: 2560x1440
+[2026-06-20 14:39:31.144]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 14:39:31.145]: Info: [wayland] Found interface: zxdg_output_manager_v1(33) version 3
+[2026-06-20 14:39:31.145]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(59) version 5
+[2026-06-20 14:39:31.145]: Info: [wayland] Found interface: wl_output(65) version 4
+[2026-06-20 14:39:31.146]: Info: [wayland] Resolution: 2560x1440
+[2026-06-20 14:39:31.146]: Info: [wayland] Offset: 0x0
+[2026-06-20 14:39:31.146]: Info: [wayland] Logical size: 2560x1440
+[2026-06-20 14:39:31.146]: Info: [wayland] Name: DP-3
+[2026-06-20 14:39:31.146]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W
+[2026-06-20 14:39:31.148]: Info: [pipewire] Connected to pipewire version 1.6.7
+[2026-06-20 14:39:31.151]: Info: [pipewire] Video format: 12
+[2026-06-20 14:39:31.151]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 14:39:31.151]: Info: [pipewire] Color primaries: 0
+[2026-06-20 14:39:31.151]: Info: [pipewire] Transfer function: 0
+[2026-06-20 14:39:31.151]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 14:39:31.151]: Info: [pipewire] using memory buffers
+[2026-06-20 14:39:31.157]: Info: Creating encoder [libx264]
+[2026-06-20 14:39:31.157]: Info: Color coding: SDR (Rec. 601)
+[2026-06-20 14:39:31.157]: Info: Color depth: 8-bit
+[2026-06-20 14:39:31.157]: Info: Color range: JPEG
+[2026-06-20 14:39:31.157]: Info: Streaming bitrate is 1000000
+[2026-06-20 14:39:31.158]: Info: [libx264 @ 0x7fc0d801fbc0] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+[2026-06-20 14:39:31.160]: Info: [libx264 @ 0x7fc0d801fbc0] profile High 4:4:4 Predictive, level 4.2, 4:4:4, 8-bit
+[2026-06-20 14:39:31.189]: Info: [libx264 @ 0x7fc0d801fbc0] frame I:1     Avg QP:31,00  size:  1312
+[2026-06-20 14:39:31.189]: Info: [libx264 @ 0x7fc0d801fbc0] mb I  I16..4: 99,9%  0,0%  0,0%
+[2026-06-20 14:39:31.189]: Info: [libx264 @ 0x7fc0d801fbc0] 8x8 transform intra:0,0%
+[2026-06-20 14:39:31.189]: Info: [libx264 @ 0x7fc0d801fbc0] coded y,u,v intra: 0,0% 0,0% 0,0%
+[2026-06-20 14:39:31.189]: Info: [libx264 @ 0x7fc0d801fbc0] i16 v,h,dc,p: 97%  0%  3%  0%
+[2026-06-20 14:39:31.189]: Info: [libx264 @ 0x7fc0d801fbc0] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu:  0%  0% 75% 12%  0%  0%  0%  0% 12%
+[2026-06-20 14:39:31.189]: Info: [libx264 @ 0x7fc0d801fbc0] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu:  0%  0% 100%  0%  0%  0%  0%  0%  0%
+[2026-06-20 14:39:31.189]: Info: [libx264 @ 0x7fc0d801fbc0] kb/s:629,76
+[2026-06-20 14:39:31.196]: Info: Screencasting with KWin ScreenCast
+[2026-06-20 14:39:31.197]: Info: [pipewire] Requested frame rate [60/1, approx. 60 fps]
+[2026-06-20 14:39:31.197]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 14:39:31.209]: Info: [kwingrab] stream created, PipeWire node 83
+[2026-06-20 14:39:31.209]: Info: [kwingrab] Screencasting output name DP-3 position 0x0 resolution 2560x1440
+[2026-06-20 14:39:31.209]: Info: [pipewire] Streaming display '' offset: 0x0 resolution: 2560x1440
+[2026-06-20 14:39:31.209]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 14:39:31.211]: Info: [wayland] Found interface: zxdg_output_manager_v1(33) version 3
+[2026-06-20 14:39:31.211]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(59) version 5
+[2026-06-20 14:39:31.211]: Info: [wayland] Found interface: wl_output(65) version 4
+[2026-06-20 14:39:31.211]: Info: [wayland] Resolution: 2560x1440
+[2026-06-20 14:39:31.211]: Info: [wayland] Offset: 0x0
+[2026-06-20 14:39:31.211]: Info: [wayland] Logical size: 2560x1440
+[2026-06-20 14:39:31.211]: Info: [wayland] Name: DP-3
+[2026-06-20 14:39:31.211]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W
+[2026-06-20 14:39:31.213]: Info: [pipewire] Connected to pipewire version 1.6.7
+[2026-06-20 14:39:31.216]: Info: [pipewire] Video format: 12
+[2026-06-20 14:39:31.216]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 14:39:31.216]: Info: [pipewire] Color primaries: 0
+[2026-06-20 14:39:31.216]: Info: [pipewire] Transfer function: 0
+[2026-06-20 14:39:31.216]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 14:39:31.216]: Info: [pipewire] using memory buffers
+[2026-06-20 14:39:31.223]: Info: Screencasting with KWin ScreenCast
+[2026-06-20 14:39:31.223]: Info: [pipewire] Requested frame rate [60/1, approx. 60 fps]
+[2026-06-20 14:39:31.223]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 14:39:31.242]: Info: [kwingrab] stream created, PipeWire node 83
+[2026-06-20 14:39:31.242]: Info: [kwingrab] Screencasting output name DP-3 position 0x0 resolution 2560x1440
+[2026-06-20 14:39:31.242]: Info: [pipewire] Streaming display '' offset: 0x0 resolution: 2560x1440
+[2026-06-20 14:39:31.242]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 14:39:31.244]: Info: [wayland] Found interface: zxdg_output_manager_v1(33) version 3
+[2026-06-20 14:39:31.244]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(59) version 5
+[2026-06-20 14:39:31.244]: Info: [wayland] Found interface: wl_output(65) version 4
+[2026-06-20 14:39:31.244]: Info: [wayland] Resolution: 2560x1440
+[2026-06-20 14:39:31.244]: Info: [wayland] Offset: 0x0
+[2026-06-20 14:39:31.244]: Info: [wayland] Logical size: 2560x1440
+[2026-06-20 14:39:31.244]: Info: [wayland] Name: DP-3
+[2026-06-20 14:39:31.244]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W
+[2026-06-20 14:39:31.246]: Info: [pipewire] Connected to pipewire version 1.6.7
+[2026-06-20 14:39:31.250]: Info: [pipewire] Video format: 12
+[2026-06-20 14:39:31.250]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 14:39:31.250]: Info: [pipewire] Color primaries: 0
+[2026-06-20 14:39:31.250]: Info: [pipewire] Transfer function: 0
+[2026-06-20 14:39:31.250]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 14:39:31.250]: Info: [pipewire] using memory buffers
+[2026-06-20 14:39:31.257]: Info: Screencasting with KWin ScreenCast
+[2026-06-20 14:39:31.257]: Info: [pipewire] Requested frame rate [60/1, approx. 60 fps]
+[2026-06-20 14:39:31.257]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 14:39:31.274]: Info: [kwingrab] stream created, PipeWire node 83
+[2026-06-20 14:39:31.274]: Info: [kwingrab] Screencasting output name DP-3 position 0x0 resolution 2560x1440
+[2026-06-20 14:39:31.274]: Info: [pipewire] Streaming display '' offset: 0x0 resolution: 2560x1440
+[2026-06-20 14:39:31.274]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 14:39:31.276]: Info: [wayland] Found interface: zxdg_output_manager_v1(33) version 3
+[2026-06-20 14:39:31.276]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(59) version 5
+[2026-06-20 14:39:31.276]: Info: [wayland] Found interface: wl_output(65) version 4
+[2026-06-20 14:39:31.276]: Info: [wayland] Resolution: 2560x1440
+[2026-06-20 14:39:31.276]: Info: [wayland] Offset: 0x0
+[2026-06-20 14:39:31.276]: Info: [wayland] Logical size: 2560x1440
+[2026-06-20 14:39:31.276]: Info: [wayland] Name: DP-3
+[2026-06-20 14:39:31.276]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W
+[2026-06-20 14:39:31.278]: Info: [pipewire] Connected to pipewire version 1.6.7
+[2026-06-20 14:39:31.282]: Info: [pipewire] Video format: 12
+[2026-06-20 14:39:31.282]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 14:39:31.282]: Info: [pipewire] Color primaries: 0
+[2026-06-20 14:39:31.282]: Info: [pipewire] Transfer function: 0
+[2026-06-20 14:39:31.282]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 14:39:31.282]: Info: [pipewire] using memory buffers
+[2026-06-20 14:39:31.289]: Info: Screencasting with KWin ScreenCast
+[2026-06-20 14:39:31.289]: Info: [pipewire] Requested frame rate [60/1, approx. 60 fps]
+[2026-06-20 14:39:31.289]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 14:39:31.306]: Info: [kwingrab] stream created, PipeWire node 83
+[2026-06-20 14:39:31.306]: Info: [kwingrab] Screencasting output name DP-3 position 0x0 resolution 2560x1440
+[2026-06-20 14:39:31.306]: Info: [pipewire] Streaming display '' offset: 0x0 resolution: 2560x1440
+[2026-06-20 14:39:31.306]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 14:39:31.308]: Info: [wayland] Found interface: zxdg_output_manager_v1(33) version 3
+[2026-06-20 14:39:31.308]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(59) version 5
+[2026-06-20 14:39:31.308]: Info: [wayland] Found interface: wl_output(65) version 4
+[2026-06-20 14:39:31.308]: Info: [wayland] Resolution: 2560x1440
+[2026-06-20 14:39:31.308]: Info: [wayland] Offset: 0x0
+[2026-06-20 14:39:31.308]: Info: [wayland] Logical size: 2560x1440
+[2026-06-20 14:39:31.308]: Info: [wayland] Name: DP-3
+[2026-06-20 14:39:31.308]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W
+[2026-06-20 14:39:31.310]: Info: [pipewire] Connected to pipewire version 1.6.7
+[2026-06-20 14:39:31.313]: Info: [pipewire] Video format: 12
+[2026-06-20 14:39:31.314]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 14:39:31.314]: Info: [pipewire] Color primaries: 0
+[2026-06-20 14:39:31.314]: Info: [pipewire] Transfer function: 0
+[2026-06-20 14:39:31.314]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 14:39:31.314]: Info: [pipewire] using memory buffers
+[2026-06-20 14:39:31.320]: Info: Screencasting with KWin ScreenCast
+[2026-06-20 14:39:31.320]: Info: [pipewire] Requested frame rate [60/1, approx. 60 fps]
+[2026-06-20 14:39:31.320]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 14:39:31.338]: Info: [kwingrab] stream created, PipeWire node 83
+[2026-06-20 14:39:31.338]: Info: [kwingrab] Screencasting output name DP-3 position 0x0 resolution 2560x1440
+[2026-06-20 14:39:31.338]: Info: [pipewire] Streaming display '' offset: 0x0 resolution: 2560x1440
+[2026-06-20 14:39:31.338]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 14:39:31.339]: Info: [wayland] Found interface: zxdg_output_manager_v1(33) version 3
+[2026-06-20 14:39:31.339]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(59) version 5
+[2026-06-20 14:39:31.339]: Info: [wayland] Found interface: wl_output(65) version 4
+[2026-06-20 14:39:31.340]: Info: [wayland] Resolution: 2560x1440
+[2026-06-20 14:39:31.340]: Info: [wayland] Offset: 0x0
+[2026-06-20 14:39:31.340]: Info: [wayland] Logical size: 2560x1440
+[2026-06-20 14:39:31.340]: Info: [wayland] Name: DP-3
+[2026-06-20 14:39:31.340]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W
+[2026-06-20 14:39:31.342]: Info: [pipewire] Connected to pipewire version 1.6.7
+[2026-06-20 14:39:31.345]: Info: [pipewire] Video format: 12
+[2026-06-20 14:39:31.345]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 14:39:31.345]: Info: [pipewire] Color primaries: 0
+[2026-06-20 14:39:31.345]: Info: [pipewire] Transfer function: 0
+[2026-06-20 14:39:31.346]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 14:39:31.346]: Info: [pipewire] using memory buffers
+[2026-06-20 14:39:31.352]: Info: Screencasting with KWin ScreenCast
+[2026-06-20 14:39:31.352]: Info: [pipewire] Requested frame rate [60/1, approx. 60 fps]
+[2026-06-20 14:39:31.352]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 14:39:31.369]: Info: [kwingrab] stream created, PipeWire node 83
+[2026-06-20 14:39:31.370]: Info: [kwingrab] Screencasting output name DP-3 position 0x0 resolution 2560x1440
+[2026-06-20 14:39:31.370]: Info: [pipewire] Streaming display '' offset: 0x0 resolution: 2560x1440
+[2026-06-20 14:39:31.370]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 14:39:31.371]: Info: [wayland] Found interface: zxdg_output_manager_v1(33) version 3
+[2026-06-20 14:39:31.371]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(59) version 5
+[2026-06-20 14:39:31.371]: Info: [wayland] Found interface: wl_output(65) version 4
+[2026-06-20 14:39:31.371]: Info: [wayland] Resolution: 2560x1440
+[2026-06-20 14:39:31.371]: Info: [wayland] Offset: 0x0
+[2026-06-20 14:39:31.371]: Info: [wayland] Logical size: 2560x1440
+[2026-06-20 14:39:31.371]: Info: [wayland] Name: DP-3
+[2026-06-20 14:39:31.371]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W
+[2026-06-20 14:39:31.374]: Info: [pipewire] Connected to pipewire version 1.6.7
+[2026-06-20 14:39:31.377]: Info: [pipewire] Video format: 12
+[2026-06-20 14:39:31.377]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 14:39:31.377]: Info: [pipewire] Color primaries: 0
+[2026-06-20 14:39:31.377]: Info: [pipewire] Transfer function: 0
+[2026-06-20 14:39:31.377]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 14:39:31.377]: Info: [pipewire] using memory buffers
+[2026-06-20 14:39:31.384]: Info: 
+[2026-06-20 14:39:31.384]: Info: // Ignore any errors mentioned above, they are not relevant. //
+[2026-06-20 14:39:31.384]: Info: 
+[2026-06-20 14:39:31.384]: Info: Found H.264 encoder: libx264 [software]
+[2026-06-20 14:39:31.384]: Info: Executing Do Cmd: [start-vmon.sh]
+[2026-06-20 14:39:34.993]: Info: Spawning [setsid steam steam://open/bigpicture] in ["/usr/bin"]
+[2026-06-20 14:39:35.008]: Info: Executing [Desktop]
+[2026-06-20 14:39:35.035]: Info: New streaming session started [active sessions: 1]
+[2026-06-20 14:39:35.076]: Info: CLIENT CONNECTED
+[2026-06-20 14:39:35.082]: Info: [kwingrab] Found output: DP-3 order: 0 position: 0x0 resolution: 2560x1440
+[2026-06-20 14:39:35.082]: Info: Screencasting with KWin ScreenCast
+[2026-06-20 14:39:35.082]: Info: [pipewire] Requested frame rate [60fps]
+[2026-06-20 14:39:35.082]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 14:39:35.097]: Info: [kwingrab] stream created, PipeWire node 89
+[2026-06-20 14:39:35.099]: Info: [kwingrab] Screencasting output name DP-3 position 0x0 resolution 2560x1440
+[2026-06-20 14:39:35.099]: Info: [pipewire] Streaming display 'DP-3' offset: 0x0 resolution: 2560x1440
+[2026-06-20 14:39:35.099]: Info: [wayland] Found display [wayland-0]
+[2026-06-20 14:39:35.099]: Info: [wayland] Found interface: zxdg_output_manager_v1(33) version 3
+[2026-06-20 14:39:35.099]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(59) version 5
+[2026-06-20 14:39:35.099]: Info: [wayland] Found interface: wl_output(65) version 4
+[2026-06-20 14:39:35.099]: Info: [wayland] Resolution: 2560x1440
+[2026-06-20 14:39:35.099]: Info: [wayland] Offset: 0x0
+[2026-06-20 14:39:35.099]: Info: [wayland] Logical size: 2560x1440
+[2026-06-20 14:39:35.099]: Info: [wayland] Name: DP-3
+[2026-06-20 14:39:35.099]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W
+[2026-06-20 14:39:35.102]: Info: [pipewire] Connected to pipewire version 1.6.7
+[2026-06-20 14:39:35.106]: Info: [pipewire] Video format: 12
+[2026-06-20 14:39:35.106]: Info: [pipewire] Size: 2560x1440
+[2026-06-20 14:39:35.106]: Info: [pipewire] Color primaries: 0
+[2026-06-20 14:39:35.106]: Info: [pipewire] Transfer function: 0
+[2026-06-20 14:39:35.106]: Info: [pipewire] Framerate (from compositor): 0/1 (variable rate capture)
+[2026-06-20 14:39:35.106]: Info: [pipewire] using memory buffers
+[2026-06-20 14:39:35.111]: Info: Creating encoder [libx264]
+[2026-06-20 14:39:35.111]: Info: Color coding: SDR (Rec. 601)
+[2026-06-20 14:39:35.111]: Info: Color depth: 8-bit
+[2026-06-20 14:39:35.111]: Info: Color range: MPEG
+[2026-06-20 14:39:35.111]: Info: Streaming bitrate is 117964000
+[2026-06-20 14:39:35.112]: Info: [libx264 @ 0x7fc078003140] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+[2026-06-20 14:39:35.114]: Info: [libx264 @ 0x7fc078003140] profile High, level 5.2, 4:2:0, 8-bit
+[2026-06-20 14:39:35.124]: Info: Minimum FPS target set to ~30fps (33.3333ms)
+[2026-06-20 14:39:35.504]: Info: Gamepad 0 will be Xbox One controller (manual selection)
+[2026-06-20 14:39:35.504]: Warning: Gamepad 0 has motion sensors, but they are not usable when emulating a joypad different from DS5
+[2026-06-20 14:39:35.560]: Info: Setting default sink to: [sink-sunshine-surround51]
+[2026-06-20 14:39:35.562]: Info: Found default monitor by name: sink-sunshine-surround51.monitor
+[2026-06-20 14:39:35.632]: Info: Opus initialized: 48 kHz, 6 channels, 1536 kbps (total), LOWDELAY
+[2026-06-20 14:45:52.363]: Info: CLIENT DISCONNECTED
+[2026-06-20 14:45:52.364]: Info: Setting default sink to: [alsa_output.usb-Topping_E30_II_Lite-00.pro-output-0]
+[2026-06-20 14:45:52.411]: Info: [libx264 @ 0x7fc078003140] frame I:5     Avg QP: 2,05  size:116325
+[2026-06-20 14:45:52.411]: Info: [libx264 @ 0x7fc078003140] frame P:8641  Avg QP: 2,46  size: 87116
+[2026-06-20 14:45:52.411]: Info: [libx264 @ 0x7fc078003140] mb I  I16..4: 91,6%  5,7%  2,8%
+[2026-06-20 14:45:52.411]: Info: [libx264 @ 0x7fc078003140] mb P  I16..4:  4,0%  1,5%  0,4%  P16..4: 31,6%  0,0%  0,0%  0,0%  0,0%    skip:62,5%
+[2026-06-20 14:45:52.411]: Info: [libx264 @ 0x7fc078003140] 8x8 transform intra:25,1% inter:7,2%
+[2026-06-20 14:45:52.411]: Info: [libx264 @ 0x7fc078003140] coded y,uvDC,uvAC intra: 37,5% 21,7% 17,6% inter: 14,3% 5,3% 4,5%
+[2026-06-20 14:45:52.411]: Info: [libx264 @ 0x7fc078003140] i16 v,h,dc,p: 76% 17%  6%  2%
+[2026-06-20 14:45:52.411]: Info: [libx264 @ 0x7fc078003140] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 15% 16% 29%  8%  7%  6%  6%  7%  7%
+[2026-06-20 14:45:52.411]: Info: [libx264 @ 0x7fc078003140] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 23% 23% 13%  8%  7%  6%  6%  6%  7%
+[2026-06-20 14:45:52.411]: Info: [libx264 @ 0x7fc078003140] i8c dc,h,v,p: 77% 13%  7%  2%
+[2026-06-20 14:45:52.411]: Info: [libx264 @ 0x7fc078003140] Weighted P-Frames: Y:2,4% UV:1,4%
+[2026-06-20 14:45:52.411]: Info: [libx264 @ 0x7fc078003140] kb/s:41823,66
+[2026-06-20 14:45:57.241]: Error: Unable to find executable [end-vmon.sh]. Is it in your PATH?
+[2026-06-20 14:45:57.247]: Info: Executing Undo Cmd: [end-vmon.sh]
+[2026-06-20 14:45:57.247]: Warning: System: Arquivo ou diretório inexistente
+[2026-06-20 14:45:57.247]: Warning: Return code [383]
