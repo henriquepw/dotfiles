@@ -7,7 +7,7 @@
     jq
 
     # Office
-    onlyoffice-bin
+    onlyoffice-desktopeditors
 
     # Misc
     vicinae

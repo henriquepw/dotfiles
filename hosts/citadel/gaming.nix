@@ -32,17 +32,29 @@
 
   # Sunshine streaming ports
   networking.firewall = {
-    allowedTCPPorts = [ 47984 47989 47990 48010 ];
-    allowedUDPPorts = [ 47998 47999 48000 48002 48010 ];
+    allowedTCPPorts = [
+      47984
+      47989
+      47990
+      48010
+    ];
+    allowedUDPPorts = [
+      47998
+      47999
+      48000
+      48002
+      48010
+    ];
   };
 
-  nixpkgs.config.allowUnfreePredicate = pkg:
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
     builtins.elem (pkgs.lib.getName pkg) [
       "steam"
       "steam-original"
       "steam-unwrapped"
       "proton-ge-bin"
-      "onlyoffice"
+      "onlyoffice-desktopeditors"
     ];
 
   services.flatpak.enable = true;
