@@ -13,10 +13,7 @@
     ];
   };
 
-  hardware.amdgpu = {
-    amdvlk.enable = true;  # adds amdvlk + 32-bit variant automatically
-    opencl.enable = true;
-  };
+  hardware.amdgpu.opencl.enable = true;
 
   programs.steam = {
     enable = true;
@@ -45,7 +42,6 @@
       "steam-original"
       "steam-unwrapped"
       "proton-ge-bin"
-      "amdvlk"
       "onlyoffice"
     ];
 
