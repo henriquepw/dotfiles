@@ -3,6 +3,5 @@
   home.packages = with pkgs; [
     claude-code
     opencode
-    pi
   ];
 }

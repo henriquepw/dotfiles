@@ -18,7 +18,7 @@
     [Desktop Entry]
     Type=Application
     Name=Steam
-    Exec=${pkgs.steam}/bin/steam -silent %U
+    Exec=steam -silent %U
     Icon=steam
     Comment=Steam Game Launcher
     X-KDE-autostart-after=panel

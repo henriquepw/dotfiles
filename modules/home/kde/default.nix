@@ -1,23 +1,18 @@
 { pkgs, lib, ... }:
-let
-  # run: nix-prefetch-github pwyde monochrome-kde
-  # then replace hash and pin rev to the returned sha
-  monochrome-kde-src = pkgs.fetchFromGitHub {
-    owner = "pwyde";
-    repo = "monochrome-kde";
-    rev = "master";
-    hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-  };
-in
 {
   home.packages = with pkgs; [
     kdePackages.krohnkite
     kdePackages.qtstyleplugin-kvantum
   ];
 
-  # installs: aurorae, color-schemes, konsole, plasma look-and-feel/desktoptheme, kvantum themes
+  # Clones and installs on first run; skips on subsequent activations
   home.activation.monochrome-kde = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    $DRY_RUN_CMD ${pkgs.bash}/bin/bash ${monochrome-kde-src}/install.sh --install
+    _MONO="$HOME/.local/share/monochrome-kde"
+    if [ ! -f "$_MONO/.installed" ]; then
+      ${pkgs.git}/bin/git clone --depth=1 https://github.com/pwyde/monochrome-kde "$_MONO" || true
+      ${pkgs.bash}/bin/bash "$_MONO/install.sh" --install || true
+      touch "$_MONO/.installed"
+    fi
   '';
 
   xdg.configFile."Kvantum/kvantum.kvconfig".text = ''

@@ -9,16 +9,12 @@
     enable = true;
     enable32Bit = true;
     extraPackages = with pkgs; [
-      amdvlk
       rocmPackages.clr.icd
-    ];
-    extraPackages32 = with pkgs; [
-      driversi686Linux.amdvlk
     ];
   };
 
   hardware.amdgpu = {
-    amdvlk.enable = true;
+    amdvlk.enable = true;  # adds amdvlk + 32-bit variant automatically
     opencl.enable = true;
   };
 
