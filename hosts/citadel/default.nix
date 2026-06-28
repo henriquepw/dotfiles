@@ -103,6 +103,7 @@
   services.power-profiles-daemon.enable = true;
 
   users.users.henrique = {
+    initialPassword = "123";
     isNormalUser = true;
     extraGroups = [
       "wheel"
