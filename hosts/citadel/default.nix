@@ -39,7 +39,8 @@
   i18n = {
     defaultLocale = "pt_BR.UTF-8";
     inputMethod = {
-      enabled = "ibus";
+      enable = true;
+      type = "ibus";
       ibus.engines = with pkgs.ibus-engines; [ uniemoji ];
     };
     extraLocaleSettings.LC_CTYPE = "pt_BR.UTF-8";
@@ -55,7 +56,7 @@
   hardware.enableRedistributableFirmware = true;
 
   # Audio (pipewire)
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -88,7 +89,7 @@
   # Fonts
   fonts = {
     packages = with pkgs; [
-      noto-fonts-emoji
+      noto-fonts-color-emoji
     ];
     fontconfig.defaultFonts = {
       monospace = [ "JetBrainsMono Nerd Font Mono" ];

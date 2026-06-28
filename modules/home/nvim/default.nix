@@ -3,7 +3,7 @@
   home.packages = with pkgs; [
     neovim
     nil
-    nixfmt-rfc-style
+    nixfmt
     statix
   ];
   xdg.configFile."nvim".source = ./config;
