@@ -11,7 +11,6 @@
     ./shell
     ./gaming
     ./tmux
-    ./waybar
     ./packages.nix
   ];
 }

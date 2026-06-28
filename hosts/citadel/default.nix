@@ -15,7 +15,7 @@
       home-manager.useUserPackages = true;
       home-manager.users.henrique = import ./home.nix;
       home-manager.extraSpecialArgs = { inherit inputs system; };
-      home-manager.sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
+      home-manager.sharedModules = [ inputs.plasma-manager.homeModules.plasma-manager ];
     }
   ];
 

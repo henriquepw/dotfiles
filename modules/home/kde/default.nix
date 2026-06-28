@@ -64,13 +64,13 @@
         number = 6;
         rows = 1;
       };
-      effects.slideEnabled = false;
     };
 
     # Accent color (orange) + Kvantum style + Krohnkite tiling plugin
     configFile = {
       "kdeglobals"."General"."AccentColor".value = "233,100,58";
       "kdeglobals"."KDE"."widgetStyle".value = "kvantum-dark";
+      "kwinrc"."Plugins"."slideEnabled".value = false;
       "kwinrc"."Plugins"."krohnkiteEnabled".value = true;
       "kwinrc"."Script-krohnkite"."noTileBorder".value = true;
       "kwinrc"."Script-krohnkite"."screenGapBetween".value = 8;
