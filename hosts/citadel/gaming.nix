@@ -55,6 +55,7 @@
       "steam-unwrapped"
       "proton-ge-bin"
       "onlyoffice-desktopeditors"
+      "claude-code"
     ];
 
   services.flatpak.enable = true;
