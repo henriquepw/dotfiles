@@ -9,7 +9,7 @@
   home.activation.monochrome-kde = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     _MONO="$HOME/.local/share/monochrome-kde"
     if [ ! -f "$_MONO/.installed" ]; then
-      ${pkgs.git}/bin/git clone --depth=1 https://github.com/pwyde/monochrome-kde "$_MONO" || true
+      ${pkgs.git}/bin/git clone --depth=1 https://github.com/pwyde/monochrome-kde.git "$_MONO" || true
       ${pkgs.bash}/bin/bash "$_MONO/install.sh" --install || true
       touch "$_MONO/.installed"
     fi

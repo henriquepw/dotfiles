@@ -5,6 +5,7 @@
     starship
     zoxide
     fzf
+    bat
   ];
   home.file.".zshrc".source = ./.zshrc;
   xdg.configFile."starship.toml".source = ./starship.toml;
