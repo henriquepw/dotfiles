@@ -6,6 +6,7 @@
     ./fastfetch
     ./ghostty
     ./git
+    ./kde
     ./nvim
     ./shell
     ./gaming

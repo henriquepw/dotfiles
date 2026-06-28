@@ -15,6 +15,7 @@
       home-manager.useUserPackages = true;
       home-manager.users.henrique = import ./home.nix;
       home-manager.extraSpecialArgs = { inherit inputs system; };
+      home-manager.sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
     }
   ];
 
@@ -87,15 +88,13 @@
   # Fonts
   fonts = {
     packages = with pkgs; [
-      noto-fonts
-      noto-fonts-cjk-sans
       noto-fonts-emoji
     ];
     fontconfig.defaultFonts = {
       monospace = [ "JetBrainsMono Nerd Font Mono" ];
-      sansSerif = [ "Noto Sans" ];
-      serif     = [ "Noto Serif" ];
-      emoji     = [ "Noto Color Emoji" ];
+      sansSerif = [ "JetBrainsMono Nerd Font Mono" ];
+      serif = [ "JetBrainsMono Nerd Font Mono" ];
+      emoji = [ "Noto Color Emoji" ];
     };
   };
 
@@ -104,7 +103,13 @@
 
   users.users.henrique = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "audio" "input" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "video"
+      "audio"
+      "input"
+    ];
     shell = pkgs.zsh;
   };
 
@@ -112,7 +117,10 @@
 
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       auto-optimise-store = true;
     };
     gc = {
