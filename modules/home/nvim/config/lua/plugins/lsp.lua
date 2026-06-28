@@ -96,10 +96,6 @@ local setup_mason = function()
 		"biome",
 		"vtsls",
 		"tailwindcss-language-server",
-		-- nix
-		"nil",
-		"nixfmt",
-		"statix",
 	}
 
 	local registry = require("mason-registry")

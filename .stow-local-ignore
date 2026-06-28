@@ -4,4 +4,8 @@
 
 Makefile
 scripts
+flake.nix
+flake.lock
+hosts
+modules
 .config/sunshine/credentials

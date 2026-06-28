@@ -16,19 +16,13 @@ install:
 	@echo "▶ Running full setup"
 	@bash $(SETUP_SCRIPT)
 
-guard:
-	@test -f .stow-local-ignore || \
-	  (echo "Run make from dotfiles root" && exit 1)
+## rebuild: apply current NixOS configuration
+.PHONY: rebuild
+rebuild:
+	@sudo nixos-rebuild switch --flake .#citadel
 
-## stow: run only the stow
-.PHONY: stow
-stow: guard
-	@echo "▶ Running stow"
-	@stow -v -t $$HOME */
-
-## uninstall: unstow dotfiles
-.PHONY: uninstall
-uninstall: guard
-	@echo "▶ Unstowing dotfiles"
-	@stow -D -v -t $$HOME */
-
+## update: update flake inputs and apply configuration
+.PHONY: update
+update:
+	@nix flake update
+	@sudo nixos-rebuild switch --flake .#citadel
