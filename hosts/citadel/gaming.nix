@@ -19,7 +19,7 @@
     enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = false;
-    gamescopeSession.enable = true;
+    gamescopeSession.enable = false;
     extraCompatPackages = with pkgs; [ proton-ge-bin ];
   };
 

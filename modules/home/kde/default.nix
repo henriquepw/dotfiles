@@ -5,13 +5,24 @@
     kdePackages.qtstyleplugin-kvantum
   ];
 
+  # Wallpaper
+  home.file."wallpaper.png".source = ../../scripts/wallpaper.png;
+
+  # Panel layout — copied once so KDE can mutate it freely
+  home.activation.plasma-panel = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    _PANEL="$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc"
+    if [ ! -f "$_PANEL" ]; then
+      cp ${./plasma-org.kde.plasma.desktop-appletsrc} "$_PANEL"
+      chmod 644 "$_PANEL"
+    fi
+  '';
+
   # Clones and installs on first run; skips on subsequent activations
   home.activation.monochrome-kde = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     _MONO="$HOME/.local/share/monochrome-kde"
-    if [ ! -f "$_MONO/.installed" ]; then
-      ${pkgs.git}/bin/git clone --depth=1 https://github.com/pwyde/monochrome-kde.git "$_MONO" || true
+    if [ ! -d "$_MONO" ]; then
+      ${pkgs.git}/bin/git clone https://github.com/pwyde/monochrome-kde.git "$_MONO" || true
       ${pkgs.bash}/bin/bash "$_MONO/install.sh" --install || true
-      touch "$_MONO/.installed"
     fi
   '';
 
@@ -66,7 +77,6 @@
       };
     };
 
-    # Accent color (orange) + Kvantum style + Krohnkite tiling plugin
     configFile = {
       "kdeglobals"."General"."AccentColor".value = "233,100,58";
       "kdeglobals"."KDE"."widgetStyle".value = "kvantum-dark";
@@ -127,12 +137,16 @@
     };
   };
 
-  xdg.configFile."autostart/vicinae.desktop".text = ''
-    [Desktop Entry]
-    Type=Application
-    Name=Vicinae
-    Exec=${pkgs.vicinae}/bin/vicinae
-    Icon=vicinae
-    X-KDE-autostart-after=panel
-  '';
+  systemd.user.services.vicinae = {
+    Unit = {
+      Description = "Vicinae launcher daemon";
+      After = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
+    };
+    Service = {
+      ExecStart = "${pkgs.vicinae}/bin/vicinae";
+      Restart = "on-failure";
+    };
+    Install.WantedBy = [ "graphical-session.target" ];
+  };
 }

@@ -1,8 +1,12 @@
 { pkgs, ... }:
 {
-  services.displayManager.ly.enable = true;
+  services.displayManager.ly = {
+    enable = true;
+    settings.xsessions = "";  # hide all X11 sessions
+  };
 
   services.desktopManager.plasma6.enable = true;
+  services.displayManager.sddm.enable = false;
 
   programs.dconf.enable = true;
 
