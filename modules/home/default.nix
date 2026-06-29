@@ -10,7 +10,6 @@
     ./nvim
     ./shell
     ./gaming
-    ./tmux
     ./packages.nix
   ];
 }

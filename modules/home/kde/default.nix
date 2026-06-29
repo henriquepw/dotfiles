@@ -21,6 +21,7 @@
   home.activation.monochrome-kde = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     _MONO="$HOME/.local/share/monochrome-kde"
     if [ ! -d "$_MONO" ]; then
+      export PATH="${pkgs.wget}/bin:${pkgs.git}/bin:$PATH"
       ${pkgs.git}/bin/git clone https://github.com/pwyde/monochrome-kde.git "$_MONO" || true
       ${pkgs.bash}/bin/bash "$_MONO/install.sh" --install || true
     fi
