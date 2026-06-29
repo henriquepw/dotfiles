@@ -1,15 +1,10 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    # CLI utilities
-    ripgrep
-    fd
-    jq
-
     # Office
     onlyoffice-desktopeditors
 
-    # Misc
+    # Launcher
     vicinae
 
     # Dev tools

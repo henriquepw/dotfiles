@@ -6,7 +6,7 @@
   ];
 
   # Wallpaper
-  home.file."wallpaper.png".source = ../../scripts/wallpaper.png;
+  home.file."wallpaper.png".source = ../../../wallpaper.png;
 
   # Panel layout — copied once so KDE can mutate it freely
   home.activation.plasma-panel = lib.hm.dag.entryAfter [ "writeBoundary" ] ''

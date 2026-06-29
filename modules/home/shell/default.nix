@@ -6,6 +6,10 @@
     zoxide
     fzf
     bat
+    gnumake
+    ripgrep
+    fd
+    jq
   ];
   home.file.".zshrc".source = ./.zshrc;
   xdg.configFile."starship.toml".source = ./starship.toml;
