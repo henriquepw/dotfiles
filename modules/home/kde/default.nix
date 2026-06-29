@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 {
   home.packages = with pkgs; [
     kdePackages.krohnkite
@@ -42,6 +42,7 @@
         theme = "breeze_cursors";
         size = 24;
       };
+      wallpaper = "${config.home.homeDirectory}/wallpaper.png";
     };
 
     fonts = {
