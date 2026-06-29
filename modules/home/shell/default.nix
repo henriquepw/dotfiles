@@ -26,5 +26,5 @@
   home.file.".zshrc".source = ./.zshrc;
   xdg.configFile."starship.toml".source = ./starship.toml;
   xdg.configFile."xdg-terminals.list".source = ./xdg-terminals.list;
-  xdg.configFile."tmux".source = ./config;
+  xdg.configFile."tmux".source = ./tmux;
 }

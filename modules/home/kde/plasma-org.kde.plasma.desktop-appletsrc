@@ -180,10 +180,13 @@ AppletOrder=87;106;62;56;61;40;88
 [Containments][63]
 activityId=
 formfactor=2
+hiding=2
 immutability=1
 lastScreen=0
 location=4
+panelLengthMode=1
 plugin=org.kde.panel
+thickness=64
 wallpaperplugin=org.kde.image
 
 [Containments][63][Applets][86]
