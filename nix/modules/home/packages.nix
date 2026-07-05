@@ -16,8 +16,5 @@
     go
     zig
     rustup
-
-    # Fonts
-    nerd-fonts.jetbrains-mono
   ];
 }

@@ -13,6 +13,7 @@
     {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
+      home-manager.backupFileExtension = "hm-bak";
       home-manager.users.henrique = import ./home.nix;
       home-manager.extraSpecialArgs = { inherit inputs system; };
       home-manager.sharedModules = [ inputs.plasma-manager.homeModules.plasma-manager ];
@@ -42,20 +43,10 @@
   services.timesyncd.enable = true;
 
   # Locale
+  # 'c → ç vem do ~/.XCompose (home-manager), lido nativamente pelo xkbcommon
   i18n = {
     defaultLocale = "pt_BR.UTF-8";
-    inputMethod = {
-      enable = true;
-      type = "ibus";
-      ibus.engines = with pkgs.ibus-engines; [ uniemoji ];
-    };
     extraLocaleSettings.LC_CTYPE = "pt_BR.UTF-8";
-  };
-
-  environment.variables = {
-    GTK_IM_MODULE = "ibus";
-    QT_IM_MODULE = "ibus";
-    XMODIFIERS = "@im=ibus";
   };
 
   # Firmware
@@ -96,6 +87,7 @@
   fonts = {
     packages = with pkgs; [
       noto-fonts-color-emoji
+      nerd-fonts.jetbrains-mono
     ];
     fontconfig.defaultFonts = {
       monospace = [ "JetBrainsMono Nerd Font Mono" ];

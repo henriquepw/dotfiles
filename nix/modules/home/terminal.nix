@@ -41,6 +41,14 @@ in
     tmux
   ];
 
+  # tpm instala os demais plugins em ~/.tmux/plugins via prefix+I
+  home.file.".tmux/plugins/tpm".source = pkgs.fetchFromGitHub {
+    owner = "tmux-plugins";
+    repo = "tpm";
+    rev = "v3.1.0";
+    hash = "sha256-CeI9Wq6tHqV68woE11lIY4cLoNY8XWyXyMHTDmFKJKI=";
+  };
+
   home.file.".zshrc".source = link "${dotfiles}/shell/.zshrc";
   xdg.configFile."fastfetch".source = link "${dotfiles}/fastfetch";
   xdg.configFile."foot".source = link "${dotfiles}/foot";

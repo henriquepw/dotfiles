@@ -30,21 +30,12 @@
     capSysNice = true;
   };
 
-  # Sunshine streaming ports
-  networking.firewall = {
-    allowedTCPPorts = [
-      47984
-      47989
-      47990
-      48010
-    ];
-    allowedUDPPorts = [
-      47998
-      47999
-      48000
-      48002
-      48010
-    ];
+  # Sunshine — binário com setcap (captura KMS + uinput no Wayland)
+  services.sunshine = {
+    enable = true;
+    capSysAdmin = true;
+    autoStart = true;
+    openFirewall = true;
   };
 
   nixpkgs.config.allowUnfreePredicate =

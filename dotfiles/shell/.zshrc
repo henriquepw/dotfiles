@@ -4,30 +4,10 @@ if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
 fi
 export PATH
 
-# PTBR
-export LC_CTYPE=pt_BR.UTF-8
-export XCOMPOSEFILE="$HOME/.XCompose"
-
-# Opencode
-export PATH=$HOME/.opencode/bin:$PATH
 export YDOTOOL_SOCKET=/tmp/.ydotool_socket
 
-# NVM
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-[ -s "~/.bun/_bun" ] && source "~/.bun/_bun"
-
-# fzf
-export PATH=$PATH:$HOME/.fzf/bin
-[[ ! -f ~/.fzf.zsh ]] || source ~/.fzf.zsh
-
 # Aliases
-alias gf="sh git-fetch.sh"
+alias gf="git-fetch.sh"
 alias gz="lazygit"
 alias c="clear"
 alias vim="nvim"
@@ -74,14 +54,6 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)"
 
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-
 if command -v tmux >/dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux
 fi
-
-
-if [ -e /home/henrique/.nix-profile/etc/profile.d/nix.sh ]; then . /home/henrique/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
