@@ -11,6 +11,9 @@
     kdePackages.qtstyleplugin-kvantum
   ];
 
+  # 'c deve gerar ç, não ć
+  home.file.".XCompose".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/kde/XCompose";
+
   # Panel layout — copied once so KDE can mutate it freely
   home.activation.plasma-panel = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     _PANEL="$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc"
