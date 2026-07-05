@@ -31,6 +31,12 @@
     networkmanager.enable = true;
   };
 
+  # Tailscale
+  services.tailscale = {
+    enable = true;
+    openFirewall = true;
+  };
+
   # Time
   time.timeZone = "America/Sao_Paulo";
   services.timesyncd.enable = true;
