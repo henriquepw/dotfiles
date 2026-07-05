@@ -9,6 +9,8 @@
     ./hardware-configuration.nix
     ./gaming.nix
     ./desktop.nix
+    ./theme.nix
+    inputs.stylix.nixosModules.stylix
     inputs.home-manager.nixosModules.home-manager
     {
       home-manager.useGlobalPkgs = true;
@@ -83,19 +85,15 @@
     };
   };
 
-  # Fonts
-  fonts = {
-    packages = with pkgs; [
-      noto-fonts-color-emoji
-      nerd-fonts.jetbrains-mono
-    ];
-    fontconfig.defaultFonts = {
-      monospace = [ "JetBrainsMono Nerd Font Mono" ];
-      sansSerif = [ "JetBrainsMono Nerd Font Mono" ];
-      serif = [ "JetBrainsMono Nerd Font Mono" ];
-      emoji = [ "Noto Color Emoji" ];
-    };
-  };
+  # Fonts — defaults do fontconfig vêm do stylix (theme.nix)
+  # Noto completo como fallback de cobertura (CJK, símbolos, etc.)
+  fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
+    noto-fonts-color-emoji
+    nerd-fonts.jetbrains-mono
+  ];
 
   # Power
   services.power-profiles-daemon.enable = true;

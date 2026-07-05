@@ -9,5 +9,6 @@
     ./nvim.nix
     ./packages.nix
     ./terminal.nix
+    ./theme.nix
   ];
 }

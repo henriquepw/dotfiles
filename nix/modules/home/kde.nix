@@ -11,7 +11,6 @@ in
 {
   home.packages = with pkgs; [
     kdePackages.krohnkite
-    kdePackages.qtstyleplugin-kvantum
   ];
 
   # 'c deve gerar ç, não ć
@@ -26,59 +25,13 @@ in
     fi
   '';
 
-  # Clones and installs on first run; skips on subsequent activations
-  home.activation.monochrome-kde = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    _MONO="$HOME/.local/share/monochrome-kde"
-    if [ ! -d "$_MONO" ]; then
-      export PATH="${pkgs.wget}/bin:${pkgs.git}/bin:$PATH"
-      ${pkgs.git}/bin/git clone https://github.com/pwyde/monochrome-kde.git "$_MONO" || true
-      ${pkgs.bash}/bin/bash "$_MONO/install.sh" --install || true
-    fi
-  '';
-
-  xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
-    [General]
-    theme=MonochromeSolid
-  '';
-
   programs.plasma = {
     enable = true;
 
+    # Cores, fontes, cursor e GTK vêm do stylix (hosts/citadel/theme.nix)
     workspace = {
-      lookAndFeel = "Monochrome";
-      colorScheme = "BreezeDark";
-      cursor = {
-        theme = "breeze_cursors";
-        size = 24;
-      };
+      iconTheme = "Papirus-Dark";
       wallpaper = "${dotfiles}/wallpaper.png";
-    };
-
-    fonts = {
-      general = {
-        family = "JetBrainsMono Nerd Font Propo";
-        pointSize = 10;
-      };
-      fixedWidth = {
-        family = "JetBrainsMono Nerd Font Propo";
-        pointSize = 10;
-      };
-      small = {
-        family = "JetBrainsMono Nerd Font Propo";
-        pointSize = 8;
-      };
-      toolbar = {
-        family = "JetBrainsMono Nerd Font Propo";
-        pointSize = 9;
-      };
-      menu = {
-        family = "JetBrainsMono Nerd Font Propo";
-        pointSize = 10;
-      };
-      windowTitle = {
-        family = "JetBrainsMono Nerd Font Propo";
-        pointSize = 10;
-      };
     };
 
     kwin = {
@@ -89,8 +42,6 @@ in
     };
 
     configFile = {
-      "kdeglobals"."General"."AccentColor".value = "233,100,58";
-      "kdeglobals"."KDE"."widgetStyle".value = "kvantum-dark";
       "kwinrc"."Plugins"."slideEnabled".value = false;
       "kwinrc"."Plugins"."krohnkiteEnabled".value = true;
       "kwinrc"."Script-krohnkite"."noTileBorder".value = true;
