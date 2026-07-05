@@ -39,6 +39,13 @@ in
         style = "block";
         blink = "no";
       };
+      # Mesmos atalhos de clipboard do ghostty (mantendo os padrões Ctrl+Shift)
+      key-bindings = {
+        clipboard-copy = "Control+Shift+c Control+Insert";
+        clipboard-paste = "Control+Shift+v Shift+Insert";
+        # Shift+Insert por padrão cola o primary — libera pro clipboard-paste
+        primary-paste = "none";
+      };
     };
   };
 
