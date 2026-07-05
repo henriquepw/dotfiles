@@ -5,6 +5,9 @@
   dotfiles,
   ...
 }:
+let
+  link = config.lib.file.mkOutOfStoreSymlink;
+in
 {
   home.packages = with pkgs; [
     kdePackages.krohnkite
@@ -12,7 +15,7 @@
   ];
 
   # 'c deve gerar ç, não ć
-  home.file.".XCompose".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/kde/XCompose";
+  home.file.".XCompose".source = link "${dotfiles}/kde/XCompose";
 
   # Panel layout — copied once so KDE can mutate it freely
   home.activation.plasma-panel = lib.hm.dag.entryAfter [ "writeBoundary" ] ''

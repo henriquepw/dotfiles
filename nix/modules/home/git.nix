@@ -4,10 +4,13 @@
   dotfiles,
   ...
 }:
+let
+  link = config.lib.file.mkOutOfStoreSymlink;
+in
 {
   home.packages = with pkgs; [
     git
     lazygit
   ];
-  xdg.configFile."git".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/git";
+  xdg.configFile."git".source = link "${dotfiles}/git";
 }

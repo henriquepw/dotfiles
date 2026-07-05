@@ -4,6 +4,9 @@
   dotfiles,
   ...
 }:
+let
+  link = config.lib.file.mkOutOfStoreSymlink;
+in
 {
   home.packages = with pkgs; [
     sunshine
@@ -13,7 +16,7 @@
   ];
 
   # Symlink pro repo — credentials/ é gravado pelo sunshine e ignorado no git
-  xdg.configFile."sunshine".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/sunshine";
+  xdg.configFile."sunshine".source = link "${dotfiles}/sunshine";
 
   # Steam autostart (silent, no window on boot)
   xdg.configFile."autostart/steam.desktop".text = ''

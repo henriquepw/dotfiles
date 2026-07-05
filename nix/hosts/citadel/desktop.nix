@@ -2,7 +2,7 @@
 {
   services.displayManager.ly = {
     enable = true;
-    settings.xsessions = "";  # hide all X11 sessions
+    settings.xsessions = ""; # hide all X11 sessions
   };
 
   services.desktopManager.plasma6.enable = true;

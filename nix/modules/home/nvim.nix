@@ -4,6 +4,9 @@
   dotfiles,
   ...
 }:
+let
+  link = config.lib.file.mkOutOfStoreSymlink;
+in
 {
   home.packages = with pkgs; [
     neovim
@@ -11,5 +14,5 @@
     nixfmt
     statix
   ];
-  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/nvim";
+  xdg.configFile."nvim".source = link "${dotfiles}/nvim";
 }

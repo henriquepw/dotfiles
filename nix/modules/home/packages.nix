@@ -4,6 +4,9 @@
     # Office
     onlyoffice-desktopeditors
 
+    # 3D printing
+    orca-slicer
+
     # Launcher
     vicinae
 
