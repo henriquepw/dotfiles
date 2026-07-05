@@ -9,7 +9,7 @@ echo "▶ Host: $HOST"
 
 # ── 1. Hardware configuration ────────────────────────────────────────────────
 HARDWARE_SRC="/etc/nixos/hardware-configuration.nix"
-HARDWARE_DEST="$DOTFILES/hosts/$HOST/hardware-configuration.nix"
+HARDWARE_DEST="$DOTFILES/nix/hosts/$HOST/hardware-configuration.nix"
 
 if [ ! -f "$HARDWARE_DEST" ]; then
 	if [ ! -f "$HARDWARE_SRC" ]; then
@@ -18,6 +18,8 @@ if [ ! -f "$HARDWARE_DEST" ]; then
 	fi
 	echo "▶ Copying hardware-configuration.nix"
 	cp "$HARDWARE_SRC" "$HARDWARE_DEST"
+	# flakes em repo git só enxergam arquivos rastreados
+	git -C "$DOTFILES" add "$HARDWARE_DEST"
 else
 	echo "▶ hardware-configuration.nix already present, skipping"
 fi
@@ -31,7 +33,7 @@ fi
 
 # ── 3. Apply NixOS configuration ─────────────────────────────────────────────
 echo "▶ Running nixos-rebuild switch (this will take a while)"
-sudo nixos-rebuild switch --flake "$DOTFILES#$HOST"
+sudo nixos-rebuild switch --flake "$DOTFILES/nix#$HOST"
 
 echo ""
 echo "✓ Done! Reboot recommended."

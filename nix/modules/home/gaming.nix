@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  dotfiles,
+  ...
+}:
 {
   home.packages = with pkgs; [
     sunshine
@@ -7,11 +12,8 @@
     mangohud
   ];
 
-  # credentials/ is excluded — not tracked in git
-  xdg.configFile."sunshine" = {
-    source = ./sunshine;
-    recursive = true;
-  };
+  # Symlink pro repo — credentials/ é gravado pelo sunshine e ignorado no git
+  xdg.configFile."sunshine".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/sunshine";
 
   # Steam autostart (silent, no window on boot)
   xdg.configFile."autostart/steam.desktop".text = ''

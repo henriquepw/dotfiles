@@ -1,7 +1,3 @@
 .DS_Store
-.config/configstore
-.config/sunshine/credentials
-.config/tmux/plugins
-raycast
-
-
+dotfiles/sunshine/credentials
+dotfiles/tmux/plugins

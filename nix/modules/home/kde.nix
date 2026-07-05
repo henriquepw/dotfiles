@@ -1,18 +1,21 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  dotfiles,
+  ...
+}:
 {
   home.packages = with pkgs; [
     kdePackages.krohnkite
     kdePackages.qtstyleplugin-kvantum
   ];
 
-  # Wallpaper
-  home.file."wallpaper.png".source = ../../../wallpaper.png;
-
   # Panel layout — copied once so KDE can mutate it freely
   home.activation.plasma-panel = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     _PANEL="$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc"
     if [ ! -f "$_PANEL" ]; then
-      cp ${./plasma-org.kde.plasma.desktop-appletsrc} "$_PANEL"
+      cp "${dotfiles}/kde/plasma-org.kde.plasma.desktop-appletsrc" "$_PANEL"
       chmod 644 "$_PANEL"
     fi
   '';
@@ -42,7 +45,7 @@
         theme = "breeze_cursors";
         size = 24;
       };
-      wallpaper = "${config.home.homeDirectory}/wallpaper.png";
+      wallpaper = "${dotfiles}/wallpaper.png";
     };
 
     fonts = {
