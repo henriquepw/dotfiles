@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   dotfiles,
   ...
 }:
@@ -9,19 +10,13 @@ let
 in
 {
   home.packages = with pkgs; [
-    # Terminals
-    ghostty
-    foot
-
     zsh
-    starship
     gnumake
     ripgrep
     fd
     jq
 
     # System monitoring
-    btop
     fastfetch
 
     # File tools
@@ -29,17 +24,64 @@ in
     tree
     unzip
     zoxide
-    fzf
-    bat
 
     # Image viewers via sixel
     chafa
     libsixel
-
-    # Dev productivity
-    lazygit
-    tmux
   ];
+
+  # Terminais — cores e fonte vêm do stylix
+  programs.foot = {
+    enable = true;
+    settings = {
+      main.pad = "8x4";
+      cursor = {
+        style = "block";
+        blink = "no";
+      };
+    };
+  };
+
+  programs.ghostty = {
+    enable = true;
+    settings = {
+      font-style = "Regular";
+      font-feature = "-calt";
+      window-theme = "ghostty";
+      window-padding-x = 8;
+      window-padding-y = 4;
+      confirm-close-surface = false;
+      resize-overlay = "never";
+      gtk-toolbar-style = "flat";
+      cursor-style = "block";
+      cursor-style-blink = false;
+      shell-integration-features = "no-cursor,ssh-env";
+      mouse-scroll-multiplier = 0.95;
+      keybind = [
+        "super+t=unbind"
+        "shift+insert=paste_from_clipboard"
+        "control+insert=copy_to_clipboard"
+      ];
+    };
+  };
+
+  # O stylix injeta os estilos (source-file do tema base16) antes do extraConfig
+  programs.tmux = {
+    enable = true;
+    sensibleOnTop = false;
+    extraConfig = lib.mkAfter (builtins.readFile ../../../dotfiles/tmux/tmux.conf);
+  };
+
+  # Paleta base16 do stylix entra por cima; o arquivo continua em dotfiles/
+  programs.starship = {
+    enable = true;
+    settings = builtins.fromTOML (builtins.readFile ../../../dotfiles/shell/starship.toml);
+  };
+
+  # Habilitados só pelo tema do stylix
+  programs.bat.enable = true;
+  programs.btop.enable = true;
+  programs.fzf.enable = true;
 
   # tpm instala os demais plugins em ~/.tmux/plugins via prefix+I
   home.file.".tmux/plugins/tpm".source = pkgs.fetchFromGitHub {
@@ -51,9 +93,5 @@ in
 
   home.file.".zshrc".source = link "${dotfiles}/shell/.zshrc";
   xdg.configFile."fastfetch".source = link "${dotfiles}/fastfetch";
-  xdg.configFile."foot".source = link "${dotfiles}/foot";
-  xdg.configFile."ghostty".source = link "${dotfiles}/ghostty";
-  xdg.configFile."starship.toml".source = link "${dotfiles}/shell/starship.toml";
   xdg.configFile."xdg-terminals.list".source = link "${dotfiles}/shell/xdg-terminals.list";
-  xdg.configFile."tmux".source = link "${dotfiles}/tmux";
 }

@@ -7,9 +7,6 @@
     # 3D printing
     orca-slicer
 
-    # Launcher
-    vicinae
-
     # Dev tools
     nodejs
     bun

@@ -30,7 +30,7 @@
 
     fonts = {
       monospace = {
-        name = "JetBrainsMono Nerd Font Propo";
+        name = "JetBrainsMono Nerd Font Mono";
         package = pkgs.nerd-fonts.jetbrains-mono;
       };
       sansSerif = {
@@ -48,7 +48,7 @@
       sizes = {
         desktop = 10;
         applications = 10;
-        terminal = 10;
+        terminal = 14;
         popups = 9;
       };
     };

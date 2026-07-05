@@ -99,16 +99,10 @@ in
     };
   };
 
-  systemd.user.services.vicinae = {
-    Unit = {
-      Description = "Vicinae launcher daemon";
-      After = [ "graphical-session.target" ];
-      PartOf = [ "graphical-session.target" ];
-    };
-    Service = {
-      ExecStart = "${pkgs.vicinae}/bin/vicinae";
-      Restart = "on-failure";
-    };
-    Install.WantedBy = [ "graphical-session.target" ];
+  # Módulo do flake do vicinae — assim o target vicinae do stylix aplica o tema
+  programs.vicinae = {
+    enable = true;
+    package = pkgs.vicinae;
+    systemd.enable = true;
   };
 }

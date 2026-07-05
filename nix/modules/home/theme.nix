@@ -1,12 +1,9 @@
 { ... }:
 {
   stylix.targets = {
-    # qtct+Kvantum brigam com o theming nativo do Plasma 6
+    # Reintroduziria Kvantum/qtct — o Plasma 6 já tematiza Qt nativamente
     qt.enable = false;
-    # terminais são symlinks out-of-store, já com a paleta Matte Black
-    foot.enable = false;
-    ghostty.enable = false;
-    tmux.enable = false;
-    starship.enable = false;
+    # O nvim tem config própria (ashen) via symlink out-of-store
+    neovim.enable = false;
   };
 }

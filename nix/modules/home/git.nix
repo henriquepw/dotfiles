@@ -10,8 +10,10 @@ in
 {
   home.packages = with pkgs; [
     git
-    lazygit
   ];
+
+  # Habilitado como módulo pra receber o tema do stylix
+  programs.lazygit.enable = true;
   xdg.configFile."git".source = link "${dotfiles}/git";
   home.file.".local/bin/git-fetch.sh".source = link "${dotfiles}/bin/git-fetch.sh";
 }

@@ -18,7 +18,10 @@
       home-manager.backupFileExtension = "hm-bak";
       home-manager.users.henrique = import ./home.nix;
       home-manager.extraSpecialArgs = { inherit inputs system; };
-      home-manager.sharedModules = [ inputs.plasma-manager.homeModules.plasma-manager ];
+      home-manager.sharedModules = [
+        inputs.plasma-manager.homeModules.plasma-manager
+        inputs.vicinae.homeManagerModules.default
+      ];
     }
   ];
 
