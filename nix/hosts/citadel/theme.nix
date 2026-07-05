@@ -62,7 +62,8 @@
     # Só cobre GTK — os ícones do Plasma vêm do plasma-manager (kde.nix)
     icons = {
       enable = true;
-      package = pkgs.papirus-icon-theme;
+      # Pastas laranja pra combinar com o accent
+      package = pkgs.papirus-icon-theme.override { color = "orange"; };
       dark = "Papirus-Dark";
     };
   };
