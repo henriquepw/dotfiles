@@ -7,6 +7,9 @@ HOST="${1:-citadel}"
 echo "▶ Dotfiles: $DOTFILES"
 echo "▶ Host: $HOST"
 
+# A config nix referencia o repo via ~/.dotfiles — o clone pode viver em qualquer pasta
+ln -sfn "$DOTFILES" "$HOME/.dotfiles"
+
 # ── 1. Hardware configuration ────────────────────────────────────────────────
 HARDWARE_SRC="/etc/nixos/hardware-configuration.nix"
 HARDWARE_DEST="$DOTFILES/nix/hosts/$HOST/hardware-configuration.nix"
