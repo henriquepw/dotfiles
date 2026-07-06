@@ -103,6 +103,9 @@ in
   programs.vicinae = {
     enable = true;
     package = pkgs.vicinae;
-    systemd.enable = true;
+    systemd = {
+      enable = true;
+      autoStart = true;
+    };
   };
 }
