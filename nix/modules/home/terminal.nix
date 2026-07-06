@@ -99,6 +99,12 @@ in
     hash = "sha256-CeI9Wq6tHqV68woE11lIY4cLoNY8XWyXyMHTDmFKJKI=";
   };
 
+  # Terminal padrão do KDE (o xdg-terminals.list cobre o xdg-terminal-exec)
+  programs.plasma.configFile."kdeglobals"."General" = {
+    "TerminalApplication".value = "foot";
+    "TerminalService".value = "foot.desktop";
+  };
+
   home.file.".zshrc".source = link "${dotfiles}/shell/.zshrc";
   xdg.configFile."fastfetch".source = link "${dotfiles}/fastfetch";
   xdg.configFile."xdg-terminals.list".source = link "${dotfiles}/shell/xdg-terminals.list";

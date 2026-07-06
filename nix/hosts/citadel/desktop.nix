@@ -7,6 +7,24 @@
 
   services.desktopManager.plasma6.enable = true;
 
+  # kwrite vem dentro do pacote kate; kwalletmanager é "required" pelo módulo
+  # (KCMs) e não sai por aqui — o .desktop dele é escondido no kde.nix
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    kate
+    okular
+    gwenview
+    elisa
+    khelpcenter
+    konsole
+  ];
+
+  # us-intl: dead keys ('+c, ~+a, etc.) — o KDE Wayland lê o kxkbrc (kde.nix),
+  # isto cobre console/X e o fallback do sistema
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "intl";
+  };
+
   # Login é o ly; SDDM fica 100% fora (não é ele que bloqueia a tela — isso é o
   # kscreenlocker + PAM, que seguem funcionando)
   services.displayManager.sddm.enable = false;

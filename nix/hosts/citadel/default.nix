@@ -37,21 +37,32 @@
     networkmanager.enable = true;
   };
 
-  # Tailscale
+  # Tailscale — operator libera o CLI pro usuário sem sudo
   services.tailscale = {
     enable = true;
     openFirewall = true;
+    extraSetFlags = [ "--operator=henrique" ];
   };
 
   # Time
   time.timeZone = "America/Sao_Paulo";
   services.timesyncd.enable = true;
 
-  # Locale
+  # Locale — UI em inglês, formatos (data, moeda, papel...) em pt-BR
   # 'c → ç vem do ~/.XCompose (home-manager), lido nativamente pelo xkbcommon
   i18n = {
-    defaultLocale = "pt_BR.UTF-8";
-    extraLocaleSettings.LC_CTYPE = "pt_BR.UTF-8";
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_CTYPE = "pt_BR.UTF-8"; # cedilha em vez de ć nos dead keys
+      LC_TIME = "pt_BR.UTF-8";
+      LC_NUMERIC = "pt_BR.UTF-8";
+      LC_MONETARY = "pt_BR.UTF-8";
+      LC_PAPER = "pt_BR.UTF-8";
+      LC_NAME = "pt_BR.UTF-8";
+      LC_ADDRESS = "pt_BR.UTF-8";
+      LC_TELEPHONE = "pt_BR.UTF-8";
+      LC_MEASUREMENT = "pt_BR.UTF-8";
+    };
   };
 
   # Firmware
@@ -73,14 +84,16 @@
     powerOnBoot = true;
   };
 
-  # Keyboard remapping
+  # Keyboard remapping — Ctrl+Insert/Shift+Insert são copy/paste universais:
+  # GTK, Qt, browsers e Electron honram nativamente; foot e ghostty têm
+  # bindings explícitos pra eles (terminal.nix)
   services.keyd = {
     enable = true;
     keyboards.default = {
       ids = [ "*" ];
       settings.meta = {
-        c = "C-S-c";
-        v = "C-v";
+        c = "C-insert";
+        v = "S-insert";
         x = "C-x";
         a = "C-a";
         z = "C-z";

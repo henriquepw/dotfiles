@@ -34,6 +34,15 @@ in
       wallpaper = "${dotfiles}/wallpaper.png";
     };
 
+    # us-intl com dead keys — sem isso o KDE fica no 'us' puro e nenhum
+    # acento funciona; o XCompose acima só troca ć→ç por cima disso
+    input.keyboard.layouts = [
+      {
+        layout = "us";
+        variant = "intl";
+      }
+    ];
+
     kwin = {
       virtualDesktops = {
         number = 6;
@@ -41,7 +50,13 @@ in
       };
     };
 
+    # Mesma imagem do desktop no lock screen
+    kscreenlocker.appearance.wallpaper = "${dotfiles}/wallpaper.png";
+
     configFile = {
+      # UI em inglês — o plasma-localerc sobrescreve o LANG da sessão, então
+      # precisa ficar coerente com o i18n do sistema (formatos pt-BR via LC_*)
+      "plasma-localerc"."Translations"."LANGUAGE".value = "en_US:pt_BR";
       # KWallet desligado (cofre de segredos; não tem relação com o lock de tela)
       "kwalletrc"."Wallet"."Enabled".value = false;
       "kwinrc"."Plugins"."slideEnabled".value = false;
@@ -56,7 +71,10 @@ in
     };
 
     shortcuts = {
-      "services/vicinae.desktop"."toggle" = "Meta+Space";
+      "services/vicinae.desktop"."toggle" = [
+        "Meta+Return"
+        "Meta+Space"
+      ];
 
       kwin = {
         # Desktop switching — QWERTY row
@@ -99,6 +117,25 @@ in
         "KrohnkiteMonocleLayout" = "Meta+M";
       };
     };
+  };
+
+  # kwalletmanager não é removível via plasma6.excludePackages (está nos
+  # requiredPackages do módulo) — esconde do menu por cima
+  xdg.dataFile = {
+    "applications/org.kde.kwalletmanager.desktop".text = ''
+      [Desktop Entry]
+      Type=Application
+      Name=KWalletManager
+      NoDisplay=true
+      Hidden=true
+    '';
+    "applications/kwalletmanager5-kwalletd.desktop".text = ''
+      [Desktop Entry]
+      Type=Application
+      Name=KWalletManager
+      NoDisplay=true
+      Hidden=true
+    '';
   };
 
   # Módulo do flake do vicinae — assim o target vicinae do stylix aplica o tema

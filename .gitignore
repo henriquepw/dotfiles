@@ -1,3 +1,6 @@
 .DS_Store
 *.hm-bak
 dotfiles/sunshine/credentials
+
+sunshine.log
+hardware-configuration.nix
