@@ -42,6 +42,8 @@ in
     };
 
     configFile = {
+      # KWallet desligado (cofre de segredos; não tem relação com o lock de tela)
+      "kwalletrc"."Wallet"."Enabled".value = false;
       "kwinrc"."Plugins"."slideEnabled".value = false;
       "kwinrc"."Plugins"."krohnkiteEnabled".value = true;
       "kwinrc"."Script-krohnkite"."noTileBorder".value = true;
