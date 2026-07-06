@@ -28,8 +28,16 @@
   # Boot
   boot.loader = {
     systemd-boot.enable = true;
+    systemd-boot.consoleMode = "max"; # usa resolução máxima EFI — ly ocupa o monitor inteiro
     efi.canTouchEfiVariables = true;
   };
+
+  boot.kernelParams = [
+    "quiet"
+    "loglevel=3"
+    "rd.udev.log_level=3"
+    "udev.log_priority=3"
+  ];
 
   # Network
   networking = {
