@@ -71,10 +71,7 @@ in
     };
 
     shortcuts = {
-      "services/vicinae.desktop"."toggle" = [
-        "Meta+Return"
-        "Meta+Space"
-      ];
+      "services/vicinae.desktop"."toggle" = "Meta+Return";
 
       kwin = {
         # Desktop switching — QWERTY row
@@ -111,6 +108,8 @@ in
         "KrohnkiteGrowHeight" = "Meta+Ctrl+J";
         "KrohnkiteShrinkHeight" = "Meta+Ctrl+K";
         "KrohnkitegrowWidth" = "Meta+Ctrl+L";
+        # Krohnkite — libera Meta+Return pro vicinae
+        "KrohnkiteSetMaster" = "none";
         # Krohnkite — layouts
         "KrohnkiteToggleFloat" = "Meta+F";
         "KrohnkiteFloatAll" = "Meta+Shift+F";
