@@ -72,17 +72,18 @@ in
     };
   };
 
-  # O stylix injeta os estilos (source-file do tema base16) antes do extraConfig
+  # O stylix injeta os estilos (tema base16) antes; o conf do repo é lido em
+  # runtime — segue editável ao vivo, sem rebuild
   programs.tmux = {
     enable = true;
     sensibleOnTop = false;
-    extraConfig = lib.mkAfter (builtins.readFile ../../../dotfiles/tmux/tmux.conf);
+    extraConfig = lib.mkAfter "source-file ${dotfiles}/tmux/tmux.conf";
   };
 
-  # Paleta base16 do stylix entra por cima; o arquivo continua em dotfiles/
+  # Paleta base16 do stylix entra por cima das settings do arquivo
   programs.starship = {
     enable = true;
-    settings = builtins.fromTOML (builtins.readFile ../../../dotfiles/shell/starship.toml);
+    settings = builtins.fromTOML (builtins.readFile ./starship.toml);
   };
 
   # Habilitados só pelo tema do stylix
