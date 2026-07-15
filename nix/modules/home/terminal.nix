@@ -39,7 +39,6 @@ in
         style = "block";
         blink = "no";
       };
-      # Mesmos atalhos de clipboard do ghostty (mantendo os padrões Ctrl+Shift)
       key-bindings = {
         clipboard-copy = "Control+Shift+c Control+Insert";
         clipboard-paste = "Control+Shift+v Shift+Insert";
@@ -49,28 +48,28 @@ in
     };
   };
 
-  programs.ghostty = {
-    enable = true;
-    settings = {
-      font-style = "Regular";
-      font-feature = "-calt";
-      window-theme = "ghostty";
-      window-padding-x = 8;
-      window-padding-y = 4;
-      confirm-close-surface = false;
-      resize-overlay = "never";
-      gtk-toolbar-style = "flat";
-      cursor-style = "block";
-      cursor-style-blink = false;
-      shell-integration-features = "no-cursor,ssh-env";
-      mouse-scroll-multiplier = 0.95;
-      keybind = [
-        "super+t=unbind"
-        "shift+insert=paste_from_clipboard"
-        "control+insert=copy_to_clipboard"
-      ];
-    };
-  };
+  # programs.ghostty = {
+  #   enable = true;
+  #   settings = {
+  #     font-style = "Regular";
+  #     font-feature = "-calt";
+  #     window-theme = "ghostty";
+  #     window-padding-x = 8;
+  #     window-padding-y = 4;
+  #     confirm-close-surface = false;
+  #     resize-overlay = "never";
+  #     gtk-toolbar-style = "flat";
+  #     cursor-style = "block";
+  #     cursor-style-blink = false;
+  #     shell-integration-features = "no-cursor,ssh-env";
+  #     mouse-scroll-multiplier = 0.95;
+  #     keybind = [
+  #       "super+t=unbind"
+  #       "shift+insert=paste_from_clipboard"
+  #       "control+insert=copy_to_clipboard"
+  #     ];
+  #   };
+  # };
 
   # O stylix injeta os estilos (tema base16) antes; o conf do repo é lido em
   # runtime — segue editável ao vivo, sem rebuild
