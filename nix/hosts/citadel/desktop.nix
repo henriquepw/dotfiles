@@ -37,6 +37,8 @@
     kde.kwallet.enable = lib.mkForce false;
   };
 
+  programs.kdeconnect.enable = true;
+
   programs.dconf.enable = true;
 
   security.polkit.enable = true;
