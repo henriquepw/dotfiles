@@ -62,6 +62,9 @@ case "${1:-}" in
 		kscreen-doctor output."${STREAM_DISPLAY}".mode."${W}x${H}@${FPS}" \
 			|| log "modo ${W}x${H}@${FPS} indisponível em ${STREAM_DISPLAY} — mantendo o atual"
 		kscreen-doctor output."${STREAM_DISPLAY}".position.0,0 || true
+		# Scale 1:1 — sem isso o KDE captura a área lógica escalada (ex.: 1423x800)
+		# em vez do 4K nativo. Não precisa restaurar: o dummy é desligado no undo.
+		kscreen-doctor output."${STREAM_DISPLAY}".scale.1 || true
 		if [[ "$STREAM_DISPLAY" != "$SEAT_DISPLAY" ]]; then
 			sleep 1
 			kscreen-doctor output."${SEAT_DISPLAY}".disable || true
