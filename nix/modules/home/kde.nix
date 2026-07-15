@@ -73,6 +73,14 @@ in
     shortcuts = {
       "services/vicinae.desktop"."toggle" = "Meta+Return";
 
+      # Desativa Super sozinho no app launcher (só mantém Alt+F1)
+      plasmashell."activate application launcher" = "Alt+F1";
+
+      # Atalhos de apps — Super+Ctrl+Letra
+      "foot.desktop"."_launch" = "Meta+Ctrl+T";
+      "brave-browser.desktop"."_launch" = "Meta+Ctrl+B";
+      "whatsapp-web.desktop"."_launch" = "Meta+Ctrl+G";
+
       kwin = {
         # Desktop switching — QWERTY row
         "Switch to Desktop 1" = "Meta+Q";
@@ -121,6 +129,14 @@ in
   # kwalletmanager não é removível via plasma6.excludePackages (está nos
   # requiredPackages do módulo) — esconde do menu por cima
   xdg.dataFile = {
+    "applications/whatsapp-web.desktop".text = ''
+      [Desktop Entry]
+      Type=Application
+      Name=WhatsApp Web
+      Exec=brave --app=https://web.whatsapp.com
+      Icon=brave-browser
+      Categories=Network;InstantMessaging;
+    '';
     "applications/org.kde.kwalletmanager.desktop".text = ''
       [Desktop Entry]
       Type=Application
