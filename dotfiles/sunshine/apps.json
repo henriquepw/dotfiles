@@ -7,7 +7,14 @@
 		{
 			"detached": ["setsid steam steam://open/bigpicture"],
 			"image-path": "steam.png",
-			"name": "Steam"
+			"name": "Steam",
+			"prep-cmd": [
+				{
+					"do": "kscreen-doctor output.DP-3.enable",
+					"undo": "kscreen-doctor output.DP-3.disable",
+					"elevated": "false"
+				}
+			]
 		}
 	]
 }
