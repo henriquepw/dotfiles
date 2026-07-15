@@ -53,6 +53,15 @@ in
     # Mesma imagem do desktop no lock screen
     kscreenlocker.appearance.wallpaper = "${dotfiles}/wallpaper.png";
 
+    # Máquina de streaming: nunca apagar/escurecer a tela nem suspender. Sem
+    # isso o KDE apaga o display (inclusive o dummy/virtual) por inatividade e
+    # o stream vira tela preta. "never" já cobre bloqueado e desbloqueado.
+    powerdevil.AC = {
+      autoSuspend.action = "nothing";
+      dimDisplay.enable = false;
+      turnOffDisplay.idleTimeout = "never";
+    };
+
     configFile = {
       # UI em inglês — o plasma-localerc sobrescreve o LANG da sessão, então
       # precisa ficar coerente com o i18n do sistema (formatos pt-BR via LC_*)
