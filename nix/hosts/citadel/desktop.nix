@@ -51,6 +51,9 @@
     GDK_BACKEND = "wayland";
     SDL_VIDEODRIVER = "wayland";
     CLUTTER_BACKEND = "wayland";
+    # VAAPI para AMD — necessário para Sunshine usar encoder radeonsi em vez de Vulkan (GFX1201/RDNA4 ainda imaturo no RADV)
+    LIBVA_DRIVER_NAME = "radeonsi";
+    LIBVA_DRIVERS_PATH = "/run/opengl-driver/lib/dri";
   };
 
   xdg.portal = {

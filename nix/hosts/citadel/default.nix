@@ -37,6 +37,7 @@
     "loglevel=3"
     "rd.udev.log_level=3"
     "udev.log_priority=3"
+    "video=DP-1:2560x1440@165" # força KMS a usar resolução nativa no TTY/ly
   ];
 
   # Network

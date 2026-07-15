@@ -8,6 +8,7 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+    # VAAPI radeonsi (radeonsi_drv_video.so) já vem no mesa 26.x — nada a adicionar aqui
     extraPackages = with pkgs; [
       rocmPackages.clr.icd
     ];
@@ -37,6 +38,9 @@
     autoStart = true;
     openFirewall = true;
   };
+
+  # vainfo — debug do encoder VAAPI (radeonsi) usado pelo Sunshine
+  environment.systemPackages = [ pkgs.libva-utils ];
 
   nixpkgs.config.allowUnfreePredicate =
     pkg:
