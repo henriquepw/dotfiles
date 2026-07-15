@@ -23,6 +23,7 @@ in
     faugus-launcher
     protonup-qt
     mangohud
+    kdePackages.krfb # krfb-virtualmonitor — display virtual p/ o app "Steam V" do Sunshine
   ];
 
   # Symlink pro repo — credentials/ é gravado pelo sunshine e ignorado no git
