@@ -4,17 +4,24 @@
 	},
 	"apps": [
 		{
+			"name": "Desktop",
 			"image-path": "desktop.png",
-			"name": "Desktop"
-		},
-		{
-			"detached": ["setsid steam steam://open/bigpicture"],
-			"image-path": "steam.png",
-			"name": "Steam",
 			"prep-cmd": [
 				{
-					"do": "kscreen-doctor output.DP-3.enable",
-					"undo": "kscreen-doctor output.DP-3.disable",
+					"do": "bash $(HOME)/.config/sunshine/stream-display.sh do",
+					"undo": "bash $(HOME)/.config/sunshine/stream-display.sh undo",
+					"elevated": "false"
+				}
+			]
+		},
+		{
+			"name": "Steam",
+			"image-path": "steam.png",
+			"detached": ["setsid steam steam://open/bigpicture"],
+			"prep-cmd": [
+				{
+					"do": "bash $(HOME)/.config/sunshine/stream-display.sh do",
+					"undo": "bash $(HOME)/.config/sunshine/stream-display.sh undo",
 					"elevated": "false"
 				}
 			]
