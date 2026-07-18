@@ -15,7 +15,7 @@
 			]
 		},
 		{
-			"name": "Steam D",
+			"name": "Steam",
 			"image-path": "steam.png",
 			"detached": ["setsid steam steam://open/bigpicture"],
 			"prep-cmd": [
@@ -26,17 +26,5 @@
 				}
 			]
 		},
-		{
-			"name": "Steam V",
-			"image-path": "steam.png",
-			"detached": ["setsid steam steam://open/bigpicture"],
-			"prep-cmd": [
-				{
-					"do": "bash $(HOME)/.config/sunshine/stream-virtual.sh do",
-					"undo": "bash $(HOME)/.config/sunshine/stream-virtual.sh undo",
-					"elevated": "false"
-				}
-			]
-		}
 	]
 }

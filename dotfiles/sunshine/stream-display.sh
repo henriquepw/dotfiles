@@ -36,9 +36,9 @@ connected_outputs() {
 	for path in /sys/class/drm/card*-*/status; do
 		[[ -r "$path" ]] || continue
 		[[ "$(<"$path")" == "connected" ]] || continue
-		conn="${path%/status}"   # .../card1-DP-3
-		conn="${conn##*/}"       # card1-DP-3
-		echo "${conn#card*-}"    # DP-3
+		conn="${path%/status}" # .../card1-DP-3
+		conn="${conn##*/}"     # card1-DP-3
+		echo "${conn#card*-}"  # DP-3
 	done
 }
 
@@ -52,36 +52,36 @@ if [[ -z "$STREAM_DISPLAY" ]]; then
 fi
 
 case "${1:-}" in
-	do)
-		if [[ -z "$STREAM_DISPLAY" ]]; then
-			log "nenhum display de stream (dummy) conectado — capturando o monitor atual"
-			exit 0
-		fi
-		log "ativando ${STREAM_DISPLAY} em ${W}x${H}@${FPS}, desativando ${SEAT_DISPLAY}"
-		kscreen-doctor output."${STREAM_DISPLAY}".enable || true
-		kscreen-doctor output."${STREAM_DISPLAY}".mode."${W}x${H}@${FPS}" \
-			|| log "modo ${W}x${H}@${FPS} indisponível em ${STREAM_DISPLAY} — mantendo o atual"
-		kscreen-doctor output."${STREAM_DISPLAY}".position.0,0 || true
-		# Scale 1:1 — sem isso o KDE captura a área lógica escalada (ex.: 1423x800)
-		# em vez do 4K nativo. Não precisa restaurar: o dummy é desligado no undo.
-		kscreen-doctor output."${STREAM_DISPLAY}".scale.1 || true
-		if [[ "$STREAM_DISPLAY" != "$SEAT_DISPLAY" ]]; then
-			sleep 1
-			kscreen-doctor output."${SEAT_DISPLAY}".disable || true
-		fi
-		;;
-	undo)
-		log "restaurando ${SEAT_DISPLAY} (${SEAT_MODE})"
-		kscreen-doctor output."${SEAT_DISPLAY}".enable || true
-		kscreen-doctor output."${SEAT_DISPLAY}".mode."${SEAT_MODE}" || true
-		kscreen-doctor output."${SEAT_DISPLAY}".position.0,0 || true
-		if [[ -n "$STREAM_DISPLAY" && "$STREAM_DISPLAY" != "$SEAT_DISPLAY" ]]; then
-			sleep 1
-			kscreen-doctor output."${STREAM_DISPLAY}".disable || true
-		fi
-		;;
-	*)
-		echo "uso: $0 {do|undo}" >&2
-		exit 1
-		;;
+do)
+	if [[ -z "$STREAM_DISPLAY" ]]; then
+		log "nenhum display de stream (dummy) conectado — capturando o monitor atual"
+		exit 0
+	fi
+	log "ativando ${STREAM_DISPLAY} em ${W}x${H}@${FPS}, desativando ${SEAT_DISPLAY}"
+	kscreen-doctor "output.${STREAM_DISPLAY}.enable" || true
+	kscreen-doctor "output.${STREAM_DISPLAY}.mode.${W}x${H}@${FPS}" ||
+		log "modo ${W}x${H}@${FPS} indisponível em ${STREAM_DISPLAY} — mantendo o atual"
+	kscreen-doctor output."${STREAM_DISPLAY}".position.0,0 || true
+	# Scale 1:1 — sem isso o KDE captura a área lógica escalada (ex.: 1423x800)
+	# em vez do 4K nativo. Não precisa restaurar: o dummy é desligado no undo.
+	kscreen-doctor output."${STREAM_DISPLAY}".scale.1 || true
+	if [[ "$STREAM_DISPLAY" != "$SEAT_DISPLAY" ]]; then
+		sleep 1
+		kscreen-doctor output."${SEAT_DISPLAY}".disable || true
+	fi
+	;;
+undo)
+	log "restaurando ${SEAT_DISPLAY} (${SEAT_MODE})"
+	kscreen-doctor output."${SEAT_DISPLAY}".enable || true
+	kscreen-doctor output."${SEAT_DISPLAY}".mode."${SEAT_MODE}" || true
+	kscreen-doctor output."${SEAT_DISPLAY}".position.0,0 || true
+	if [[ -n "$STREAM_DISPLAY" && "$STREAM_DISPLAY" != "$SEAT_DISPLAY" ]]; then
+		sleep 1
+		kscreen-doctor output."${STREAM_DISPLAY}".disable || true
+	fi
+	;;
+*)
+	echo "uso: $0 {do|undo}" >&2
+	exit 1
+	;;
 esac
