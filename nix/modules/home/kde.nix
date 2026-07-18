@@ -143,6 +143,13 @@ in
           value = "Desktop_6";
           apply = "initially";
         };
+        # Jogo fullscreen minimiza sozinho ao perder o foco (troca de painel).
+        # force minimize=false faz o KWin recusar o pedido de minimizar, então
+        # a janela continua no painel 6 e recupera o foco ao voltar.
+        apply.minimize = {
+          value = false;
+          apply = "force";
+        };
       }
     ];
 
