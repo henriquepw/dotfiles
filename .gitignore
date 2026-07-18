@@ -3,6 +3,7 @@
 dotfiles/sunshine/credentials
 
 result
+.scratch
 
 sunshine.log
 sunshine_state.json

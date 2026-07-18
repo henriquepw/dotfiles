@@ -9,6 +9,7 @@
     ./hardware-configuration.nix
     ./gaming.nix
     ./desktop.nix
+    ./kineticwe.nix
     ./theme.nix
     inputs.stylix.nixosModules.stylix
     inputs.home-manager.nixosModules.home-manager

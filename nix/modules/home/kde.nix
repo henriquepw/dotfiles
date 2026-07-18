@@ -13,7 +13,7 @@ in
     kdePackages.krohnkite
   ];
 
-  # 'c deve gerar ç, não ć
+  # 'c should produce ç, not ć
   home.file.".XCompose".source = link "${dotfiles}/kde/XCompose";
 
   # Panel layout — copied once so KDE can mutate it freely
@@ -28,14 +28,13 @@ in
   programs.plasma = {
     enable = true;
 
-    # Cores, fontes, cursor e GTK vêm do stylix (hosts/citadel/theme.nix)
+    # Colors, fonts, cursor and GTK come from stylix (hosts/citadel/theme.nix)
     workspace = {
       iconTheme = "Papirus-Dark";
       wallpaper = "${dotfiles}/wallpaper.png";
     };
 
-    # us-intl com dead keys — sem isso o KDE fica no 'us' puro e nenhum
-    # acento funciona; o XCompose acima só troca ć→ç por cima disso
+    # us-intl dead keys — without this KDE stays plain 'us' and accents don't work
     input.keyboard.layouts = [
       {
         layout = "us";
@@ -50,12 +49,10 @@ in
       };
     };
 
-    # Mesma imagem do desktop no lock screen
+    # Same wallpaper on the lock screen
     kscreenlocker.appearance.wallpaper = "${dotfiles}/wallpaper.png";
 
-    # Máquina de streaming: nunca apagar/escurecer a tela nem suspender. Sem
-    # isso o KDE apaga o display (inclusive o dummy/virtual) por inatividade e
-    # o stream vira tela preta. "never" já cobre bloqueado e desbloqueado.
+    # Streaming box: never blank/dim/suspend, else the (virtual) display goes black
     powerdevil.AC = {
       autoSuspend.action = "nothing";
       dimDisplay.enable = false;
@@ -63,13 +60,12 @@ in
     };
 
     configFile = {
-      # UI em inglês — o plasma-localerc sobrescreve o LANG da sessão, então
-      # precisa ficar coerente com o i18n do sistema (formatos pt-BR via LC_*)
+      # UI in English; keep coherent with system i18n (pt-BR formats via LC_*)
       "plasma-localerc"."Translations"."LANGUAGE".value = "en_US:pt_BR";
-      # KWallet desligado (cofre de segredos; não tem relação com o lock de tela)
+      # KWallet off (secrets vault; unrelated to screen lock)
       "kwalletrc"."Wallet"."Enabled".value = false;
       "kwinrc"."Plugins"."slideEnabled".value = false;
-      "kwinrc"."Plugins"."krohnkiteEnabled".value = true;
+      "kwinrc"."Plugins"."krohnkiteEnabled".value = false;
       "kwinrc"."Script-krohnkite"."noTileBorder".value = true;
       "kwinrc"."Script-krohnkite"."screenGapBetween".value = 8;
       "kwinrc"."Script-krohnkite"."screenGapBottom".value = 8;
@@ -77,25 +73,14 @@ in
       "kwinrc"."Script-krohnkite"."screenGapRight".value = 8;
       "kwinrc"."Script-krohnkite"."screenGapTop".value = 8;
       "kwinrc"."Script-krohnkite"."floatingLayoutOrder".value = 2;
-      # Jogos Steam (Proton) têm resourceClass steam_app_<id>. O [substring]
-      # faz o krohnkite ignorá-los 100% — sem isso ele tenta "tilar" a janela
-      # fullscreen e ela some ao trocar de desktop (só reabria pelo ícone da
-      # dock). Lista = defaults do krohnkite 0.9.9.2 + [steam_app].
+      # Steam/Proton games are steam_app_<id>; [substring] makes krohnkite ignore them (list = krohnkite 0.9.9.2 defaults + [steam_app])
       "kwinrc"."Script-krohnkite"."ignoreClass".value =
         "krunner,yakuake,spectacle,kded5,xwaylandvideobridge,plasmashell,ksplashqml,org.kde.plasmashell,org.kde.polkit-kde-authentication-agent-1,org.kde.kruler,kruler,kwin_wayland,ksmserver-logout-greeter,[steam_app]";
     };
 
-    # Posicionamento por app (initially = posiciona ao abrir, mas deixa mover
-    # depois). Desktop_N é o Id estável do N-ésimo virtual desktop (ver
-    # [Desktops] no kwinrc — plasma-manager fixa via virtualDesktops). Os apps
-    # de startup são lançados em startup.startupScript abaixo (Steam vem do
-    # gaming.nix). window-class confirmado na sessão: foot / brave-browser /
-    # steam (o cliente; "steam" exato não colide com os "steam_app_<id>" dos
-    # jogos).
+    # Per-app placement (initially = place on open, still movable); Desktop_N is the stable virtual-desktop id
     window-rules = [
-      # match-whole = false (wmclasscomplete=false) casa só a resourceClass; com
-      # true o KWin compara "resourceName resourceClass" inteiro e nunca bate
-      # (ex.: brave é "brave brave-browser", steam é "steamwebhelper steam").
+      # match-whole=false matches only resourceClass (true compares "name class" and never hits)
       {
         description = "Terminal foot → painel 1";
         match.window-class = {
@@ -143,26 +128,19 @@ in
           value = "Desktop_6";
           apply = "initially";
         };
-        # Jogo fullscreen minimiza sozinho ao perder o foco (troca de painel).
-        # force minimize=false faz o KWin recusar o pedido de minimizar, então
-        # a janela continua no painel 6 e recupera o foco ao voltar.
-        apply.minimize = {
-          value = false;
+        # fsplevel=0 (None) lets the game steal focus so KWin follows to Desktop_6 and it keeps fullscreen
+        apply.fsplevel = {
+          value = 0;
           apply = "force";
         };
       }
     ];
 
-    # Layout de startup: lança terminal e navegador; as window-rules acima
-    # posicionam cada um (foot→1, brave→2). O Steam sobe silencioso na bandeja
-    # pelo gaming.nix. runAlways = roda a cada login (não só quando a config muda).
+    # Startup: launch terminal+browser (rules place them); Steam trays via gaming.nix. runAlways = every login
     startup.startupScript."session-layout" = {
       runAlways = true;
       text = ''
-        # Espera o Plasma ficar realmente pronto antes de lançar: painel
-        # (plasmashell) no DBus e o kwin já com os 6 virtual desktops. O
-        # autostart dispara no ksmserver, cedo demais — sem esta espera os apps
-        # abrem antes das window-rules/desktops existirem e caem todos no 1.
+        # Wait for Plasma (plasmashell on DBus + 6 desktops) before launching, else apps land on desktop 1
         i=0
         while [ "$i" -lt 120 ]; do
           if qdbus org.kde.plasmashell /PlasmaShell >/dev/null 2>&1 \
@@ -175,8 +153,7 @@ in
         foot >/dev/null 2>&1 &
         brave >/dev/null 2>&1 &
 
-        # Cada janela que abre puxa o desktop atual pra ela; o brave é quem
-        # chaveia pro 2. Espera ele abrir e então garante o foco no desktop 2.
+        # Each new window pulls the current desktop; wait for brave then force focus to desktop 2
         i=0
         while [ "$i" -lt 120 ]; do
           [ "$(qdbus org.kde.KWin /VirtualDesktopManager current 2>/dev/null)" = "Desktop_2" ] && break
@@ -190,10 +167,10 @@ in
     shortcuts = {
       "services/vicinae.desktop"."toggle" = "Meta+Return";
 
-      # Desativa Super sozinho no app launcher (só mantém Alt+F1)
+      # Disable lone Super for the launcher (keep only Alt+F1)
       plasmashell."activate application launcher" = "Alt+F1";
 
-      # Atalhos de apps — Super+Ctrl+Letra
+      # App shortcuts — Super+Ctrl+Letter
       "foot.desktop"."_launch" = "Meta+Ctrl+T";
       "brave-browser.desktop"."_launch" = "Meta+Ctrl+B";
       "whatsapp-web.desktop"."_launch" = "Meta+Ctrl+G";
@@ -233,7 +210,7 @@ in
         "KrohnkiteGrowHeight" = "Meta+Ctrl+J";
         "KrohnkiteShrinkHeight" = "Meta+Ctrl+K";
         "KrohnkitegrowWidth" = "Meta+Ctrl+L";
-        # Krohnkite — libera Meta+Return pro vicinae
+        # Krohnkite — free Meta+Return for vicinae
         "KrohnkiteSetMaster" = "none";
         # Krohnkite — layouts
         "KrohnkiteToggleFloat" = "Meta+F";
@@ -243,8 +220,7 @@ in
     };
   };
 
-  # kwalletmanager não é removível via plasma6.excludePackages (está nos
-  # requiredPackages do módulo) — esconde do menu por cima
+  # kwalletmanager can't be removed via excludePackages — hide it from the menu instead
   xdg.dataFile = {
     "applications/whatsapp-web.desktop".text = ''
       [Desktop Entry]
@@ -268,15 +244,5 @@ in
       NoDisplay=true
       Hidden=true
     '';
-  };
-
-  # Módulo do flake do vicinae — assim o target vicinae do stylix aplica o tema
-  programs.vicinae = {
-    enable = true;
-    package = pkgs.vicinae;
-    systemd = {
-      enable = true;
-      autoStart = true;
-    };
   };
 }

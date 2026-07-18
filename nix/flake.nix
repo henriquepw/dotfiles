@@ -20,6 +20,11 @@
       url = "github:vicinaehq/vicinae";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # NÃO forçar nixpkgs.follows: o kineticwe traz seu próprio nixpkgs-unstable
+    # (Qt 6.10 / KF6 6.26 pré-buildados) e sua overlay é aditiva — só adiciona
+    # kineticwe/kwin-we/noctalia, não sobrescreve qt6/kdePackages, então o Plasma
+    # do sistema não é rebuildado.
+    kineticwe.url = "gitlab:theblackdon/kineticwe";
   };
 
   outputs =
