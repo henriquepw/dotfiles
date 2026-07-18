@@ -2,5 +2,7 @@
 *.hm-bak
 dotfiles/sunshine/credentials
 
+result
+
 sunshine.log
 sunshine_state.json
