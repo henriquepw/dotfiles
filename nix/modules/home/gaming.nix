@@ -21,6 +21,7 @@ in
 {
   home.packages = with pkgs; [
     faugus-launcher
+    lutris
     protonup-qt
     mangohud
     kdePackages.krfb # krfb-virtualmonitor — display virtual p/ o app "Steam V" do Sunshine
