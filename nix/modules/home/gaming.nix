@@ -43,13 +43,13 @@ in
       ]
   );
 
-  # Steam autostart — abre com janela no boot (posicionado no desktop 5 pela
-  # window-rule do kde.nix). Sem -silent para a janela aparecer de fato.
+  # Steam autostart silencioso (vai pra bandeja, sem janela no boot). Quando
+  # aberto manualmente, a window-rule do kde.nix posiciona a janela no desktop 5.
   xdg.configFile."autostart/steam.desktop".text = ''
     [Desktop Entry]
     Type=Application
     Name=Steam
-    Exec=steam %U
+    Exec=steam -silent %U
     Icon=steam
     Comment=Steam Game Launcher
     X-KDE-autostart-after=panel

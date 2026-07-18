@@ -93,11 +93,15 @@ in
     # steam (o cliente; "steam" exato não colide com os "steam_app_<id>" dos
     # jogos).
     window-rules = [
+      # match-whole = false (wmclasscomplete=false) casa só a resourceClass; com
+      # true o KWin compara "resourceName resourceClass" inteiro e nunca bate
+      # (ex.: brave é "brave brave-browser", steam é "steamwebhelper steam").
       {
         description = "Terminal foot → painel 1";
         match.window-class = {
           value = "foot";
           type = "exact";
+          match-whole = false;
         };
         apply.desktops = {
           value = "Desktop_1";
@@ -109,6 +113,7 @@ in
         match.window-class = {
           value = "brave-browser";
           type = "exact";
+          match-whole = false;
         };
         apply.desktops = {
           value = "Desktop_2";
@@ -120,6 +125,7 @@ in
         match.window-class = {
           value = "steam";
           type = "exact";
+          match-whole = false;
         };
         apply.desktops = {
           value = "Desktop_5";
@@ -140,18 +146,37 @@ in
       }
     ];
 
-    # Layout de startup: lança terminal e navegador (Steam é lançado pelo
-    # autostart do gaming.nix). As window-rules acima posicionam cada um no
-    # seu painel. Por fim foca o desktop 2. runAlways = roda a cada login (não
-    # só quando a config muda).
+    # Layout de startup: lança terminal e navegador; as window-rules acima
+    # posicionam cada um (foot→1, brave→2). O Steam sobe silencioso na bandeja
+    # pelo gaming.nix. runAlways = roda a cada login (não só quando a config muda).
     startup.startupScript."session-layout" = {
       runAlways = true;
       text = ''
+        # Espera o Plasma ficar realmente pronto antes de lançar: painel
+        # (plasmashell) no DBus e o kwin já com os 6 virtual desktops. O
+        # autostart dispara no ksmserver, cedo demais — sem esta espera os apps
+        # abrem antes das window-rules/desktops existirem e caem todos no 1.
+        i=0
+        while [ "$i" -lt 120 ]; do
+          if qdbus org.kde.plasmashell /PlasmaShell >/dev/null 2>&1 \
+             && [ "$(qdbus org.kde.KWin /VirtualDesktopManager count 2>/dev/null)" = "6" ]; then
+            break
+          fi
+          i=$((i + 1)); sleep 0.5
+        done
+
         foot >/dev/null 2>&1 &
         brave >/dev/null 2>&1 &
-        # Espera as janelas assentarem (a do Steam é a mais lenta) antes de
-        # fixar o desktop atual no 2 — senão a janela abrindo no 5 rouba o foco.
-        (sleep 6 && qdbus org.kde.KWin /KWin org.kde.KWin.setCurrentDesktop 2) &
+
+        # Cada janela que abre puxa o desktop atual pra ela; o brave é quem
+        # chaveia pro 2. Espera ele abrir e então garante o foco no desktop 2.
+        i=0
+        while [ "$i" -lt 120 ]; do
+          [ "$(qdbus org.kde.KWin /VirtualDesktopManager current 2>/dev/null)" = "Desktop_2" ] && break
+          i=$((i + 1)); sleep 0.5
+        done
+        sleep 1
+        qdbus org.kde.KWin /KWin org.kde.KWin.setCurrentDesktop 2
       '';
     };
 
