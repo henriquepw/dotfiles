@@ -77,6 +77,82 @@ in
       "kwinrc"."Script-krohnkite"."screenGapRight".value = 8;
       "kwinrc"."Script-krohnkite"."screenGapTop".value = 8;
       "kwinrc"."Script-krohnkite"."floatingLayoutOrder".value = 2;
+      # Jogos Steam (Proton) têm resourceClass steam_app_<id>. O [substring]
+      # faz o krohnkite ignorá-los 100% — sem isso ele tenta "tilar" a janela
+      # fullscreen e ela some ao trocar de desktop (só reabria pelo ícone da
+      # dock). Lista = defaults do krohnkite 0.9.9.2 + [steam_app].
+      "kwinrc"."Script-krohnkite"."ignoreClass".value =
+        "krunner,yakuake,spectacle,kded5,xwaylandvideobridge,plasmashell,ksplashqml,org.kde.plasmashell,org.kde.polkit-kde-authentication-agent-1,org.kde.kruler,kruler,kwin_wayland,ksmserver-logout-greeter,[steam_app]";
+    };
+
+    # Posicionamento por app (initially = posiciona ao abrir, mas deixa mover
+    # depois). Desktop_N é o Id estável do N-ésimo virtual desktop (ver
+    # [Desktops] no kwinrc — plasma-manager fixa via virtualDesktops). Os apps
+    # de startup são lançados em startup.startupScript abaixo (Steam vem do
+    # gaming.nix). window-class confirmado na sessão: foot / brave-browser /
+    # steam (o cliente; "steam" exato não colide com os "steam_app_<id>" dos
+    # jogos).
+    window-rules = [
+      {
+        description = "Terminal foot → painel 1";
+        match.window-class = {
+          value = "foot";
+          type = "exact";
+        };
+        apply.desktops = {
+          value = "Desktop_1";
+          apply = "initially";
+        };
+      }
+      {
+        description = "Navegador Brave → painel 2";
+        match.window-class = {
+          value = "brave-browser";
+          type = "exact";
+        };
+        apply.desktops = {
+          value = "Desktop_2";
+          apply = "initially";
+        };
+      }
+      {
+        description = "Cliente Steam → painel 5";
+        match.window-class = {
+          value = "steam";
+          type = "exact";
+        };
+        apply.desktops = {
+          value = "Desktop_5";
+          apply = "initially";
+        };
+      }
+      {
+        description = "Jogos Steam → painel 6";
+        match.window-class = {
+          value = "steam_app";
+          type = "substring";
+          match-whole = false;
+        };
+        apply.desktops = {
+          value = "Desktop_6";
+          apply = "initially";
+        };
+      }
+    ];
+
+    # Layout de startup: lança terminal e navegador (Steam é lançado pelo
+    # autostart do gaming.nix). As window-rules acima posicionam cada um no
+    # seu painel. Por fim foca o desktop 2. runAlways = roda a cada login (não
+    # só quando a config muda).
+    startup.startupScript."session-layout" = {
+      runAlways = true;
+      text = ''
+        foot >/dev/null 2>&1 &
+        brave >/dev/null 2>&1 &
+        # Espera as janelas assentarem (a do Steam é a mais lenta) antes de
+        # fixar o desktop atual no 2 — senão a janela abrindo no 5 rouba o foco.
+        (sleep 6 && qdbus org.kde.KWin /KWin org.kde.KWin.setCurrentDesktop 2) &
+      '';
     };
 
     shortcuts = {
