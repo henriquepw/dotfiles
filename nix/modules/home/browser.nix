@@ -8,8 +8,10 @@ let
   link = config.lib.file.mkOutOfStoreSymlink;
 in
 {
-  home.packages = [ pkgs.brave ];
-  xdg.configFile."brave-flags.conf".source = link "${dotfiles}/brave/brave-flags.conf";
+  # XWayland (ozone=x11) para que o Brave respeite o ~/.XCompose (cedilha ç);
+  # em Wayland nativo o Chromium ignora o XCompose e digita ć. O --ozone-platform=x11
+  # explícito vence o --ozone-platform-hint=auto que o wrapper injeta via NIXOS_OZONE_WL.
+  home.packages = [ (pkgs.brave.override { commandLineArgs = [ "--ozone-platform=x11" ]; }) ];
   xdg.configFile."brave-origin-beta-flags.conf".source =
     link "${dotfiles}/brave/brave-origin-beta-flags.conf";
 
@@ -27,5 +29,9 @@ in
   };
   programs.plasma.configFile."kdeglobals"."General"."BrowserApplication".value =
     "brave-browser.desktop";
-  home.sessionVariables.BROWSER = "brave";
+  home.sessionVariables = {
+    BROWSER = "brave";
+    GTK_IM_MODULE = "cedilla";
+    QT_IM_MODULE = "cedilla";
+  };
 }
