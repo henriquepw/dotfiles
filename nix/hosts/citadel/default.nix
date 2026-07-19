@@ -18,7 +18,6 @@
       home-manager.extraSpecialArgs = { inherit inputs system; };
       home-manager.sharedModules = [
         inputs.plasma-manager.homeModules.plasma-manager
-        inputs.vicinae.homeManagerModules.default
       ];
     }
   ];

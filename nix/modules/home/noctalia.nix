@@ -22,6 +22,16 @@
     # do Noctalia reescreve livremente. Mesmo modelo do painel do KDE (kde.nix).
   };
 
+  # Paleta custom "Matte Black" (réplica do antigo base16 do stylix — ver
+  # git 31f2845). Noctalia lê custom palettes de ~/.config/noctalia/palettes/*.json
+  # e NUNCA reescreve os arquivos existentes lá (o único write nesse dir é o
+  # "export wallpaper palette", que cria arquivo novo com outro nome). Logo é um
+  # artefato de tema puramente declarativo → symlink read-only pro store, ao
+  # contrário do settings.toml (mutável pela GUI, copy-once). Seleção da paleta:
+  # [theme] source="custom" + custom_palette="matte-black" no settings.toml (seed).
+  xdg.configFile."noctalia/palettes/matte-black.json".source =
+    ./noctalia/palettes/matte-black.json;
+
   # Mask do plasmashell — cirúrgico. HM não tem bool "mask"; o symlink → /dev/null
   # em ~/.config/systemd/user (precedência sobre a unit vendorizada) equivale a
   # `systemctl --user mask`. plasma-plasmashell.service é puxado só por

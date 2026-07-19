@@ -206,10 +206,18 @@ in
       '';
     };
 
+    # Launcher do Noctalia: KWin/kglobalaccel não têm um .desktop de toggle pro
+    # Noctalia (não é app registrado), então o bind vira um comando via kglobalaccel.
+    # `noctalia msg panel-toggle launcher` abre/fecha o painel launcher na instância viva.
+    hotkeys.commands."noctalia-launcher" = {
+      name = "Noctalia Launcher";
+      key = "Meta+Return";
+      command = "noctalia msg panel-toggle launcher";
+    };
+
     shortcuts = {
       # Launcher
       plasmashell."activate application launcher" = "Alt+F1";
-      "services/vicinae.desktop"."toggle" = "Meta+Return";
 
       # App shortcuts
       "foot.desktop"."_launch" = "Meta+Ctrl+T";

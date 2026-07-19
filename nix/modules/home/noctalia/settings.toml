@@ -67,7 +67,8 @@ lang = "en"
 
 [theme]
 builtin = "Ayu"
-source = "wallpaper"
+source = "custom"
+custom_palette = "matte-black"
 wallpaper_scheme = "m3-rainbow"
 
     [theme.templates]

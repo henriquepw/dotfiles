@@ -11,6 +11,5 @@
     ./packages.nix
     ./terminal.nix
     ./theme.nix
-    ./vicinae.nix
   ];
 }

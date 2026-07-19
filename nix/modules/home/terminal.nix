@@ -33,22 +33,9 @@ in
   # Terminais — fonte vem do fontconfig (theme.nix). Com stylix removido (veredito A
   # do mapa noctalia-shell), as cores base16 não são mais injetadas: foot/bat/btop/
   # etc. usam suas paletas default. Definir cores explícitas aqui se quiser matte-black.
-  programs.foot = {
-    enable = true;
-    settings = {
-      main.pad = "8x4";
-      cursor = {
-        style = "block";
-        blink = "no";
-      };
-      key-bindings = {
-        clipboard-copy = "Control+Shift+c Control+Insert";
-        clipboard-paste = "Control+Shift+v Shift+Insert";
-        # Shift+Insert por padrão cola o primary — libera pro clipboard-paste
-        primary-paste = "none";
-      };
-    };
-  };
+  # conf do repo é lida em runtime — segue editável ao vivo, sem rebuild
+  programs.foot.enable = true;
+  xdg.configFile."foot/foot.ini".source = link "${dotfiles}/foot/foot.ini";
 
   # programs.ghostty = {
   #   enable = true;
