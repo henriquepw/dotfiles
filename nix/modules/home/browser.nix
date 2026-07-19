@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   config,
   dotfiles,
   ...
@@ -28,9 +29,25 @@ in
   xdg.configFile."mimeapps.list".force = true;
   programs.plasma.configFile."kdeglobals"."General"."BrowserApplication".value =
     "brave-browser.desktop";
+
   home.sessionVariables = {
     BROWSER = "brave";
     GTK_IM_MODULE = "cedilla";
     QT_IM_MODULE = "cedilla";
   };
+
+  home.activation.braveQtTheme = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    prefs="${config.xdg.configHome}/BraveSoftware/Brave-Browser/Default/Preferences"
+    if [ -f "$prefs" ]; then
+      tmp="$(mktemp)"
+      if ${pkgs.jq}/bin/jq \
+        '.extensions.theme.system_theme = 2
+         | .browser.theme.color_scheme = 2
+         | .browser.theme.color_scheme2 = 2' \
+        "$prefs" > "$tmp" 2>/dev/null && ! cmp -s "$tmp" "$prefs"; then
+        run cp "$tmp" "$prefs"
+      fi
+      rm -f "$tmp"
+    fi
+  '';
 }
