@@ -73,7 +73,7 @@ wallpaper_scheme = "m3-rainbow"
 
     [theme.templates]
     builtin_ids = [ "btop", "foot", "gtk3", "gtk4", "ghostty", "qt" ]
-    community_ids = [ "obsidian", "vicinae", "opencode", "papirus-icons", "pi-agent", "yazi" ]
+    community_ids = [ "obsidian", "opencode", "papirus-icons", "pi-agent", "yazi" ]
 
 [wallpaper]
 directory = "/home/henrique/dotfiles/dotfiles"

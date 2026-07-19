@@ -10,6 +10,10 @@ in
 {
   home.file.".XCompose".source = link "${dotfiles}/kde/XCompose";
 
+  # Noctalia is the shell; the Plasma session still auto-starts plasmashell as a
+  # systemd user service, so mask it (symlink to /dev/null) to keep it from running.
+  xdg.configFile."systemd/user/plasma-plasmashell.service".source = link "/dev/null";
+
   # KWin script: no native "center at 50%" action, so it self-registers a shortcut (enabled via centerhalfEnabled below)
   home.file.".local/share/kwin/scripts/centerhalf/metadata.json".text = builtins.toJSON {
     KPlugin = {

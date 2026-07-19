@@ -14,6 +14,7 @@ alias vim="nvim"
 alias ls="ls --color -a"
 alias rebuild="sudo nixos-rebuild switch --flake ~/.dotfiles/nix#citadel"
 alias update="nix flake update --flake ~/.dotfiles/nix && sudo nixos-rebuild switch --flake ~/.dotfiles/nix#citadel"
+alias cleanup-generations="sudo nix-env --delete-generations +3 --profile /nix/var/nix/profiles/system && sudo nix-collect-garbage && sudo nixos-rebuild boot --flake ~/.dotfiles/nix#citadel"
 
 ZINIT="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT ] && mkdir -p "$(dirname $ZINIT)"
