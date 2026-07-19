@@ -204,7 +204,14 @@ in
       '';
     };
 
-    # Noctalia registers its own NoctaliaToggleLauncher shortcut (Meta+Return); don't duplicate it with hotkeys.commands
+    # Noctalia's built-in NoctaliaToggleLauncher shortcut is buggy (launcher won't open),
+    # so drive the launcher ourselves with a custom command hotkey instead.
+    hotkeys.commands."toggle-launcher" = {
+      name = "Launcher";
+      key = "Meta+Return";
+      command = "noctalia msg panel-toggle launcher";
+    };
+
     shortcuts = {
       plasmashell."activate application launcher" = "Alt+F1";
 
