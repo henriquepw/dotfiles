@@ -7,10 +7,6 @@
 let
   link = config.lib.file.mkOutOfStoreSymlink;
 
-  # Ícones de tray do sunshine no estilo dos ícones de painel do Papirus
-  # (#dfdfdf, mesma cor que o Hardcode-Tray instalaria — Papirus não tem ícone
-  # pro sunshine, então recolorimos o oficial). ~/.local/share/icons tem
-  # precedência sobre o hicolor do sistema na resolução por nome.
   sunshineTrayIcons = pkgs.runCommand "sunshine-papirus-tray-icons" { } ''
     mkdir -p $out
     for f in ${pkgs.sunshine}/share/icons/hicolor/scalable/status/*.svg; do
@@ -20,14 +16,14 @@ let
 in
 {
   home.packages = with pkgs; [
+    discord
     faugus-launcher
     lutris
     protonup-qt
     mangohud
-    kdePackages.krfb # krfb-virtualmonitor — display virtual p/ o app "Steam V" do Sunshine
+    kdePackages.krfb
   ];
 
-  # Symlink pro repo — credentials/ é gravado pelo sunshine e ignorado no git
   xdg.configFile."sunshine".source = link "${dotfiles}/sunshine";
 
   xdg.dataFile = builtins.listToAttrs (
@@ -44,8 +40,6 @@ in
       ]
   );
 
-  # Steam autostart silencioso (vai pra bandeja, sem janela no boot). Quando
-  # aberto manualmente, a window-rule do kde.nix posiciona a janela no desktop 5.
   xdg.configFile."autostart/steam.desktop".text = ''
     [Desktop Entry]
     Type=Application

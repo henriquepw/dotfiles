@@ -27,6 +27,12 @@ in
       "x-scheme-handler/unknown" = "brave-browser.desktop";
     };
   };
+  # O KDE e o "tornar padrão" do Brave reescrevem o mimeapps.list em runtime,
+  # trocando o symlink do HM por um arquivo real. Com backupFileExtension fixo
+  # ("hm-bak") a próxima ativação colide com o .hm-bak da vez anterior e falha.
+  # force = true faz o HM sobrescrever sem backup — o arquivo é 100% declarativo
+  # aqui, então as edições em runtime são justamente o que queremos descartar.
+  xdg.configFile."mimeapps.list".force = true;
   programs.plasma.configFile."kdeglobals"."General"."BrowserApplication".value =
     "brave-browser.desktop";
   home.sessionVariables = {

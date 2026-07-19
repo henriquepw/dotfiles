@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   config,
   dotfiles,
@@ -9,12 +8,41 @@ let
   link = config.lib.file.mkOutOfStoreSymlink;
 in
 {
-  home.packages = with pkgs; [
-    kdePackages.krohnkite
-  ];
-
-  # 'c should produce ç, not ć
   home.file.".XCompose".source = link "${dotfiles}/kde/XCompose";
+
+  # KWin script: Meta+F redimensiona a janela em foco pra ~50% do monitor e centraliza.
+  # Não existe ação nativa "centralizar em 50%"; o script registra o próprio atalho
+  # (registerShortcut) e é habilitado em kwinrc [Plugins] centerhalfEnabled abaixo.
+  home.file.".local/share/kwin/scripts/centerhalf/metadata.json".text = builtins.toJSON {
+    KPlugin = {
+      Id = "centerhalf";
+      Name = "Center Half";
+      Description = "Centraliza a janela em foco a ~50% do monitor";
+      Version = "1.0";
+      EnabledByDefault = true;
+    };
+    "X-Plasma-API" = "javascript";
+    "X-Plasma-MainScript" = "code/main.js";
+    KPackageStructure = "KWin/Script";
+  };
+
+  home.file.".local/share/kwin/scripts/centerhalf/contents/code/main.js".text = ''
+    // Fração linear de cada eixo (0.7 x 0.7 ≈ 49% da área = "metade do monitor")
+    var FRAC = 0.7;
+    registerShortcut("CenterHalf", "Centralizar janela a 50%", "Meta+Ctrl+F", function () {
+      var w = workspace.activeWindow;
+      if (!w || !w.normalWindow) return;
+      var area = workspace.clientArea(KWin.MaximizeArea, w);
+      var width = Math.round(area.width * FRAC);
+      var height = Math.round(area.height * FRAC);
+      w.frameGeometry = {
+        x: area.x + Math.round((area.width - width) / 2),
+        y: area.y + Math.round((area.height - height) / 2),
+        width: width,
+        height: height,
+      };
+    });
+  '';
 
   # Panel layout — copied once so KDE can mutate it freely
   home.activation.plasma-panel = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
@@ -28,14 +56,11 @@ in
   programs.plasma = {
     enable = true;
 
-    # Cursor/fonts/GTK icons come from nix fallbacks (modules/home/theme.nix);
-    # Plasma icon theme + frame colors are set here (stylix removido — veredito A)
     workspace = {
       iconTheme = "Papirus-Dark";
       wallpaper = "${dotfiles}/wallpaper.png";
     };
 
-    # us-intl dead keys — without this KDE stays plain 'us' and accents don't work
     input.keyboard.layouts = [
       {
         layout = "us";
@@ -50,7 +75,6 @@ in
       };
     };
 
-    # Same wallpaper on the lock screen
     kscreenlocker.appearance.wallpaper = "${dotfiles}/wallpaper.png";
 
     # Streaming box: never blank/dim/suspend, else the (virtual) display goes black
@@ -63,27 +87,15 @@ in
     configFile = {
       # UI in English; keep coherent with system i18n (pt-BR formats via LC_*)
       "plasma-localerc"."Translations"."LANGUAGE".value = "en_US:pt_BR";
-      # KWallet off (secrets vault; unrelated to screen lock)
       "kwalletrc"."Wallet"."Enabled".value = false;
       "kwinrc"."Plugins"."slideEnabled".value = false;
-      "kwinrc"."Plugins"."krohnkiteEnabled".value = false;
-      "kwinrc"."Script-krohnkite"."noTileBorder".value = true;
-      "kwinrc"."Script-krohnkite"."screenGapBetween".value = 8;
-      "kwinrc"."Script-krohnkite"."screenGapBottom".value = 8;
-      "kwinrc"."Script-krohnkite"."screenGapLeft".value = 8;
-      "kwinrc"."Script-krohnkite"."screenGapRight".value = 8;
-      "kwinrc"."Script-krohnkite"."screenGapTop".value = 8;
-      "kwinrc"."Script-krohnkite"."floatingLayoutOrder".value = 2;
-      # Steam/Proton games are steam_app_<id>; [substring] makes krohnkite ignore them (list = krohnkite 0.9.9.2 defaults + [steam_app])
-      "kwinrc"."Script-krohnkite"."ignoreClass".value =
-        "krunner,yakuake,spectacle,kded5,xwaylandvideobridge,plasmashell,ksplashqml,org.kde.plasmashell,org.kde.polkit-kde-authentication-agent-1,org.kde.kruler,kruler,kwin_wayland,ksmserver-logout-greeter,[steam_app]";
+      "kwinrc"."Plugins"."centerhalfEnabled".value = true;
 
-      # Moldura (R4): Breeze com borda fina só no foco, sem barra de título/botões,
-      # sem sombra. NÃO usar noborder (tiraria título e borda juntos).
+      # Sem barra de título / decoração: a barra "some" pela window-rule noborder
+      # (aplicada a todas as janelas, abaixo). Mantida a decoração Breeze só como
+      # base; noborder tira título + moldura juntos (é o que se quer agora).
       "kwinrc"."org.kde.kdecoration2"."library".value = "org.kde.breeze";
       "kwinrc"."org.kde.kdecoration2"."theme".value = "Breeze";
-      "kwinrc"."org.kde.kdecoration2"."BorderSize".value = "Tiny";
-      "kwinrc"."org.kde.kdecoration2"."BorderSizeAuto".value = false;
       "kwinrc"."org.kde.kdecoration2"."ButtonsOnLeft".value = "";
       "kwinrc"."org.kde.kdecoration2"."ButtonsOnRight".value = "";
 
@@ -92,24 +104,26 @@ in
       "breezerc"."Common"."ShadowSize".value = "ShadowNone";
       "breezerc"."Common"."ShadowStrength".value = 0;
       "breezerc"."Common"."OutlineIntensity".value = "OutlineOff";
-
-      # Cor da moldura (Breeze pinta a borda na cor da barra de título, resolvida
-      # por estado ativo/inativo do color scheme). Antes vinha do stylix base0D;
-      # com stylix fora, setar explícito: foco = accent f59e0b, sem foco = fundo
-      # base00 121212 (borda "some" fora do foco). Valores kdeglobals = R,G,B.
-      "kdeglobals"."WM"."activeBackground".value = "245,158,11";
-      "kdeglobals"."WM"."activeForeground".value = "18,18,18";
-      "kdeglobals"."WM"."inactiveBackground".value = "18,18,18";
-      "kdeglobals"."WM"."inactiveForeground".value = "138,138,141";
-      "kdeglobals"."WM"."frame".value = "245,158,11";
-      "kdeglobals"."WM"."inactiveFrame".value = "18,18,18";
     };
 
     # Per-app placement (initially = place on open, still movable); Desktop_N is the stable virtual-desktop id
     window-rules = [
+      # Todas as janelas sem barra de título nem moldura (regex .* casa qualquer classe)
+      {
+        description = "Sem barra de título (global)";
+        match.window-class = {
+          value = ".*";
+          type = "regex";
+          match-whole = false;
+        };
+        apply.noborder = {
+          value = true;
+          apply = "force";
+        };
+      }
       # match-whole=false matches only resourceClass (true compares "name class" and never hits)
       {
-        description = "Terminal foot → painel 1";
+        description = "Terminal → panel 1";
         match.window-class = {
           value = "foot";
           type = "exact";
@@ -121,7 +135,7 @@ in
         };
       }
       {
-        description = "Navegador Brave → painel 2";
+        description = "Browser → panel 2";
         match.window-class = {
           value = "brave-browser";
           type = "exact";
@@ -133,7 +147,7 @@ in
         };
       }
       {
-        description = "Cliente Steam → painel 5";
+        description = "Steam → panel 5";
         match.window-class = {
           value = "steam";
           type = "exact";
@@ -145,7 +159,7 @@ in
         };
       }
       {
-        description = "Jogos Steam → painel 6";
+        description = "Steam Games → panel 6";
         match.window-class = {
           value = "steam_app";
           type = "substring";
@@ -193,12 +207,11 @@ in
     };
 
     shortcuts = {
+      # Launcher
+      plasmashell."activate application launcher" = "Alt+F1";
       "services/vicinae.desktop"."toggle" = "Meta+Return";
 
-      # Disable lone Super for the launcher (keep only Alt+F1)
-      plasmashell."activate application launcher" = "Alt+F1";
-
-      # App shortcuts — Super+Ctrl+Letter
+      # App shortcuts
       "foot.desktop"."_launch" = "Meta+Ctrl+T";
       "brave-browser.desktop"."_launch" = "Meta+Ctrl+B";
       "whatsapp-web.desktop"."_launch" = "Meta+Ctrl+G";
@@ -223,39 +236,23 @@ in
         "Window Restore" = "Meta+Backspace";
         "Window to Next Screen" = "Meta+Shift+Right";
         "Window to Previous Screen" = "Meta+Shift+Left";
-        # Krohnkite — focus (vim-style)
-        "KrohnkiteFocusLeft" = "Meta+H";
-        "KrohnkiteFocusDown" = "Meta+J";
-        "KrohnkiteFocusUp" = "Meta+K";
-        "KrohnkiteFocusRight" = "Meta+L";
-        # Krohnkite — move window
-        "KrohnkiteShiftLeft" = "Meta+Shift+H";
-        "KrohnkiteShiftDown" = "Meta+Shift+J";
-        "KrohnkiteShiftUp" = "Meta+Shift+K";
-        "KrohnkiteShiftRight" = "Meta+Shift+L";
-        # Krohnkite — resize
-        "KrohnkiteShrinkWidth" = "Meta+Ctrl+H";
-        "KrohnkiteGrowHeight" = "Meta+Ctrl+J";
-        "KrohnkiteShrinkHeight" = "Meta+Ctrl+K";
-        "KrohnkitegrowWidth" = "Meta+Ctrl+L";
-        # Krohnkite — free Meta+Return for vicinae
-        "KrohnkiteSetMaster" = "none";
-        # Krohnkite — layouts
-        "KrohnkiteToggleFloat" = "Meta+F";
-        "KrohnkiteFloatAll" = "Meta+Shift+F";
-        "KrohnkiteMonocleLayout" = "Meta+M";
+        "Window Quick Tile Left" = "Meta+Ctrl+H";
+        "Window Quick Tile Bottom" = "Meta+Ctrl+J";
+        "Window Quick Tile Top" = "Meta+Ctrl+K";
+        "Window Quick Tile Right" = "Meta+Ctrl+L";
+        "Window Maximize" = "Meta+Ctrl+M";
+        # Meta+Ctrl+F é registrado pelo KWin script centerhalf.
       };
     };
   };
 
-  # kwalletmanager can't be removed via excludePackages — hide it from the menu instead
   xdg.dataFile = {
     "applications/whatsapp-web.desktop".text = ''
       [Desktop Entry]
       Type=Application
       Name=WhatsApp Web
       Exec=brave --app=https://web.whatsapp.com
-      Icon=brave-browser
+      Icon=whatsapp
       Categories=Network;InstantMessaging;
     '';
     "applications/org.kde.kwalletmanager.desktop".text = ''
