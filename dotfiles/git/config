@@ -6,6 +6,7 @@
 [core]
   compression = 9
   preloadIndex = true
+  editor = nvim
 [init]
 	defaultBranch = master
 [pull]

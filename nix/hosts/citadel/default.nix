@@ -60,7 +60,7 @@
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
-      LC_CTYPE = "pt_BR.UTF-8"; # cedilha em vez de ć nos dead keys
+      LC_CTYPE = "pt_BR.UTF-8";
       LC_TIME = "pt_BR.UTF-8";
       LC_NUMERIC = "pt_BR.UTF-8";
       LC_MONETARY = "pt_BR.UTF-8";
@@ -108,8 +108,6 @@
     };
   };
 
-  # Fonts — defaults do fontconfig vêm do home-manager (modules/home/theme.nix)
-  # Noto completo como fallback de cobertura (CJK, símbolos, etc.)
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
@@ -118,7 +116,6 @@
     nerd-fonts.jetbrains-mono
   ];
 
-  # Power
   services.power-profiles-daemon.enable = true;
 
   users.users.henrique = {
@@ -143,8 +140,6 @@
         "flakes"
       ];
       auto-optimise-store = true;
-      # Cache binário do Noctalia — evita compilar o binário C++ nativo do zero
-      # (o input não segue nixpkgs justamente pra este cache bater; ver flake.nix)
       extra-substituters = [ "https://noctalia.cachix.org" ];
       extra-trusted-public-keys = [
         "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="

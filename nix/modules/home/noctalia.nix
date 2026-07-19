@@ -12,7 +12,7 @@
 
   programs.noctalia = {
     enable = true;
-    package = inputs.noctalia.packages.${pkgs.system}.default;
+    package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
     # user service systemd (WantedBy/PartOf/After = config.wayland.systemd.target,
     # que resolve pra graphical-session.target por padrão no HM). Sobe no login sem
     # passo manual, junto com o resto da sessão gráfica.

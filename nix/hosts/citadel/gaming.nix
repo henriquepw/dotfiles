@@ -78,6 +78,7 @@
       "proton-ge-bin"
       "onlyoffice-desktopeditors"
       "claude-code"
+      "discord"
     ];
 
   services.flatpak.enable = true;
