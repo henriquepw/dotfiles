@@ -30,7 +30,9 @@ in
     libsixel
   ];
 
-  # Terminais — cores e fonte vêm do stylix
+  # Terminais — fonte vem do fontconfig (theme.nix). Com stylix removido (veredito A
+  # do mapa noctalia-shell), as cores base16 não são mais injetadas: foot/bat/btop/
+  # etc. usam suas paletas default. Definir cores explícitas aqui se quiser matte-black.
   programs.foot = {
     enable = true;
     settings = {
@@ -71,21 +73,19 @@ in
   #   };
   # };
 
-  # O stylix injeta os estilos (tema base16) antes; o conf do repo é lido em
-  # runtime — segue editável ao vivo, sem rebuild
+  # conf do repo é lido em runtime — segue editável ao vivo, sem rebuild
   programs.tmux = {
     enable = true;
     sensibleOnTop = false;
     extraConfig = lib.mkAfter "source-file ${dotfiles}/tmux/tmux.conf";
   };
 
-  # Paleta base16 do stylix entra por cima das settings do arquivo
   programs.starship = {
     enable = true;
     settings = builtins.fromTOML (builtins.readFile ./starship.toml);
   };
 
-  # Habilitados só pelo tema do stylix
+  # Ferramentas de terminal (usam paleta default agora que o stylix saiu)
   programs.bat.enable = true;
   programs.btop.enable = true;
   programs.fzf.enable = true;

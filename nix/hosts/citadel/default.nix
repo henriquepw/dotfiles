@@ -9,9 +9,6 @@
     ./hardware-configuration.nix
     ./gaming.nix
     ./desktop.nix
-    ./kineticwe.nix
-    ./theme.nix
-    inputs.stylix.nixosModules.stylix
     inputs.home-manager.nixosModules.home-manager
     {
       home-manager.useGlobalPkgs = true;
@@ -111,7 +108,7 @@
     };
   };
 
-  # Fonts — defaults do fontconfig vêm do stylix (theme.nix)
+  # Fonts — defaults do fontconfig vêm do home-manager (modules/home/theme.nix)
   # Noto completo como fallback de cobertura (CJK, símbolos, etc.)
   fonts.packages = with pkgs; [
     noto-fonts
@@ -146,6 +143,12 @@
         "flakes"
       ];
       auto-optimise-store = true;
+      # Cache binário do Noctalia — evita compilar o binário C++ nativo do zero
+      # (o input não segue nixpkgs justamente pra este cache bater; ver flake.nix)
+      extra-substituters = [ "https://noctalia.cachix.org" ];
+      extra-trusted-public-keys = [
+        "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+      ];
     };
     gc = {
       automatic = true;

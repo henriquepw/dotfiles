@@ -6,7 +6,7 @@
     ./gaming.nix
     ./git.nix
     ./kde.nix
-    ./kineticwe.nix
+    ./noctalia.nix
     ./nvim.nix
     ./packages.nix
     ./terminal.nix

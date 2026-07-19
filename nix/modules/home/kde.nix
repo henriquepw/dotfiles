@@ -28,7 +28,8 @@ in
   programs.plasma = {
     enable = true;
 
-    # Colors, fonts, cursor and GTK come from stylix (hosts/citadel/theme.nix)
+    # Cursor/fonts/GTK icons come from nix fallbacks (modules/home/theme.nix);
+    # Plasma icon theme + frame colors are set here (stylix removido — veredito A)
     workspace = {
       iconTheme = "Papirus-Dark";
       wallpaper = "${dotfiles}/wallpaper.png";
@@ -76,6 +77,32 @@ in
       # Steam/Proton games are steam_app_<id>; [substring] makes krohnkite ignore them (list = krohnkite 0.9.9.2 defaults + [steam_app])
       "kwinrc"."Script-krohnkite"."ignoreClass".value =
         "krunner,yakuake,spectacle,kded5,xwaylandvideobridge,plasmashell,ksplashqml,org.kde.plasmashell,org.kde.polkit-kde-authentication-agent-1,org.kde.kruler,kruler,kwin_wayland,ksmserver-logout-greeter,[steam_app]";
+
+      # Moldura (R4): Breeze com borda fina só no foco, sem barra de título/botões,
+      # sem sombra. NÃO usar noborder (tiraria título e borda juntos).
+      "kwinrc"."org.kde.kdecoration2"."library".value = "org.kde.breeze";
+      "kwinrc"."org.kde.kdecoration2"."theme".value = "Breeze";
+      "kwinrc"."org.kde.kdecoration2"."BorderSize".value = "Tiny";
+      "kwinrc"."org.kde.kdecoration2"."BorderSizeAuto".value = false;
+      "kwinrc"."org.kde.kdecoration2"."ButtonsOnLeft".value = "";
+      "kwinrc"."org.kde.kdecoration2"."ButtonsOnRight".value = "";
+
+      # Sem sombra (decoração Breeze + efeito do compositor)
+      "kwinrc"."Plugins"."kwin4_effect_shadowEnabled".value = false;
+      "breezerc"."Common"."ShadowSize".value = "ShadowNone";
+      "breezerc"."Common"."ShadowStrength".value = 0;
+      "breezerc"."Common"."OutlineIntensity".value = "OutlineOff";
+
+      # Cor da moldura (Breeze pinta a borda na cor da barra de título, resolvida
+      # por estado ativo/inativo do color scheme). Antes vinha do stylix base0D;
+      # com stylix fora, setar explícito: foco = accent f59e0b, sem foco = fundo
+      # base00 121212 (borda "some" fora do foco). Valores kdeglobals = R,G,B.
+      "kdeglobals"."WM"."activeBackground".value = "245,158,11";
+      "kdeglobals"."WM"."activeForeground".value = "18,18,18";
+      "kdeglobals"."WM"."inactiveBackground".value = "18,18,18";
+      "kdeglobals"."WM"."inactiveForeground".value = "138,138,141";
+      "kdeglobals"."WM"."frame".value = "245,158,11";
+      "kdeglobals"."WM"."inactiveFrame".value = "18,18,18";
     };
 
     # Per-app placement (initially = place on open, still movable); Desktop_N is the stable virtual-desktop id
@@ -140,11 +167,12 @@ in
     startup.startupScript."session-layout" = {
       runAlways = true;
       text = ''
-        # Wait for Plasma (plasmashell on DBus + 6 desktops) before launching, else apps land on desktop 1
+        # Wait for KWin (6 desktops) before launching, else apps land on desktop 1.
+        # Sem plasmashell, gatear no VirtualDesktopManager do KWin (não no plasmashell,
+        # que nunca sobe → estouraria o loop de 60s).
         i=0
         while [ "$i" -lt 120 ]; do
-          if qdbus org.kde.plasmashell /PlasmaShell >/dev/null 2>&1 \
-             && [ "$(qdbus org.kde.KWin /VirtualDesktopManager count 2>/dev/null)" = "6" ]; then
+          if [ "$(qdbus org.kde.KWin /VirtualDesktopManager count 2>/dev/null)" = "6" ]; then
             break
           fi
           i=$((i + 1)); sleep 0.5

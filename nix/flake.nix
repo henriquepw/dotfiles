@@ -12,19 +12,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-    stylix = {
-      url = "github:nix-community/stylix/release-26.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     vicinae = {
       url = "github:vicinaehq/vicinae";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # NÃO forçar nixpkgs.follows: o kineticwe traz seu próprio nixpkgs-unstable
-    # (Qt 6.10 / KF6 6.26 pré-buildados) e sua overlay é aditiva — só adiciona
-    # kineticwe/kwin-we/noctalia, não sobrescreve qt6/kdePackages, então o Plasma
-    # do sistema não é rebuildado.
-    kineticwe.url = "gitlab:theblackdon/kineticwe";
+    # Noctalia v5 é o shell (bar/notif/tray/wallpaper) rodando sobre o kwin_wayland
+    # da sessão Plasma. NÃO forçar nixpkgs.follows: seguir nixpkgs desabilitaria o
+    # cache binário do projeto e forçaria compilar o binário C++ nativo localmente.
+    # O cache vem do noctalia.cachix.org (nix.settings no host).
+    noctalia.url = "github:noctalia-dev/noctalia";
   };
 
   outputs =

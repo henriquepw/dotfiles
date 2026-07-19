@@ -1,8 +1,7 @@
 { pkgs, ... }:
 {
-  # vicinae roda como serviço de usuário nas duas sessões (KDE e KineticWE) —
-  # por isso vive fora do kde.nix. O flake module deixa o target vicinae do
-  # stylix aplicar o tema. O atalho de toggle específico do Plasma
+  # vicinae roda como user service na sessão Plasma (sem o hack do kineticwe que
+  # injetava env wayland — some junto com o kineticwe.nix). O atalho de toggle
   # (services/vicinae.desktop = Meta+Return) fica no kde.nix.
   programs.vicinae = {
     enable = true;
