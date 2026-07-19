@@ -30,10 +30,7 @@ in
     libsixel
   ];
 
-  # Terminais — fonte vem do fontconfig (theme.nix). Com stylix removido (veredito A
-  # do mapa noctalia-shell), as cores base16 não são mais injetadas: foot/bat/btop/
-  # etc. usam suas paletas default. Definir cores explícitas aqui se quiser matte-black.
-  # conf do repo é lida em runtime — segue editável ao vivo, sem rebuild
+  # foot.ini is symlinked from the repo, read at runtime — live-editable, no rebuild.
   programs.foot.enable = true;
   xdg.configFile."foot/foot.ini".source = link "${dotfiles}/foot/foot.ini";
 
@@ -60,7 +57,7 @@ in
   #   };
   # };
 
-  # conf do repo é lido em runtime — segue editável ao vivo, sem rebuild
+  # tmux.conf is sourced from the repo at runtime — live-editable, no rebuild.
   programs.tmux = {
     enable = true;
     sensibleOnTop = false;
@@ -72,12 +69,11 @@ in
     settings = builtins.fromTOML (builtins.readFile ./starship.toml);
   };
 
-  # Ferramentas de terminal (usam paleta default agora que o stylix saiu)
   programs.bat.enable = true;
   programs.btop.enable = true;
   programs.fzf.enable = true;
 
-  # tpm instala os demais plugins em ~/.tmux/plugins via prefix+I
+  # tpm installs the remaining plugins into ~/.tmux/plugins via prefix+I.
   home.file.".tmux/plugins/tpm".source = pkgs.fetchFromGitHub {
     owner = "tmux-plugins";
     repo = "tpm";
@@ -85,7 +81,7 @@ in
     hash = "sha256-CeI9Wq6tHqV68woE11lIY4cLoNY8XWyXyMHTDmFKJKI=";
   };
 
-  # Terminal padrão do KDE (o xdg-terminals.list cobre o xdg-terminal-exec)
+  # KDE default terminal (xdg-terminals.list covers xdg-terminal-exec).
   programs.plasma.configFile."kdeglobals"."General" = {
     "TerminalApplication".value = "foot";
     "TerminalService".value = "foot.desktop";

@@ -1,3 +1,5 @@
+config_version = 2
+
 [bar.default]
 background_opacity = 0.74999998323619366
 end = [
@@ -18,12 +20,13 @@ margin_edge = 0
 margin_ends = 0
 radius = 0
 shadow = false
-start = [ "launcher", "workspaces" ]
+start = [ "workspaces" ]
 
 [dock]
 auto_hide = true
 background_opacity = 0.99999997764825821
 enabled = true
+pinned = [ "org.kde.dolphin", "foot", "brave-browser", "steam" ]
 reserve_space = false
 show_dots = true
 show_instance_count = false
@@ -60,11 +63,17 @@ widget_order = [ "lockscreen-login-box@DP-1" ]
 
 [shell]
 font_family = "JetBrainsMono NF"
+lang = "en"
 
 [theme]
 builtin = "Ayu"
-source = "wallpaper"
+source = "custom"
+custom_palette = "matte-black"
 wallpaper_scheme = "m3-rainbow"
+
+    [theme.templates]
+    builtin_ids = [ "btop", "foot", "gtk3", "gtk4", "ghostty", "qt" ]
+    community_ids = [ "obsidian", "vicinae", "opencode", "papirus-icons", "pi-agent", "yazi" ]
 
 [wallpaper]
 directory = "/home/henrique/dotfiles/dotfiles"
@@ -74,6 +83,12 @@ directory = "/home/henrique/dotfiles/dotfiles"
 
     [wallpaper.last]
     path = "/home/henrique/dotfiles/dotfiles/wallpaper.png"
+
+[widget.clock]
+format = "{:%H:%M %a %d/%m}"
+
+[widget.date]
+format = "{:%a %d/%m}"
 
 [widget.media]
 title_scroll = "always"
@@ -86,3 +101,12 @@ type = "spacer"
 
 [widget.sysmon]
 stat = "ram_used"
+
+[widget.tray]
+drawer = true
+
+[widget.workspaces]
+active_pill_size = 1.0
+capsule_radius = 2
+empty_color = "shadow"
+occupied_color = "outline"

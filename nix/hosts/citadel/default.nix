@@ -22,10 +22,9 @@
     }
   ];
 
-  # Boot
   boot.loader = {
     systemd-boot.enable = true;
-    systemd-boot.consoleMode = "max"; # usa resolução máxima EFI — ly ocupa o monitor inteiro
+    systemd-boot.consoleMode = "max"; # max EFI resolution so ly fills the whole monitor
     efi.canTouchEfiVariables = true;
   };
 
@@ -34,28 +33,25 @@
     "loglevel=3"
     "rd.udev.log_level=3"
     "udev.log_priority=3"
-    "video=DP-1:2560x1440@165" # força KMS a usar resolução nativa no TTY/ly
+    "video=DP-1:2560x1440@165" # force KMS to native resolution on the TTY/ly
   ];
 
-  # Network
   networking = {
     hostName = "citadel";
     networkmanager.enable = true;
   };
 
-  # Tailscale — operator libera o CLI pro usuário sem sudo
+  # Tailscale — operator lets the user run the CLI without sudo
   services.tailscale = {
     enable = true;
     openFirewall = true;
     extraSetFlags = [ "--operator=henrique" ];
   };
 
-  # Time
   time.timeZone = "America/Sao_Paulo";
   services.timesyncd.enable = true;
 
-  # Locale — UI em inglês, formatos (data, moeda, papel...) em pt-BR
-  # 'c → ç vem do ~/.XCompose (home-manager), lido nativamente pelo xkbcommon
+  # Locale — English UI, pt-BR formats (date, currency, paper...); ç via ~/.XCompose
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
@@ -71,10 +67,8 @@
     };
   };
 
-  # Firmware
   hardware.enableRedistributableFirmware = true;
 
-  # Audio (pipewire)
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -84,15 +78,12 @@
     pulse.enable = true;
   };
 
-  # Bluetooth
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
   };
 
-  # Keyboard remapping — Ctrl+Insert/Shift+Insert são copy/paste universais:
-  # GTK, Qt, browsers e Electron honram nativamente; foot e ghostty têm
-  # bindings explícitos pra eles (terminal.nix)
+  # Meta+c/v/x/a/z → universal Ctrl/Shift+Insert copy/paste; terminals bind explicitly (terminal.nix)
   services.keyd = {
     enable = true;
     keyboards.default = {

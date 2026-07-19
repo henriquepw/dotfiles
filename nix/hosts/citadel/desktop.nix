@@ -23,9 +23,7 @@
 
   services.displayManager.sddm.enable = false;
 
-  # KWallet desligado: sem auto-unlock no PAM (mkForce porque o plasma6 liga por
-  # padrão). O subsistema em si é desativado via kwalletrc no kde.nix.
-  # A lib kwallet do framework permanece — o plasma-workspace linka contra ela.
+  # KWallet off: no PAM auto-unlock (mkForce since plasma6 enables it by default; subsystem itself disabled via kwalletrc in kde.nix)
   security.pam.services = {
     login.kwallet.enable = lib.mkForce false;
     kde.kwallet.enable = lib.mkForce false;

@@ -7,7 +7,7 @@ HOST="${1:-citadel}"
 echo "▶ Dotfiles: $DOTFILES"
 echo "▶ Host: $HOST"
 
-# A config nix referencia o repo via ~/.dotfiles — o clone pode viver em qualquer pasta
+# Nix config references the repo via ~/.dotfiles, so the clone can live anywhere
 ln -sfn "$DOTFILES" "$HOME/.dotfiles"
 
 # ── 1. Hardware configuration ────────────────────────────────────────────────
@@ -21,7 +21,7 @@ if [ ! -f "$HARDWARE_DEST" ]; then
 	fi
 	echo "▶ Copying hardware-configuration.nix"
 	cp "$HARDWARE_SRC" "$HARDWARE_DEST"
-	# flakes em repo git só enxergam arquivos rastreados
+	# flakes in a git repo only see tracked files
 	git -C "$DOTFILES" add "$HARDWARE_DEST"
 else
 	echo "▶ hardware-configuration.nix already present, skipping"

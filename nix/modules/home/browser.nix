@@ -8,15 +8,12 @@ let
   link = config.lib.file.mkOutOfStoreSymlink;
 in
 {
-  # XWayland (ozone=x11) para que o Brave respeite o ~/.XCompose (cedilha ç);
-  # em Wayland nativo o Chromium ignora o XCompose e digita ć. O --ozone-platform=x11
-  # explícito vence o --ozone-platform-hint=auto que o wrapper injeta via NIXOS_OZONE_WL.
+  # Force x11 so Brave respects ~/.XCompose (cedilla ç); native Wayland Chromium ignores it.
   home.packages = [ (pkgs.brave.override { commandLineArgs = [ "--ozone-platform=x11" ]; }) ];
   xdg.configFile."brave-origin-beta-flags.conf".source =
     link "${dotfiles}/brave/brave-origin-beta-flags.conf";
 
-  # Navegador padrão — mimeapps cobre o xdg-open; o kdeglobals cobre o que o
-  # KDE resolve por conta própria
+  # Default browser — mimeapps covers xdg-open; kdeglobals covers what KDE resolves itself.
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
@@ -27,11 +24,7 @@ in
       "x-scheme-handler/unknown" = "brave-browser.desktop";
     };
   };
-  # O KDE e o "tornar padrão" do Brave reescrevem o mimeapps.list em runtime,
-  # trocando o symlink do HM por um arquivo real. Com backupFileExtension fixo
-  # ("hm-bak") a próxima ativação colide com o .hm-bak da vez anterior e falha.
-  # force = true faz o HM sobrescrever sem backup — o arquivo é 100% declarativo
-  # aqui, então as edições em runtime são justamente o que queremos descartar.
+  # force = true: KDE/Brave rewrite mimeapps.list at runtime, so overwrite it without backup (fully declarative here).
   xdg.configFile."mimeapps.list".force = true;
   programs.plasma.configFile."kdeglobals"."General"."BrowserApplication".value =
     "brave-browser.desktop";

@@ -69,7 +69,7 @@ local setup_mason = function()
 	require("mason").setup({})
 
 	local ensure_installed = {
-		-- efm vem do nix (nvim.nix), não do mason
+		-- efm comes from nix (nvim.nix), not mason
 		-- Latex
 		"tectonic",
 		-- Markdown

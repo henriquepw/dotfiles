@@ -10,9 +10,7 @@ in
 {
   home.file.".XCompose".source = link "${dotfiles}/kde/XCompose";
 
-  # KWin script: Meta+F redimensiona a janela em foco pra ~50% do monitor e centraliza.
-  # Não existe ação nativa "centralizar em 50%"; o script registra o próprio atalho
-  # (registerShortcut) e é habilitado em kwinrc [Plugins] centerhalfEnabled abaixo.
+  # KWin script: no native "center at 50%" action, so it self-registers a shortcut (enabled via centerhalfEnabled below)
   home.file.".local/share/kwin/scripts/centerhalf/metadata.json".text = builtins.toJSON {
     KPlugin = {
       Id = "centerhalf";
@@ -27,7 +25,7 @@ in
   };
 
   home.file.".local/share/kwin/scripts/centerhalf/contents/code/main.js".text = ''
-    // Fração linear de cada eixo (0.7 x 0.7 ≈ 49% da área = "metade do monitor")
+    // Per-axis linear fraction (0.7 x 0.7 ≈ 49% area = "half the monitor")
     var FRAC = 0.7;
     registerShortcut("CenterHalf", "Centralizar janela a 50%", "Meta+Ctrl+F", function () {
       var w = workspace.activeWindow;
@@ -91,15 +89,13 @@ in
       "kwinrc"."Plugins"."slideEnabled".value = false;
       "kwinrc"."Plugins"."centerhalfEnabled".value = true;
 
-      # Sem barra de título / decoração: a barra "some" pela window-rule noborder
-      # (aplicada a todas as janelas, abaixo). Mantida a decoração Breeze só como
-      # base; noborder tira título + moldura juntos (é o que se quer agora).
+      # Keep Breeze as base decoration; the global noborder window-rule below strips title + frame
       "kwinrc"."org.kde.kdecoration2"."library".value = "org.kde.breeze";
       "kwinrc"."org.kde.kdecoration2"."theme".value = "Breeze";
       "kwinrc"."org.kde.kdecoration2"."ButtonsOnLeft".value = "";
       "kwinrc"."org.kde.kdecoration2"."ButtonsOnRight".value = "";
 
-      # Sem sombra (decoração Breeze + efeito do compositor)
+      # No shadow (Breeze decoration + compositor effect)
       "kwinrc"."Plugins"."kwin4_effect_shadowEnabled".value = false;
       "breezerc"."Common"."ShadowSize".value = "ShadowNone";
       "breezerc"."Common"."ShadowStrength".value = 0;
@@ -108,7 +104,7 @@ in
 
     # Per-app placement (initially = place on open, still movable); Desktop_N is the stable virtual-desktop id
     window-rules = [
-      # Todas as janelas sem barra de título nem moldura (regex .* casa qualquer classe)
+      # Strip title bar + frame from all windows (regex .* matches any class)
       {
         description = "Sem barra de título (global)";
         match.window-class = {
@@ -181,9 +177,7 @@ in
     startup.startupScript."session-layout" = {
       runAlways = true;
       text = ''
-        # Wait for KWin (6 desktops) before launching, else apps land on desktop 1.
-        # Sem plasmashell, gatear no VirtualDesktopManager do KWin (não no plasmashell,
-        # que nunca sobe → estouraria o loop de 60s).
+        # Wait for KWin (6 desktops) before launching, else apps land on desktop 1 (no plasmashell, so gate on KWin)
         i=0
         while [ "$i" -lt 120 ]; do
           if [ "$(qdbus org.kde.KWin /VirtualDesktopManager count 2>/dev/null)" = "6" ]; then
@@ -206,20 +200,10 @@ in
       '';
     };
 
-    # Launcher do Noctalia: KWin/kglobalaccel não têm um .desktop de toggle pro
-    # Noctalia (não é app registrado), então o bind vira um comando via kglobalaccel.
-    # `noctalia msg panel-toggle launcher` abre/fecha o painel launcher na instância viva.
-    hotkeys.commands."noctalia-launcher" = {
-      name = "Noctalia Launcher";
-      key = "Meta+Return";
-      command = "noctalia msg panel-toggle launcher";
-    };
-
+    # Noctalia registers its own NoctaliaToggleLauncher shortcut (Meta+Return); don't duplicate it with hotkeys.commands
     shortcuts = {
-      # Launcher
       plasmashell."activate application launcher" = "Alt+F1";
 
-      # App shortcuts
       "foot.desktop"."_launch" = "Meta+Ctrl+T";
       "brave-browser.desktop"."_launch" = "Meta+Ctrl+B";
       "whatsapp-web.desktop"."_launch" = "Meta+Ctrl+G";
@@ -249,7 +233,7 @@ in
         "Window Quick Tile Top" = "Meta+Ctrl+K";
         "Window Quick Tile Right" = "Meta+Ctrl+L";
         "Window Maximize" = "Meta+Ctrl+M";
-        # Meta+Ctrl+F é registrado pelo KWin script centerhalf.
+        # Meta+Ctrl+F is registered by the centerhalf KWin script.
       };
     };
   };

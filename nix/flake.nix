@@ -12,10 +12,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-    # Noctalia v5 é o shell (bar/notif/tray/wallpaper) rodando sobre o kwin_wayland
-    # da sessão Plasma. NÃO forçar nixpkgs.follows: seguir nixpkgs desabilitaria o
-    # cache binário do projeto e forçaria compilar o binário C++ nativo localmente.
-    # O cache vem do noctalia.cachix.org (nix.settings no host).
+    # No nixpkgs.follows: it would disable the project's binary cache and force a local native build.
     noctalia.url = "github:noctalia-dev/noctalia";
   };
 
