@@ -1,6 +1,6 @@
 { config, ... }:
 {
-  imports = [ ../../modules/home ];
+  imports = [ ../../modules ];
 
   # Stable repo path — Makefile/setup.sh keeps ~/.dotfiles pointing at the current clone
   _module.args.dotfiles = "${config.home.homeDirectory}/.dotfiles/dotfiles";
