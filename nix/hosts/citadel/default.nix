@@ -6,6 +6,7 @@
 }:
 {
   imports = [
+    ../../system/common.nix
     ./hardware-configuration.nix
     ./gaming.nix
     ./desktop.nix
@@ -46,25 +47,6 @@
     enable = true;
     openFirewall = true;
     extraSetFlags = [ "--operator=henrique" ];
-  };
-
-  time.timeZone = "America/Sao_Paulo";
-  services.timesyncd.enable = true;
-
-  # Locale — English UI, pt-BR formats (date, currency, paper...); ç via ~/.XCompose
-  i18n = {
-    defaultLocale = "en_US.UTF-8";
-    extraLocaleSettings = {
-      LC_CTYPE = "pt_BR.UTF-8";
-      LC_TIME = "pt_BR.UTF-8";
-      LC_NUMERIC = "pt_BR.UTF-8";
-      LC_MONETARY = "pt_BR.UTF-8";
-      LC_PAPER = "pt_BR.UTF-8";
-      LC_NAME = "pt_BR.UTF-8";
-      LC_ADDRESS = "pt_BR.UTF-8";
-      LC_TELEPHONE = "pt_BR.UTF-8";
-      LC_MEASUREMENT = "pt_BR.UTF-8";
-    };
   };
 
   hardware.enableRedistributableFirmware = true;
@@ -121,25 +103,12 @@
     shell = pkgs.zsh;
   };
 
-  programs.zsh.enable = true;
-
-  nix = {
-    settings = {
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-      auto-optimise-store = true;
-      extra-substituters = [ "https://noctalia.cachix.org" ];
-      extra-trusted-public-keys = [
-        "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
-      ];
-    };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 30d";
-    };
+  # noctalia cachix — desktop-only, stays inline (not lifted into common.nix)
+  nix.settings = {
+    extra-substituters = [ "https://noctalia.cachix.org" ];
+    extra-trusted-public-keys = [
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+    ];
   };
 
   system.stateVersion = "24.11";
