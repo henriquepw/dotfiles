@@ -13,7 +13,7 @@ local function add_word_to_lang(lang)
 	local original_spellfile = vim.opt.spellfile
 
 	-- Get the current language file
-	local spellfile_path = vim.fn.expand(string.format("~/.dotfiles/nvim/spell/%s.utf-8.add", lang))
+	local spellfile_path = vim.fn.expand(string.format("~/.config/nvim/spell/%s.utf-8.add", lang))
 
 	-- Temporarily set spelllang to only the desired language
 	vim.opt.spelllang = { lang }

@@ -2,7 +2,7 @@
   inputs,
   pkgs,
   config,
-  dotfiles,
+  repoRoot,
   ...
 }:
 let
@@ -17,5 +17,5 @@ in
     systemd.enable = true;
   };
 
-  xdg.configFile."noctalia".source = link "${dotfiles}/noctalia";
+  xdg.configFile."noctalia".source = link "${repoRoot}/modules/noctalia/config";
 }

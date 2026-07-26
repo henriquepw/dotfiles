@@ -1,7 +1,7 @@
 {
   pkgs,
   config,
-  dotfiles,
+  repoRoot,
   ...
 }:
 let
@@ -17,5 +17,5 @@ in
     tree-sitter
     gcc
   ];
-  xdg.configFile."nvim".source = link "${dotfiles}/nvim";
+  xdg.configFile."nvim".source = link "${repoRoot}/modules/nvim/config";
 }

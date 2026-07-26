@@ -12,7 +12,7 @@ ln -sfn "$DOTFILES" "$HOME/.dotfiles"
 
 # ── 1. Hardware configuration ────────────────────────────────────────────────
 HARDWARE_SRC="/etc/nixos/hardware-configuration.nix"
-HARDWARE_DEST="$DOTFILES/nix/hosts/$HOST/hardware-configuration.nix"
+HARDWARE_DEST="$DOTFILES/hosts/$HOST/hardware-configuration.nix"
 
 if [ ! -f "$HARDWARE_DEST" ]; then
 	if [ ! -f "$HARDWARE_SRC" ]; then
@@ -36,7 +36,7 @@ fi
 
 # ── 3. Apply NixOS configuration ─────────────────────────────────────────────
 echo "▶ Running nixos-rebuild switch (this will take a while)"
-sudo nixos-rebuild switch --flake "$DOTFILES/nix#$HOST"
+sudo nixos-rebuild switch --flake "$DOTFILES#$HOST"
 
 echo ""
 echo "✓ Done! Reboot recommended."

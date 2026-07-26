@@ -76,13 +76,13 @@ wallpaper_scheme = "m3-rainbow"
     community_ids = [ "obsidian", "opencode", "papirus-icons", "pi-agent", "yazi" ]
 
 [wallpaper]
-directory = "/home/henrique/dotfiles/dotfiles"
+directory = "/home/henrique/dotfiles/assets"
 
     [wallpaper.default]
-    path = "/home/henrique/dotfiles/dotfiles/wallpaper.png"
+    path = "/home/henrique/dotfiles/assets/wallpaper.png"
 
     [wallpaper.last]
-    path = "/home/henrique/dotfiles/dotfiles/wallpaper.png"
+    path = "/home/henrique/dotfiles/assets/wallpaper.png"
 
 [widget.clock]
 format = "{:%H:%M %a %d/%m}"

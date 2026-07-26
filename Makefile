@@ -24,10 +24,10 @@ install:
 ## rebuild: apply current NixOS configuration
 .PHONY: rebuild
 rebuild: link
-	@sudo nixos-rebuild switch --flake ./nix#citadel
+	@sudo nixos-rebuild switch --flake .#citadel
 
 ## update: update flake inputs and apply configuration
 .PHONY: update
 update: link
-	@nix flake update --flake ./nix
-	@sudo nixos-rebuild switch --flake ./nix#citadel
+	@nix flake update --flake .
+	@sudo nixos-rebuild switch --flake .#citadel

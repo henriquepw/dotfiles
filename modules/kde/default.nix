@@ -1,14 +1,14 @@
 {
   lib,
   config,
-  dotfiles,
+  repoRoot,
   ...
 }:
 let
   link = config.lib.file.mkOutOfStoreSymlink;
 in
 {
-  home.file.".XCompose".source = link "${dotfiles}/kde/XCompose";
+  home.file.".XCompose".source = link "${repoRoot}/modules/kde/config/XCompose";
 
   # Noctalia is the shell; the Plasma session still auto-starts plasmashell as a
   # systemd user service, so mask it (symlink to /dev/null) to keep it from running.
@@ -50,7 +50,7 @@ in
   home.activation.plasma-panel = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     _PANEL="$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc"
     if [ ! -f "$_PANEL" ]; then
-      cp "${dotfiles}/kde/plasma-org.kde.plasma.desktop-appletsrc" "$_PANEL"
+      cp "${repoRoot}/modules/kde/config/plasma-org.kde.plasma.desktop-appletsrc" "$_PANEL"
       chmod 644 "$_PANEL"
     fi
   '';
@@ -60,7 +60,7 @@ in
 
     workspace = {
       iconTheme = "Papirus-Dark";
-      wallpaper = "${dotfiles}/wallpaper.png";
+      wallpaper = "${repoRoot}/assets/wallpaper.png";
     };
 
     input.keyboard.layouts = [
@@ -77,7 +77,7 @@ in
       };
     };
 
-    kscreenlocker.appearance.wallpaper = "${dotfiles}/wallpaper.png";
+    kscreenlocker.appearance.wallpaper = "${repoRoot}/assets/wallpaper.png";
 
     # Streaming box: never blank/dim/suspend, else the (virtual) display goes black
     powerdevil.AC = {

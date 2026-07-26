@@ -1,6 +1,6 @@
 .DS_Store
 *.hm-bak
-dotfiles/sunshine/credentials
+modules/gaming/config/sunshine/credentials
 
 result
 .scratch

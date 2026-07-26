@@ -2,7 +2,7 @@
   pkgs,
   config,
   lib,
-  dotfiles,
+  repoRoot,
   ...
 }:
 let
@@ -32,7 +32,7 @@ in
 
   # foot.ini is symlinked from the repo, read at runtime — live-editable, no rebuild.
   programs.foot.enable = true;
-  xdg.configFile."foot/foot.ini".source = link "${dotfiles}/foot/foot.ini";
+  xdg.configFile."foot/foot.ini".source = link "${repoRoot}/modules/terminal/config/foot/foot.ini";
 
   # programs.ghostty = {
   #   enable = true;
@@ -61,12 +61,12 @@ in
   programs.tmux = {
     enable = true;
     sensibleOnTop = false;
-    extraConfig = lib.mkAfter "source-file ${dotfiles}/tmux/tmux.conf";
+    extraConfig = lib.mkAfter "source-file ${repoRoot}/modules/terminal/config/tmux/tmux.conf";
   };
 
   programs.starship = {
     enable = true;
-    settings = builtins.fromTOML (builtins.readFile ./starship.toml);
+    settings = builtins.fromTOML (builtins.readFile ./config/starship.toml);
   };
 
   programs.bat.enable = true;
@@ -87,7 +87,7 @@ in
     "TerminalService".value = "foot.desktop";
   };
 
-  home.file.".zshrc".source = link "${dotfiles}/shell/.zshrc";
-  xdg.configFile."fastfetch".source = link "${dotfiles}/fastfetch";
-  xdg.configFile."xdg-terminals.list".source = link "${dotfiles}/shell/xdg-terminals.list";
+  home.file.".zshrc".source = link "${repoRoot}/modules/terminal/config/shell/.zshrc";
+  xdg.configFile."fastfetch".source = link "${repoRoot}/modules/terminal/config/fastfetch";
+  xdg.configFile."xdg-terminals.list".source = link "${repoRoot}/modules/terminal/config/shell/xdg-terminals.list";
 }

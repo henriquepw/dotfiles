@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(systemctl is-active *)",
+      "Bash(systemctl --user status vicinae --no-pager)",
+      "Bash(git -C /home/henrique/dotfiles status --porcelain --ignored -- nix/hosts/citadel/)",
+      "Bash(git -C /home/henrique/dotfiles check-ignore -v nix/hosts/citadel/hardware-configuration.nix)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(git -C /home/henrique/dotfiles add nix/hosts/citadel/hardware-configuration.nix)",
+      "Bash(git -C /home/henrique/dotfiles status --short)",
+      "Bash(kscreen-doctor -o)",
+      "Bash(wlr-randr)",
+      "Bash(kscreen-doctor --outputs)",
+      "Bash(xrandr)",
+      "WebSearch"
+    ]
+  },
+  "prefersReducedMotion": true
+}

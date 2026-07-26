@@ -16,7 +16,7 @@ plugin=org.kde.plasma.folder
 wallpaperplugin=org.kde.image
 
 [Containments][108][Wallpaper][org.kde.image][General]
-Image=file:///home/henrique/.dotfiles/dotfiles/wallpaper.png
+Image=file:///home/henrique/.dotfiles/assets/wallpaper.png
 
 [Containments][109]
 activityId=8659d697-8086-4294-90bd-611a1af5bc7f
@@ -28,7 +28,7 @@ plugin=org.kde.plasma.folder
 wallpaperplugin=org.kde.image
 
 [Containments][109][Wallpaper][org.kde.image][General]
-Image=file:///home/henrique/.dotfiles/dotfiles/wallpaper.png
+Image=file:///home/henrique/.dotfiles/assets/wallpaper.png
 
 [Containments][36]
 activityId=

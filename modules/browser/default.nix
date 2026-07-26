@@ -2,7 +2,7 @@
   pkgs,
   lib,
   config,
-  dotfiles,
+  repoRoot,
   ...
 }:
 let
@@ -12,7 +12,7 @@ in
   # Force x11 so Brave respects ~/.XCompose (cedilla ç); native Wayland Chromium ignores it.
   home.packages = [ (pkgs.brave.override { commandLineArgs = [ "--ozone-platform=x11" ]; }) ];
   xdg.configFile."brave-origin-beta-flags.conf".source =
-    link "${dotfiles}/brave/brave-origin-beta-flags.conf";
+    link "${repoRoot}/modules/browser/config/brave-origin-beta-flags.conf";
 
   # Default browser — mimeapps covers xdg-open; kdeglobals covers what KDE resolves itself.
   xdg.mimeApps = {

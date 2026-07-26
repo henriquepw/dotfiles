@@ -1,7 +1,7 @@
 {
   pkgs,
   config,
-  dotfiles,
+  repoRoot,
   ...
 }:
 let
@@ -24,7 +24,7 @@ in
     kdePackages.krfb
   ];
 
-  xdg.configFile."sunshine".source = link "${dotfiles}/sunshine";
+  xdg.configFile."sunshine".source = link "${repoRoot}/modules/gaming/config/sunshine";
 
   xdg.dataFile = builtins.listToAttrs (
     map
