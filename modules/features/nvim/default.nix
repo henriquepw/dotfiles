@@ -13,6 +13,15 @@
         pkgs.gcc
       ];
 
+      # nix-ld lets mason's generic dynamically linked binaries run on NixOS
+      programs.nix-ld.enable = true;
+      programs.nix-ld.libraries = with pkgs; [
+        stdenv.cc.cc
+        zlib
+        openssl
+        libgcc
+      ];
+
       environment.sessionVariables = {
         EDITOR = "nvim";
         VISUAL = "nvim";
