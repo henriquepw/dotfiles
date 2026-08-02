@@ -47,9 +47,11 @@
       audio
       bluetooth
       network
+      power
+      tailscale
+      keyd
       gpuamd
       gaming
-      ai
       browser
       develop
       git

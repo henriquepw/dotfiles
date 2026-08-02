@@ -43,6 +43,8 @@
         openFirewall = true;
       };
 
+      services.flatpak.enable = true;
+
       environment.systemPackages = with pkgs; [
         discord
         faugus-launcher

@@ -10,11 +10,17 @@
 
       hardware.amdgpu.opencl.enable = true;
 
+      hardware.graphics = {
+        enable = true;
+        enable32Bit = true;
+        extraPackages = with pkgs; [ rocmPackages.clr.icd ];
+      };
+
       environment.systemPackages = with pkgs; [
         libva-utils
       ];
 
-      # VAAPI radeonsi — usado pelo sunshine e players de vídeo
+      # VAAPI radeonsi — used by sunshine and video playes
       environment.sessionVariables = {
         LIBVA_DRIVER_NAME = "radeonsi";
         LIBVA_DRIVERS_PATH = "/run/opengl-driver/lib/dri";

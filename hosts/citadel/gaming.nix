@@ -77,6 +77,4 @@
       "claude-code"
       "discord"
     ];
-
-  services.flatpak.enable = true;
 }
