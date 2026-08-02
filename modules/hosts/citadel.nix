@@ -46,6 +46,7 @@
       )
 
       boot
+      autoUpdate
       audio
       bluetooth
       network
