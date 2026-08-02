@@ -254,6 +254,13 @@
                 command = "noctalia msg panel-toggle launcher";
               };
 
+              # Session menu (lock/suspend/reboot/shutdown) — noctalia's "session" panel
+              hotkeys.commands."toggle-session" = {
+                name = "Session Menu";
+                key = "Meta+Esc";
+                command = "noctalia msg panel-toggle session";
+              };
+
               shortcuts = {
                 plasmashell."activate application launcher" = "Alt+F1";
 

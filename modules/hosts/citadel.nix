@@ -58,11 +58,11 @@
       develop
       git
       kde
-      # kineticwe
       noctalia
       nvim
       office
       print
+      syncthing
       terminal
       theme
     ];

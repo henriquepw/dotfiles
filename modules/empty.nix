@@ -3,8 +3,8 @@
   flake.nixosModules.name =
     { pkgs, ... }:
     {
-      environment.systemPackages = [
-        pkgs.foo
+      environment.systemPackages = with pkgs; [
+        foo
       ];
 
       home-manager.sharedModules = [
