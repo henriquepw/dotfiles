@@ -1,0 +1,22 @@
+# UTF-8 (Unicode) compose sequences
+
+include "%L"
+
+# Override ć with ç:
+<dead_acute> <c> : "ç" "ccedilla"
+<dead_acute> <C> : "Ç" "Ccedilla"
+
+# Support cedilla in applications that don't respect GTK or QT, like Alacritty and WezTerm
+# (for lack of better explanation)
+# See https://github.com/alacritty/alacritty/issues/4549
+<Multi_key> <comma> <c> : "ç"
+<Multi_key> <comma> <C> : "Ç"
+<Multi_key> <cedilla> <c> : "ç"
+<dead_cedilla> <c> : "ç"
+
+<Multi_key> <c> <comma> : "ç"
+<Multi_key> <cedilla> <c> : "ç"
+<Multi_key> <acute> <c> : "ç"
+<Multi_key> <apostrophe> <c> : "ç"
+<Multi_key> <c> <apostrophe> : "ç"
+
