@@ -17,6 +17,7 @@ require("snacks").setup({
 				hidden = true,
 				auto_close = true,
 				layout = {
+					preview = true,
 					layout = {
 						box = "horizontal",
 						width = 0.8,
@@ -29,7 +30,12 @@ require("snacks").setup({
 							{ win = "input", height = 1, border = "bottom" },
 							{ win = "list", border = "none" },
 						},
-						{ win = "preview", border = "rounded", width = 0.65, title = "{preview}" },
+						{
+              win = "preview",
+              border = "rounded",
+              width = 0.65,
+              title = "{preview}",
+            },
 					},
 				},
 			},
