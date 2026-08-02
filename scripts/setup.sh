@@ -2,7 +2,7 @@
 set -euo pipefail
 
 DOTFILES="$(cd "$(dirname "$0")/.." && pwd)"
-HOST="${1:-citadel}"
+HOST="${1:-$(hostname)}"
 
 echo "▶ Dotfiles: $DOTFILES"
 echo "▶ Host: $HOST"
@@ -11,8 +11,10 @@ echo "▶ Host: $HOST"
 ln -sfn "$DOTFILES" "$HOME/.dotfiles"
 
 # ── 1. Hardware configuration ────────────────────────────────────────────────
+# _hardware is ignored by import-tree (leading underscore), so it holds per-host
+# hardware-configuration.nix imported explicitly from modules/hosts/<host>.nix
 HARDWARE_SRC="/etc/nixos/hardware-configuration.nix"
-HARDWARE_DEST="$DOTFILES/hosts/$HOST/hardware-configuration.nix"
+HARDWARE_DEST="$DOTFILES/modules/_hardware/$HOST/hardware-configuration.nix"
 
 if [ ! -f "$HARDWARE_DEST" ]; then
 	if [ ! -f "$HARDWARE_SRC" ]; then
@@ -20,6 +22,7 @@ if [ ! -f "$HARDWARE_DEST" ]; then
 		sudo nixos-generate-config --no-filesystems
 	fi
 	echo "▶ Copying hardware-configuration.nix"
+	mkdir -p "$(dirname "$HARDWARE_DEST")"
 	cp "$HARDWARE_SRC" "$HARDWARE_DEST"
 	# flakes in a git repo only see tracked files
 	git -C "$DOTFILES" add "$HARDWARE_DEST"

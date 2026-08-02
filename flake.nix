@@ -25,13 +25,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    kineticwe = {
-      url = "gitlab:theblackdon/kineticwe";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # kineticwe.url = "gitlab:theblackdon/kineticwe";
   };
   outputs =
-    inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./dendritic);
+    inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }
 # # Remote deploy from citadel: build locally on citadel, push over SSH (LAN or wt0),
 # # magic-rollback auto-reverts (~30s) if bellway goes unreachable after activation.
