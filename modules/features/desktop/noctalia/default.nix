@@ -29,7 +29,7 @@
               systemd.enable = true;
             };
 
-            xdg.configFile."noctalia".source = link "${featurePath}/noctalia/config";
+            xdg.configFile."noctalia".source = link "${featurePath}/desktop/noctalia/config";
           }
         )
       ];

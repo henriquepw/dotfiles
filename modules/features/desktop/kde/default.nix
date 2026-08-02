@@ -50,7 +50,7 @@
             # plasma-manager fornece o programs.plasma usado aqui (e por terminal/browser)
             imports = [ inputs.plasma-manager.homeModules.plasma-manager ];
 
-            home.file.".XCompose".source = link "${featurePath}/kde/config/XCompose";
+            home.file.".XCompose".source = link "${featurePath}/desktop/kde/config/XCompose";
 
             # Noctalia is the shell; the Plasma session still auto-starts plasmashell as a
             # systemd user service, so mask it (symlink to /dev/null) to keep it from running.
@@ -92,7 +92,7 @@
             home.activation.plasma-panel = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
               _PANEL="$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc"
               if [ ! -f "$_PANEL" ]; then
-                cp "${featurePath}/kde/config/plasma-org.kde.plasma.desktop-appletsrc" "$_PANEL"
+                cp "${featurePath}/desktop/kde/config/plasma-org.kde.plasma.desktop-appletsrc" "$_PANEL"
                 chmod 644 "$_PANEL"
               fi
             '';
