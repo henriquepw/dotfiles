@@ -17,12 +17,10 @@ require("blink.cmp").setup({
 	completion = {
 		menu = {
 			auto_show = true,
-			border = "rounded",
 		},
 		documentation = {
 			auto_show = true,
 			auto_show_delay_ms = 200,
-			window = { border = "rounded" },
 		},
 	},
 	sources = { default = { "lsp", "path", "buffer" } },
