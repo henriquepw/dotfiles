@@ -111,6 +111,66 @@ map("n", "<leader>cm", "<cmd>Mason<cr>", { desc = "Mason" })
 
 setup_treesitter()
 
+-- incremental selection via treesitter
+do
+	local stack = {}
+
+	local function range_eq(a, b)
+		local a1, a2, a3, a4 = a:range()
+		local b1, b2, b3, b4 = b:range()
+		return a1 == b1 and a2 == b2 and a3 == b3 and a4 == b4
+	end
+
+	local esc = vim.api.nvim_replace_termcodes("<Esc>", true, false, true)
+
+	local function select_node(node)
+		local sr, sc, er, ec = node:range()
+		if ec == 0 and er > 0 then
+			-- range ends at column 0 of next line; back up to end of previous line
+			er = er - 1
+			ec = #vim.fn.getline(er + 1)
+		end
+		-- leave any current visual selection so `v` starts a fresh one instead of toggling it off
+		if vim.fn.mode():match("[vV\22]") then
+			vim.api.nvim_feedkeys(esc, "nx", false)
+		end
+		vim.api.nvim_win_set_cursor(0, { sr + 1, sc })
+		vim.cmd("normal! v")
+		vim.api.nvim_win_set_cursor(0, { er + 1, math.max(ec - 1, 0) })
+	end
+
+	map({ "n", "x" }, "<C-space>", function()
+		if vim.fn.mode() ~= "v" or #stack == 0 then
+			-- start selection from the node under the cursor
+			local node = vim.treesitter.get_node()
+			if not node then
+				return
+			end
+			stack = { node }
+			select_node(node)
+			return
+		end
+
+		-- expand to the smallest ancestor that covers a bigger range
+		local current = stack[#stack]
+		local parent = current:parent()
+		while parent and range_eq(parent, current) do
+			parent = parent:parent()
+		end
+		if parent then
+			table.insert(stack, parent)
+			select_node(parent)
+		end
+	end, { desc = "TS expand selection" })
+
+	map("x", "<BS>", function()
+		if #stack > 1 then
+			table.remove(stack)
+			select_node(stack[#stack])
+		end
+	end, { desc = "TS shrink selection" })
+end
+
 vim.lsp.config["*"] = {
 	capabilities = require("blink.cmp").get_lsp_capabilities(),
 }
