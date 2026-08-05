@@ -22,6 +22,14 @@
         konsole
       ];
 
+      # klassy: decoration/theme available system-wide (used via kdecoration below).
+      # kde-rounded-corners: KWin effect (plugin id kwin4_effect_shapecorners) — KWin
+      # discovers it through the Qt plugin path once it's in the system profile.
+      environment.systemPackages = with pkgs; [
+        klassy
+        kde-rounded-corners
+      ];
+
       # KWallet off: sem PAM auto-unlock (mkForce pois plasma6 liga por padrão)
       security.pam.services = {
         login.kwallet.enable = lib.mkForce false;
@@ -134,6 +142,27 @@
                 "kwalletrc"."Wallet"."Enabled".value = false;
                 "kwinrc"."Plugins"."slideEnabled".value = false;
                 "kwinrc"."Plugins"."centerhalfEnabled".value = true;
+
+                # kde-rounded-corners: 4px corners + a thin accent outline only on the
+                # focused window (Klassy-like). Works on the borderless windows since it
+                # runs at the compositor level, independent of the (stripped) decoration.
+                "kwinrc"."Plugins"."kwin4_effect_shapecornersEnabled".value = true;
+                "kwinrc"."Round-Corners"."Size".value = 4;
+                "kwinrc"."Round-Corners"."InactiveCornerRadius".value = 4;
+                # Active outline visible, inactive zeroed → border tracks focus
+                "kwinrc"."Round-Corners"."OutlineThickness".value = 1;
+                "kwinrc"."Round-Corners"."InactiveOutlineThickness".value = 0;
+                "kwinrc"."Round-Corners"."ActiveOutlineAlpha".value = 255;
+                # Follow the theme highlight color (QPalette::Highlight = index 12) instead of a fixed color
+                "kwinrc"."Round-Corners"."ActiveOutlineUsePalette".value = true;
+                "kwinrc"."Round-Corners"."ActiveOutlinePalette".value = 12;
+                # Draw the outline on tiled windows too (rounding stays off at screen edges)
+                "kwinrc"."Round-Corners"."DisableOutlineTile".value = false;
+                # Kill the default secondary (white) outline
+                "kwinrc"."Round-Corners"."SecondOutlineThickness".value = 0;
+                "kwinrc"."Round-Corners"."InactiveSecondOutlineThickness".value = 0;
+                # Never round/outline the Noctalia shell (built on quickshell) — substring, case-insensitive
+                "kwinrc"."Round-Corners"."Exclusions".value = "noctalia,quickshell";
 
                 # Keep Breeze as base decoration; the global noborder window-rule below strips title + frame
                 "kwinrc"."org.kde.kdecoration2"."library".value = "org.kde.breeze";
