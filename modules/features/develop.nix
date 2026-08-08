@@ -11,6 +11,7 @@
         rustup
 
         claude-code
+        codex
         opencode
       ];
 
