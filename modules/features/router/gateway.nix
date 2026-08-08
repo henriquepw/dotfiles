@@ -100,11 +100,11 @@
             iifname "lan0" tcp dport 22 accept
             iifname "lan0" ip protocol icmp accept
 
-            # NetBird peers: DNS (Blocky), SSH, ICMP.
-            iifname "wt0" tcp dport 53 accept
-            iifname "wt0" udp dport 53 accept
-            iifname "wt0" tcp dport 22 accept
-            iifname "wt0" ip protocol icmp accept
+            # Tailscale peers: DNS (Blocky), SSH/Tailscale SSH, ICMP.
+            iifname "tailscale0" tcp dport 53 accept
+            iifname "tailscale0" udp dport 53 accept
+            iifname "tailscale0" tcp dport 22 accept
+            iifname "tailscale0" ip protocol icmp accept
           }
 
           chain forward {
@@ -112,7 +112,7 @@
 
             ct state established,related accept
             iifname "lan0" oifname "wan0" accept   # LAN -> internet
-            iifname "wt0" oifname "lan0" accept     # NetBird peers -> LAN hosts
+            iifname "tailscale0" oifname "lan0" ip daddr 10.10.0.0/24 accept # tailnet peers -> LAN hosts
             # WAN -> LAN drops by default (only est/related above pass).
           }
 

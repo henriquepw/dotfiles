@@ -8,7 +8,7 @@
       services.blocky = {
         enable = true;
         settings = {
-          # Covers LAN + the dynamic wt0 (NetBird) IP + loopback; nftables drops WAN :53.
+          # Covers LAN + the dynamic tailscale0 IP + loopback; nftables drops WAN :53.
           ports.dns = "0.0.0.0:53";
 
           upstreams = {
