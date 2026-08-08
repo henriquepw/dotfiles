@@ -28,7 +28,7 @@
             shell = pkgs.zsh;
             initialPassword = "changeme";
             openssh.authorizedKeys.keys = [
-              # TODO on-device: paste citadel's public SSH key so deploy-rs/SSH works
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEkkXwX7dxjCJsNgE0n++zKnFZ/8pJ7FE355STxXuHs1 citadel->bellway deploy"
             ];
           };
 
