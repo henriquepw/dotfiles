@@ -3,14 +3,14 @@
   flake.nixosModules.nvim =
     { pkgs, ... }:
     {
-      environment.systemPackages = [
-        pkgs.neovim
-        pkgs.nil
-        pkgs.nixfmt
-        pkgs.statix
-        pkgs.efm-langserver
-        pkgs.tree-sitter
-        pkgs.gcc
+      environment.systemPackages = with pkgs; [
+        neovim
+        nil
+        nixfmt
+        statix
+        efm-langserver
+        tree-sitter
+        gcc
       ];
 
       # nix-ld lets mason's generic dynamically linked binaries run on NixOS

@@ -6,8 +6,8 @@
       programs.git.enable = true;
       programs.lazygit.enable = true;
 
-      environment.systemPackages = [
-        pkgs.gh
+      environment.systemPackages = with pkgs; [
+        gh
       ];
 
       home-manager.sharedModules = [
