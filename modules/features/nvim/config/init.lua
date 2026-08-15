@@ -4,10 +4,9 @@ require("config/statusline")
 require("config/autocmds")
 require("config/spell")
 
-require("plugins/theme")
-require("plugins/blink")
-require("plugins/gitsigns")
-require("plugins/harpoon")
-require("plugins/snacks")
-require("plugins/mini")
-require("plugins/lsp")
+local pluginsPath = vim.fn.stdpath("config") .. "/lua/plugins"
+for name, type in vim.fs.dir(pluginsPath) do
+	if type == "file" and name:match("%.lua") and name ~= "init.lua" then
+		require("plugins." .. name:gsub("%.lua$", ""))
+	end
+end
