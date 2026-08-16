@@ -5,7 +5,6 @@ vim.pack.add({
 		build = ":TSUpdate",
 	},
 	"https://www.github.com/neovim/nvim-lspconfig",
-	"https://github.com/mason-org/mason.nvim",
 	"https://github.com/creativenull/efmls-configs-nvim",
 })
 
@@ -61,53 +60,7 @@ local setup_treesitter = function()
 	})
 end
 
-local setup_mason = function()
-	require("mason").setup({})
-
-	local ensure_installed = {
-		-- efm comes from nix (nvim.nix), not mason
-		-- Latex
-		"tectonic",
-		-- Markdown
-		"mmdc",
-		-- Shell
-		"bash-language-server",
-		"shellcheck",
-		"shfmt",
-		-- Rust
-		"rust-analyzer",
-		-- C
-		"clangd",
-		"cpplint",
-		-- Lua
-		"lua-language-server",
-		"stylua",
-		-- "luacheck",
-		-- Golang
-		"gopls",
-		"goimports",
-		"gofumpt",
-		"revive",
-		-- TS
-		"biome",
-		"vtsls",
-		"tailwindcss-language-server",
-	}
-
-	local registry = require("mason-registry")
-
-	for _, pkg in ipairs(ensure_installed) do
-		if not registry.is_installed(pkg) then
-			vim.notify("Mason: instaling " .. pkg, vim.log.levels.INFO)
-			registry.get_package(pkg):install()
-		end
-	end
-
-	registry.update()
-end
-
-setup_mason()
-map("n", "<leader>cm", "<cmd>Mason<cr>", { desc = "Mason" })
+-- language servers, linters and formatters come from nix (nvim/default.nix)
 
 setup_treesitter()
 

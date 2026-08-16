@@ -11,9 +11,34 @@
         efm-langserver
         tree-sitter
         gcc
+
+        gopls
+        revive
+        gofumpt
+        gotools # goimports
+
+        tectonic
+
+        bash-language-server
+        shellcheck
+        shfmt
+
+        rust-analyzer
+
+        clang-tools # clangd, clang-format
+        cpplint
+
+        lua-language-server
+        stylua
+
+        biome
+        vtsls
+        tailwindcss-language-server
+
+        mermaid-cli # mmdc
       ];
 
-      # nix-ld lets mason's generic dynamically linked binaries run on NixOS
+      # nix-ld lets generic dynamically linked binaries run on NixOS
       programs.nix-ld.enable = true;
       programs.nix-ld.libraries = with pkgs; [
         stdenv.cc.cc
