@@ -65,6 +65,20 @@
           {
             xdg.configFile."sunshine".source = link "${featurePath}/gaming/config/sunshine";
 
+            # override the packaged entry: launching the binary conflicts with the user service
+            xdg.desktopEntries."dev.lizardbyte.app.Sunshine" = {
+              name = "Sunshine";
+              comment = "Open the Sunshine web UI";
+              exec = "${pkgs.xdg-utils}/bin/xdg-open https://localhost:47990";
+              icon = "dev.lizardbyte.app.Sunshine";
+              categories = [
+                "RemoteAccess"
+                "Network"
+              ];
+              terminal = false;
+              settings.Keywords = "gamestream;stream;moonlight;remote play;";
+            };
+
             xdg.configFile."autostart/steam.desktop".text = ''
               [Desktop Entry]
               Type=Application
