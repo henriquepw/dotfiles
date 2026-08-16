@@ -3,6 +3,9 @@
   flake.nixosModules.gaming =
     { pkgs, ... }:
     {
+      # DP-2 is the desk monitor; DP-3 is the dummy plug used as the Sunshine stream display.
+      # One EDID holds a single mode, so 4K60 comes from here and 4K120 from KWin's customModes
+      # in ~/.config/kwinoutputconfig.json (Configurações de Tela > adicionar resolução personalizada).
       hardware.display = {
         edid.modelines = {
           "DP3_4K60" = "533.00 3840 3888 3920 4000 2160 2163 2168 2222 +hsync -vsync";
@@ -42,6 +45,20 @@
         autoStart = true;
         openFirewall = true;
       };
+
+      # Plasma is not systemd-managed here, so graphical-session.target fires before KWin exposes
+      # its screencast interface; without the wait, capture init fails silently for the whole boot.
+      systemd.user.services.sunshine.serviceConfig.ExecStartPre = [
+        "${pkgs.writeShellScript "wait-for-kwin" ''
+          i=0
+          while [ "$i" -lt 30 ]; do
+            ${pkgs.systemd}/bin/busctl --user status org.kde.KWin >/dev/null 2>&1 && exit 0
+            ${pkgs.coreutils}/bin/sleep 1
+            i=$((i + 1))
+          done
+          echo "kwin não apareceu em 30s — iniciando mesmo assim" >&2
+        ''}"
+      ];
 
       environment.systemPackages = with pkgs; [
         discord
