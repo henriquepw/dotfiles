@@ -12,7 +12,41 @@ W="${SUNSHINE_CLIENT_WIDTH:-3840}"
 H="${SUNSHINE_CLIENT_HEIGHT:-2160}"
 FPS="$(printf '%.0f' "${SUNSHINE_CLIENT_FPS:-60}")"
 
+STREAM_APP_CLASS="${STREAM_APP_CLASS:-steam}"
+KWIN_SCRIPT_NAME="sunshine-stream-display"
+
 log() { printf '[stream-display] %s\n' "$*" >&2; }
+
+kwin_scripting() { busctl --user call org.kde.KWin /Scripting org.kde.kwin.Scripting "$@" >/dev/null 2>&1; }
+
+unload_window_mover() { kwin_scripting unloadScript s "$KWIN_SCRIPT_NAME"; }
+
+# Making the output primary only affects new windows, so an already-running Steam has to be moved
+load_window_mover() {
+	local script="${XDG_RUNTIME_DIR:-/tmp}/${KWIN_SCRIPT_NAME}.js"
+	cat >"$script" <<-EOF
+		const OUTPUT_NAME = "${STREAM_DISPLAY}";
+		const APP_CLASS = "${STREAM_APP_CLASS}";
+
+		function moveIfMatch(win) {
+			if (!win || !win.normalWindow) return;
+			if (String(win.resourceClass).toLowerCase() !== APP_CLASS) return;
+			const out = workspace.screens.find(o => o.name === OUTPUT_NAME);
+			if (!out || win.output === out) return;
+			workspace.sendClientToScreen(win, out);
+		}
+
+		workspace.windowList().forEach(moveIfMatch);
+		workspace.windowAdded.connect(moveIfMatch);
+	EOF
+
+	unload_window_mover
+	if kwin_scripting loadScript ss "$script" "$KWIN_SCRIPT_NAME" && kwin_scripting start; then
+		log "janelas [${STREAM_APP_CLASS}] serão movidas para ${STREAM_DISPLAY}"
+	else
+		log "KWin script não carregou — janelas podem continuar no ${SEAT_DISPLAY}"
+	fi
+}
 
 # Guard against the seat/stream mix-up that once left the desk monitor disabled
 if [[ "$STREAM_DISPLAY" == "$SEAT_DISPLAY" ]]; then
@@ -55,9 +89,12 @@ do)
 	kscreen-doctor output."${STREAM_DISPLAY}".position."${SEAT_WIDTH},0" || true
 	# Primary, so Steam and any new window opens on the streamed output
 	kscreen-doctor output."${STREAM_DISPLAY}".primary || true
+
+	load_window_mover
 	;;
 undo)
 	log "desativando ${STREAM_DISPLAY} e devolvendo o primário para ${SEAT_DISPLAY}"
+	unload_window_mover
 	kscreen-doctor output."${SEAT_DISPLAY}".enable || true
 	kscreen-doctor output."${SEAT_DISPLAY}".primary || true
 	kscreen-doctor output."${STREAM_DISPLAY}".disable || true
