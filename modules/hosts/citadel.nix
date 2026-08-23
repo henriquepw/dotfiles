@@ -39,6 +39,18 @@
               "input"
             ];
             shell = pkgs.zsh;
+            openssh.authorizedKeys.keys = [
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPi0yOVjjRUFgMIHutnMKuP6bRBGPc8JQNGWyClh71Jt henriquepw4@gmail.com"
+            ];
+          };
+
+          services.openssh = {
+            enable = true;
+            openFirewall = true;
+            settings = {
+              PasswordAuthentication = false;
+              PermitRootLogin = "prohibit-password";
+            };
           };
 
           system.stateVersion = "24.11";
