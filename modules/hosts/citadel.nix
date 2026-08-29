@@ -74,6 +74,7 @@
       noctalia
       nvim
       office
+      podman
       print
       syncthing
       terminal
