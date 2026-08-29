@@ -2,6 +2,9 @@
   description = "Henrique's NixOS configuration";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+
+    # Only for packages missing from stable
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
 

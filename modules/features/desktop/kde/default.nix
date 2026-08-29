@@ -208,7 +208,7 @@
                 {
                   description = "Browser → panel 2";
                   match.window-class = {
-                    value = "brave-browser";
+                    value = "brave-origin";
                     type = "exact";
                     match-whole = false;
                   };
@@ -262,9 +262,9 @@
                   done
 
                   foot >/dev/null 2>&1 &
-                  brave >/dev/null 2>&1 &
+                  brave-origin >/dev/null 2>&1 &
 
-                  # Each new window pulls the current desktop; wait for brave then force focus to desktop 2
+                  # Each new window pulls the current desktop; wait for brave-origin then force focus to desktop 2
                   i=0
                   while [ "$i" -lt 120 ]; do
                     [ "$(qdbus org.kde.KWin /VirtualDesktopManager current 2>/dev/null)" = "Desktop_2" ] && break
@@ -294,7 +294,7 @@
                 plasmashell."activate application launcher" = "Alt+F1";
 
                 "foot.desktop"."_launch" = "Meta+Ctrl+T";
-                "brave-browser.desktop"."_launch" = "Meta+Ctrl+B";
+                "brave-origin.desktop"."_launch" = "Meta+Ctrl+B";
                 "whatsapp-web.desktop"."_launch" = "Meta+Ctrl+G";
 
                 kwin = {
@@ -332,7 +332,7 @@
                 [Desktop Entry]
                 Type=Application
                 Name=WhatsApp Web
-                Exec=brave --app=https://web.whatsapp.com
+                Exec=brave-origin --app=https://web.whatsapp.com
                 Icon=whatsapp
                 Categories=Network;InstantMessaging;
               '';
