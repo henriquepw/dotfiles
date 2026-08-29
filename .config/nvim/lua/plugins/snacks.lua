@@ -17,6 +17,7 @@ require("snacks").setup({
 				hidden = true,
 				auto_close = true,
 				layout = {
+					preview = true,
 					layout = {
 						box = "horizontal",
 						width = 0.8,
