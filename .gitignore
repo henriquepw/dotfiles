@@ -1,7 +1,8 @@
 .DS_Store
 .config/configstore
 .config/sunshine/credentials
+.config/sunshine/sunshine.log
+
 .config/tmux/plugins
-raycast
 
-
+nvim.log
