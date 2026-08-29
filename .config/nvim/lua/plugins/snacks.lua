@@ -30,7 +30,12 @@ require("snacks").setup({
 							{ win = "input", height = 1, border = "bottom" },
 							{ win = "list", border = "none" },
 						},
-						{ win = "preview", border = "rounded", width = 0.65, title = "{preview}" },
+						{
+              win = "preview",
+              border = "rounded",
+              width = 0.65,
+              title = "{preview}",
+            },
 					},
 				},
 			},

@@ -1,3 +1,6 @@
+# Omarchy environment (works when this file is used outside a login shell).
+[[ -r /usr/share/omarchy/default/bash/env-bootstrap ]] && source /usr/share/omarchy/default/bash/env-bootstrap
+
 # Path
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
@@ -20,14 +23,14 @@ export NVM_DIR="$HOME/.config/nvm"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-[ -s "~/.bun/_bun" ] && source "~/.bun/_bun"
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
 
 # fzf
 export PATH=$PATH:$HOME/.fzf/bin
 [[ ! -f ~/.fzf.zsh ]] || source ~/.fzf.zsh
 
 # Aliases
-alias gf="sh git-fetch.sh"
+alias gf="git-fetch.sh"
 alias gz="lazygit"
 alias c="clear"
 alias vim="nvim"
@@ -80,7 +83,7 @@ eval "$(starship init zsh)"
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 if command -v tmux >/dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux
+  exec tmux new-session -A -s main
 fi
 
 

@@ -5,12 +5,7 @@ vim.pack.add({
 		build = ":TSUpdate",
 	},
 	"https://www.github.com/neovim/nvim-lspconfig",
-	"https://github.com/mason-org/mason.nvim",
 	"https://github.com/creativenull/efmls-configs-nvim",
-	{
-		src = "https://github.com/saghen/blink.cmp",
-		version = vim.version.range("1.*"),
-	},
 })
 
 local map = vim.keymap.set
@@ -36,6 +31,7 @@ local setup_treesitter = function()
 		"tsx",
 		"bash",
 		"zig",
+		"nix",
 	}
 
 	local config = require("nvim-treesitter.config")
@@ -64,57 +60,11 @@ local setup_treesitter = function()
 	})
 end
 
-local setup_mason = function()
-	require("mason").setup({})
-
-	local ensure_installed = {
-		"efm",
-		-- Latex
-		"tectonic",
-		-- Markdown
-		"mmdc",
-		-- Shell
-		"bash-language-server",
-		"shellcheck",
-		"shfmt",
-		-- Rust
-		"rust-analyzer",
-		-- C
-		"clangd",
-		"cpplint",
-		-- Lua
-		"lua-language-server",
-		"stylua",
-		-- "luacheck",
-		-- Golang
-		"gopls",
-		"goimports",
-		"gofumpt",
-		"revive",
-		-- TS
-		"biome",
-		"vtsls",
-		"tailwindcss-language-server",
-	}
-
-	local registry = require("mason-registry")
-
-	for _, pkg in ipairs(ensure_installed) do
-		if not registry.is_installed(pkg) then
-			vim.notify("Mason: instaling " .. pkg, vim.log.levels.INFO)
-			registry.get_package(pkg):install()
-		end
-	end
-
-	registry.update()
-end
-
-setup_mason()
-map("n", "<leader>cm", "<cmd>Mason<cr>", { desc = "Mason" })
+-- language servers, linters and formatters come from nix (nvim/default.nix)
 
 setup_treesitter()
 
--- Incremental selection via Treesitter.
+-- incremental selection via treesitter
 do
 	local stack = {}
 
@@ -129,9 +79,11 @@ do
 	local function select_node(node)
 		local sr, sc, er, ec = node:range()
 		if ec == 0 and er > 0 then
+			-- range ends at column 0 of next line; back up to end of previous line
 			er = er - 1
 			ec = #vim.fn.getline(er + 1)
 		end
+		-- leave any current visual selection so `v` starts a fresh one instead of toggling it off
 		if vim.fn.mode():match("[vV\22]") then
 			vim.api.nvim_feedkeys(esc, "nx", false)
 		end
@@ -142,6 +94,7 @@ do
 
 	map({ "n", "x" }, "<C-space>", function()
 		if vim.fn.mode() ~= "v" or #stack == 0 then
+			-- start selection from the node under the cursor
 			local node = vim.treesitter.get_node()
 			if not node then
 				return
@@ -151,6 +104,7 @@ do
 			return
 		end
 
+		-- expand to the smallest ancestor that covers a bigger range
 		local current = stack[#stack]
 		local parent = current:parent()
 		while parent and range_eq(parent, current) do
@@ -169,26 +123,6 @@ do
 		end
 	end, { desc = "TS shrink selection" })
 end
-
-require("blink.cmp").setup({
-	keymap = {
-		preset = "none",
-		["<C-Space>"] = { "show", "hide" },
-		["<CR>"] = { "accept", "fallback" },
-		["<C-j>"] = { "select_next", "fallback" },
-		["<C-k>"] = { "select_prev", "fallback" },
-		["<Tab>"] = { "snippet_forward", "fallback" },
-		["<S-Tab>"] = { "snippet_backward", "fallback" },
-	},
-	appearance = { nerd_font_variant = "mono" },
-	completion = { menu = { auto_show = true } },
-	sources = { default = { "lsp", "path", "buffer" } },
-	snippets = {},
-	fuzzy = {
-		implementation = "prefer_rust",
-		prebuilt_binaries = { download = true },
-	},
-})
 
 vim.lsp.config["*"] = {
 	capabilities = require("blink.cmp").get_lsp_capabilities(),
@@ -209,6 +143,13 @@ vim.lsp.config("gopls", {})
 vim.lsp.config("clangd", {})
 vim.lsp.config("rust-analyzer", {})
 vim.lsp.config("tailwindcss", {})
+vim.lsp.config("nil_ls", {
+	settings = {
+		["nil"] = {
+			formatting = { command = { "nixfmt" } },
+		},
+	},
+})
 
 do
 	-- local luacheck = require("efmls-configs.linters.luacheck")
@@ -228,6 +169,9 @@ do
 
 	local rustfmt = require("efmls-configs.formatters.rustfmt")
 
+	local nixfmt = require("efmls-configs.formatters.nixfmt")
+	local statix = require("efmls-configs.linters.statix")
+
 	vim.lsp.config("efm", {
 		filetypes = {
 			"c",
@@ -244,6 +188,7 @@ do
 			"typescript",
 			"typescriptreact",
 			"rust",
+			"nix",
 		},
 		init_options = {
 			documentFormatting = true,
@@ -264,6 +209,7 @@ do
 				typescript = { biome },
 				typescriptreact = { biome },
 				rust = { rustfmt },
+				nix = { nixfmt, statix },
 			},
 		},
 	})
@@ -278,6 +224,7 @@ vim.lsp.enable({
 	"clangd",
 	"rust-analyzer",
 	"tailwindcss",
+	"nil_ls",
 })
 
 local augroup = vim.api.nvim_create_augroup("lsp", { clear = true })
@@ -329,6 +276,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		"*.cpp",
 		"*.h",
 		"*.hpp",
+		"*.nix",
 	},
 	callback = function(args)
 		-- avoid formatting non-file buffers (helps prevent weird write prompts)
