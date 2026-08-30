@@ -10,13 +10,18 @@ if ! command -v nvm >/dev/null 2>&1; then
 	curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 fi
 
+echo "▶ Installing paru"
+if ! command -v paru >/dev/null 2>&1; then
+	sudo pacman -S --needed --noconfirm paru
+fi
+
 echo "▶ Installing fzf-tab-completion"
 if [ ! -d "$HOME/fzf-tab-completion" ]; then
 	git clone https://github.com/lincheney/fzf-tab-completion "$HOME/fzf-tab-completion"
 fi
 
 echo "▶ Installing packages"
-# Omarchy is based on Arch Linux. yay handles packages from both the official
+# Omarchy is based on Arch Linux. paru handles packages from both the official
 # repositories and the AUR.
 arch_packages=(
 	# Base and dotfiles
@@ -51,12 +56,12 @@ arch_packages=(
 	pipewire wireplumber power-profiles-daemon openssh
 )
 
-if ! command -v yay >/dev/null 2>&1; then
-	echo "✖ yay is required to install packages on Omarchy/Arch Linux." >&2
+if ! command -v paru >/dev/null 2>&1; then
+	echo "✖ paru is required to install packages on Omarchy/Arch Linux." >&2
 	exit 1
 fi
 
-yay -S --needed --noconfirm "${arch_packages[@]}"
+paru -S --needed --noconfirm "${arch_packages[@]}"
 
 echo "▶ Setting Zsh as the default login shell"
 if command -v zsh >/dev/null 2>&1 && command -v chsh >/dev/null 2>&1; then

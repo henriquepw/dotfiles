@@ -11,7 +11,7 @@
 			"prep-cmd": [
 				{
 					"do": "start-vmon.sh",
-					"undo": "end-vmon.sh"
+					"undo": "stop-vmon.sh"
 				}
 			]
 		}

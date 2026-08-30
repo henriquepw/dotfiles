@@ -15,5 +15,4 @@ fi
 # Restore Sunshine output to physical display
 CONF="${HOME}/.config/sunshine/sunshine.conf"
 sed -i '/^output_name/d' "$CONF"
-echo "output_name = DP-1" >>"$CONF"
-
+echo "output_name = DP-2" >>"$CONF"

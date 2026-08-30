@@ -1,7 +1,7 @@
 .DS_Store
 .config/configstore
 .config/sunshine/credentials
-.config/sunshine/sunshine.log
+sunshine.log
 
 .config/tmux/plugins
 
