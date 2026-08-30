@@ -1,0 +1,11 @@
+# Run omarchy-restart-xcompose to apply changes
+
+# Include fast emoji access and the standard compose sequences.
+include "/usr/share/omarchy/default/xcompose"
+
+# Custom sequences.
+<Multi_key> <plus> <c> : "ç"
+
+# Identification
+<Multi_key> <space> <n> : "Henrique Miranda"
+<Multi_key> <space> <e> : "henriquepw4@gmail.com"

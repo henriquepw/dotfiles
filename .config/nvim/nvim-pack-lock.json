@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "aether": {
+      "rev": "567efb778534e11ee1072d4fe27178f705a27d8a",
+      "src": "https://github.com/bjarneo/aether.nvim"
+    },
     "ashen.nvim": {
       "rev": "bfb04bd50b69d863469b2deb9fb361cf0d945ba7",
       "src": "https://github.com/ficd0/ashen.nvim"
@@ -25,6 +29,10 @@
     "mason.nvim": {
       "rev": "44d1e90e1f66e077268191e3ee9d2ac97cc18e65",
       "src": "https://github.com/mason-org/mason.nvim"
+    },
+    "matteblack.nvim": {
+      "rev": "a8a039f5d6189b28d76fa0221e64965efec7e996",
+      "src": "https://github.com/tahayvr/matteblack.nvim"
     },
     "mini.nvim": {
       "rev": "d35b6bdac2a6f710afd8afa02a873a9fd0447f61",
