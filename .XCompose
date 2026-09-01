@@ -6,6 +6,10 @@ include "/usr/share/omarchy/default/xcompose"
 # Custom sequences.
 <Multi_key> <plus> <c> : "ç"
 
+# Fix ' (dead_acute) + c producing ć instead of ç.
+<dead_acute> <c> : "ç" ccedilla
+<dead_acute> <C> : "Ç" Ccedilla
+
 # Identification
 <Multi_key> <space> <n> : "Henrique Miranda"
 <Multi_key> <space> <e> : "henriquepw4@gmail.com"
