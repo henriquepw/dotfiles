@@ -45,9 +45,10 @@ hl.workspace_rule({ workspace = "5", layout = "scrolling", monitor = "DP-3" })
 -- Window rules.
 o.window(".*", { opacity = "1 1" })
 o.window("foot", { workspace = "1" })
+o.window({ class = "^sable$" }, { workspace = "4" })
 
 -- Webapps
-o.window({ class = "^brave%-web%.whatsapp.*$" }, { workspace = "4" })
+o.window({ class = "^brave%-*.whatsapp.*$" }, { workspace = "4" })
 o.window({ class = "^brave%-music.*$" }, { workspace = "4" })
 o.window({ class = "^brave%-discord.*$" }, { workspace = "4" })
 

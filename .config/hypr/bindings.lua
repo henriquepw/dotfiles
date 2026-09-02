@@ -1,10 +1,10 @@
-
 hl.unbind("SUPER + SHIFT + T")
 hl.unbind("SUPER + SHIFT + ALT + T")
 hl.unbind("SUPER + SHIFT + F")
 hl.unbind("SUPER + SHIFT + B")
 hl.unbind("SUPER + SHIFT + ALT + B")
 hl.unbind("SUPER + SHIFT + S")
+hl.unbind("SUPER + SHIFT + D")
 
 -- Application bindings.
 o.bind("SUPER + SHIFT + T", "Terminal (tmux)", { omarchy = "terminal-tmux" })
@@ -16,13 +16,16 @@ o.bind("SUPER + SHIFT + O", "Obsidian", { focus = "^obsidian$", launch = "obsidi
 o.bind("SUPER + SHIFT + S", "Steam", { focus = "^steam$", launch = "steam" })
 
 -- Web app bindings.
-o.bind("SUPER + SHIFT + D", "Discord", { webapp = "https://discord.com/app", focus = true })
+o.bind("SUPER + SHIFT + D", "Sable", { focus = "^sable$", launch = "sable" })
 o.bind("SUPER + SHIFT + M", "Music", { webapp = "https://music.youtube.com/", focus = true })
 o.bind("SUPER + SHIFT + G", "WhatsApp", { webapp = "https://web.whatsapp.com/", focus = true })
 
 -- Full screen
 hl.unbind("SUPER + M")
 o.bind("SUPER + M", "Full screen", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
+
+hl.unbind("SUPER + N")
+o.bind("SUPER + N", "Toggle window floating/tiling", hl.dsp.window.float({ action = "toggle" }))
 
 -- Launcher and menu.
 hl.unbind("SUPER + RETURN")
@@ -107,3 +110,6 @@ o.bind("SUPER + A", "Universal cut", send_shortcut_once("CTRL", "A"))
 
 hl.unbind("SUPER + F")
 o.bind("SUPER + F", "Universal Search", send_shortcut_once("CTRL", "F"))
+
+hl.unbind("SUPER + Z")
+o.bind("SUPER + Z", "Universal cut", send_shortcut_once("CTRL", "Z"))

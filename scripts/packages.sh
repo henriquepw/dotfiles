@@ -12,7 +12,13 @@ fi
 
 echo "▶ Installing paru"
 if ! command -v paru >/dev/null 2>&1; then
-	sudo pacman -S --needed --noconfirm paru
+	sudo pacman -S --needed --noconfirm base-devel git
+	paru_build_dir="$(mktemp -d)"
+	git clone https://aur.archlinux.org/paru.git "$paru_build_dir/paru"
+	(
+		cd "$paru_build_dir/paru"
+		makepkg -si --noconfirm
+	)
 fi
 
 echo "▶ Installing fzf-tab-completion"
@@ -34,6 +40,10 @@ arch_packages=(
 	# Development
 	npm bun go zig rustup watchexec neovim clang gcc
 
+	# Android development
+	android-tools android-udev android-sdk-cmdline-tools-latest
+	android-sdk-build-tools android-platform jdk17-openjdk
+
 	# Git and Neovim tooling
 	gh lazygit gopls revive gofumpt gotools tectonic
 	nix nil nixfmt statix efm-langserver tree-sitter
@@ -46,10 +56,11 @@ arch_packages=(
 
 	# Gaming and remote desktop
 	steam lutris mangohud gamemode gamescope sunshine discord
-	protonup-qt kdeconnect
+	protonplus kdeconnect
 
 	# Desktop applications
-	brave-origin-bin freecad orca-slicer onlyoffice-bin
+	brave-origin-bin freecad orca-slicer onlyoffice-bin hushmic-bin
+	sable-bin hydra-launcher-bin
 
 	# Services used by the NixOS modules
 	podman tailscale syncthing keyd networkmanager bluez
