@@ -1,9 +1,10 @@
 .DS_Store
 *.hm-bak
-modules/gaming/config/sunshine/credentials
 
 result
 .scratch
 
-sunshine.log
+modules/features/gaming/config/sunshine/credentials
 sunshine_state.json
+sunshine.log
+

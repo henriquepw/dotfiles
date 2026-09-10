@@ -1,13 +1,11 @@
 { ... }:
 {
   flake.nixosModules.browser =
-    { pkgs, ... }:
+    { unstable, ... }:
     {
-      # Wayland para apps Chromium/Electron e Firefox
-      environment.sessionVariables = {
-        NIXOS_OZONE_WL = "1";
-        MOZ_ENABLE_WAYLAND = "1";
-      };
+      environment.systemPackages = [
+        unstable.brave-origin
+      ]
 
       home-manager.sharedModules = [
         (
@@ -23,8 +21,7 @@
           {
             # Force x11 so Brave respects ~/.XCompose (cedilla ç); native Wayland Chromium ignores it.
             home.packages = [
-              # brave-origin only exists in nixpkgs unstable; pulled from the dedicated input.
-              (inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.brave-origin.override {
+              (unstable.brave-origin.override {
                 commandLineArgs = [ "--ozone-platform=x11" ];
               })
             ];

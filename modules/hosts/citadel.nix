@@ -67,6 +67,7 @@
       keyd
       gpuamd
       gaming
+      sable
       browser
       develop
       git

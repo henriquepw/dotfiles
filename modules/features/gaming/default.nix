@@ -61,7 +61,6 @@
       ];
 
       environment.systemPackages = with pkgs; [
-        discord
         faugus-launcher
         lutris
         protonup-qt

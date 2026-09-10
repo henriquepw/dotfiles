@@ -1,8 +1,20 @@
-{ ... }:
+{ inputs, ... }:
 {
   flake.nixosModules.base =
-    { lib, config, ... }:
     {
+      lib,
+      config,
+      pkgs,
+      ...
+    }:
+    {
+      environment.sessionVariables = {
+        NIXOS_OZONE_WL = "1";
+        MOZ_ENABLE_WAYLAND = "1";
+      };
+
+      _module.args.unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+
       options.my.unfree = lib.mkOption {
         type = lib.types.listOf lib.types.str;
         default = [ ];
