@@ -1,29 +1,145 @@
-[2026-08-30 07:52:48.881]: Info: Sunshine version: 2026.516.143833 commit: 14ffa6fdaa53f7b51512be2b3d24f3939695403c
-[2026-08-30 07:52:48.881]: Info: Package Publisher: LizardByte
-[2026-08-30 07:52:48.881]: Info: Publisher Website: https://app.lizardbyte.dev
-[2026-08-30 07:52:48.881]: Info: Get support: https://app.lizardbyte.dev/support
-[2026-08-30 07:52:48.881]: Info: config: 'capture' = kwin
-[2026-08-30 07:52:48.881]: Info: config: 'gamepad' = xone
-[2026-08-30 07:52:48.881]: Info: config: 'output_name' = Virtual-sunshine-vmon
-[2026-08-30 07:52:48.919]: Error: Unable to initialize capture method
-[2026-08-30 07:52:48.919]: Error: Platform failed to initialize
-[2026-08-30 07:52:48.926]: Info: // Testing for available encoders, this may generate errors. You can safely ignore those errors. //
-[2026-08-30 07:52:48.926]: Info: Trying encoder [nvenc]
-[2026-08-30 07:52:48.926]: Info: [misc] drop_elevated_privileges succeeded in dropping capabilities
-[2026-08-30 07:52:49.327]: Info: Encoder [nvenc] failed
-[2026-08-30 07:52:49.327]: Info: Trying encoder [vulkan]
-[2026-08-30 07:52:49.727]: Info: Encoder [vulkan] failed
-[2026-08-30 07:52:49.727]: Info: Trying encoder [vaapi]
-[2026-08-30 07:52:50.127]: Info: Encoder [vaapi] failed
-[2026-08-30 07:52:50.127]: Info: Trying encoder [software]
-[2026-08-30 07:52:50.527]: Info: Encoder [software] failed
-[2026-08-30 07:52:50.527]: Fatal: Unable to find display or encoder during startup.
-[2026-08-30 07:52:50.527]: Fatal: Please ensure your manually chosen GPU and monitor are connected and powered on.
-[2026-08-30 07:52:50.527]: Error: Video failed to find working encoder
-[2026-08-30 07:52:50.528]: Info: Starting system tray
-[2026-08-30 07:52:50.530]: Info: Configuration UI available at [https://localhost:47990]
-[2026-08-30 07:52:50.530]: Info: Adding avahi service citadel
-[2026-08-30 07:52:50.556]: Info: System tray created
-[2026-08-30 07:52:50.556]: Info: Starting main loop
-[2026-08-30 07:52:52.590]: Info: Avahi service citadel successfully established.
-[2026-08-30 08:40:46.508]: Info: Web UI: [127.0.0.1] -- not authorized
+[2026-09-09 23:59:45.479]: Info: Sunshine version: 2026.516.143833 commit: 14ffa6fdaa53f7b51512be2b3d24f3939695403c
+[2026-09-09 23:59:45.479]: Info: Package Publisher: LizardByte
+[2026-09-09 23:59:45.480]: Info: Publisher Website: https://app.lizardbyte.dev
+[2026-09-09 23:59:45.480]: Info: Get support: https://app.lizardbyte.dev/support
+[2026-09-09 23:59:45.480]: Info: config: 'capture' = wlr
+[2026-09-09 23:59:45.480]: Info: config: 'gamepad' = xone
+[2026-09-09 23:59:45.480]: Info: config: 'output_name' = DP-2
+[2026-09-09 23:59:45.481]: Info: [wayland] Found display [wayland-1]
+[2026-09-09 23:59:45.481]: Info: [wayland] Found interface: zxdg_output_manager_v1(9) version 3
+[2026-09-09 23:59:45.481]: Info: [wayland] Found interface: zwlr_screencopy_manager_v1(61) version 3
+[2026-09-09 23:59:45.481]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(70) version 5
+[2026-09-09 23:59:45.481]: Info: [wayland] Found interface: wl_output(71) version 4
+[2026-09-09 23:59:45.481]: Info: [wayland] Resolution: 2560x1440
+[2026-09-09 23:59:45.481]: Info: [wayland] Name: DP-2
+[2026-09-09 23:59:45.481]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W 0x00001C72 (DP-2)
+[2026-09-09 23:59:45.481]: Info: [wayland] Offset: 0x0
+[2026-09-09 23:59:45.481]: Info: [wayland] Logical size: 2048x1152
+[2026-09-09 23:59:45.481]: Info: [wlgrab] -------- Start of Wayland monitor list --------
+[2026-09-09 23:59:45.481]: Info: [wlgrab] Monitor 0 is DP-2: ASUSTek COMPUTER INC ASUS VG27W 0x00001C72 (DP-2)
+[2026-09-09 23:59:45.481]: Info: [wlgrab] --------- End of Wayland monitor list ---------
+[2026-09-09 23:59:45.589]: Info: // Testing for available encoders, this may generate errors. You can safely ignore those errors. //
+[2026-09-09 23:59:45.589]: Info: Trying encoder [nvenc]
+[2026-09-09 23:59:45.589]: Info: [misc] drop_elevated_privileges succeeded in dropping capabilities
+[2026-09-09 23:59:45.589]: Info: Screencasting with Wayland's protocol
+[2026-09-09 23:59:45.589]: Info: [wlgrab] Requested frame rate [60/1, approx. 60 fps]
+[2026-09-09 23:59:45.589]: Info: [wayland] Found display [wayland-1]
+[2026-09-09 23:59:45.589]: Info: [wayland] Found interface: zxdg_output_manager_v1(9) version 3
+[2026-09-09 23:59:45.589]: Info: [wayland] Found interface: zwlr_screencopy_manager_v1(61) version 3
+[2026-09-09 23:59:45.589]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(70) version 5
+[2026-09-09 23:59:45.589]: Info: [wayland] Found interface: wl_output(71) version 4
+[2026-09-09 23:59:45.589]: Info: [wayland] Resolution: 2560x1440
+[2026-09-09 23:59:45.589]: Info: [wayland] Name: DP-2
+[2026-09-09 23:59:45.589]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W 0x00001C72 (DP-2)
+[2026-09-09 23:59:45.589]: Info: [wayland] Offset: 0x0
+[2026-09-09 23:59:45.589]: Info: [wayland] Logical size: 2048x1152
+[2026-09-09 23:59:45.589]: Info: [wlgrab] Selected monitor [ASUSTek COMPUTER INC ASUS VG27W 0x00001C72 (DP-2)] for streaming
+[2026-09-09 23:59:45.589]: Info: Creating encoder [h264_nvenc]
+[2026-09-09 23:59:45.589]: Info: Color coding: SDR (Rec. 601)
+[2026-09-09 23:59:45.589]: Info: Color depth: 8-bit
+[2026-09-09 23:59:45.589]: Info: Color range: JPEG
+[2026-09-09 23:59:45.616]: Error: [CUDA @ 0x558a72bd1bc0] cu->cuInit(0) failed
+[2026-09-09 23:59:45.616]: Error:  -> CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+[2026-09-09 23:59:45.616]: Error: 
+[2026-09-09 23:59:45.616]: Error: Failed to create a CUDA device: Generic error in an external library
+[2026-09-09 23:59:45.616]: Info: Creating encoder [h264_nvenc]
+[2026-09-09 23:59:45.616]: Info: Color coding: SDR (Rec. 601)
+[2026-09-09 23:59:45.616]: Info: Color depth: 8-bit
+[2026-09-09 23:59:45.616]: Info: Color range: JPEG
+[2026-09-09 23:59:45.630]: Error: [CUDA @ 0x558a72bd1bc0] cu->cuInit(0) failed
+[2026-09-09 23:59:45.630]: Error:  -> CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+[2026-09-09 23:59:45.630]: Error: 
+[2026-09-09 23:59:45.630]: Error: Failed to create a CUDA device: Generic error in an external library
+[2026-09-09 23:59:45.630]: Info: Encoder [nvenc] failed
+[2026-09-09 23:59:45.630]: Info: Trying encoder [vulkan]
+[2026-09-09 23:59:45.630]: Info: Screencasting with Wayland's protocol
+[2026-09-09 23:59:45.630]: Error: [wlgrab] Could not initialize display with the given hw device type.
+[2026-09-09 23:59:45.830]: Info: Screencasting with Wayland's protocol
+[2026-09-09 23:59:45.830]: Error: [wlgrab] Could not initialize display with the given hw device type.
+[2026-09-09 23:59:46.030]: Info: Encoder [vulkan] failed
+[2026-09-09 23:59:46.030]: Info: Trying encoder [vaapi]
+[2026-09-09 23:59:46.030]: Info: Screencasting with Wayland's protocol
+[2026-09-09 23:59:46.030]: Info: [wlgrab] Requested frame rate [60/1, approx. 60 fps]
+[2026-09-09 23:59:46.030]: Info: [wayland] Found display [wayland-1]
+[2026-09-09 23:59:46.030]: Info: [wayland] Found interface: zxdg_output_manager_v1(9) version 3
+[2026-09-09 23:59:46.030]: Info: [wayland] Found interface: zwlr_screencopy_manager_v1(61) version 3
+[2026-09-09 23:59:46.030]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(70) version 5
+[2026-09-09 23:59:46.030]: Info: [wayland] Found interface: wl_output(71) version 4
+[2026-09-09 23:59:46.030]: Info: [wayland] Resolution: 2560x1440
+[2026-09-09 23:59:46.030]: Info: [wayland] Name: DP-2
+[2026-09-09 23:59:46.030]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W 0x00001C72 (DP-2)
+[2026-09-09 23:59:46.030]: Info: [wayland] Offset: 0x0
+[2026-09-09 23:59:46.030]: Info: [wayland] Logical size: 2048x1152
+[2026-09-09 23:59:46.030]: Info: [wlgrab] Selected monitor [ASUSTek COMPUTER INC ASUS VG27W 0x00001C72 (DP-2)] for streaming
+[2026-09-09 23:59:46.030]: Info: Creating encoder [h264_vaapi]
+[2026-09-09 23:59:46.030]: Info: Color coding: SDR (Rec. 601)
+[2026-09-09 23:59:46.030]: Info: Color depth: 8-bit
+[2026-09-09 23:59:46.030]: Info: Color range: JPEG
+[2026-09-09 23:59:46.041]: Info: EGL: context priority set to HIGH
+[2026-09-09 23:59:46.046]: Info: vaapi vendor: Mesa Gallium driver 26.2.1-arch1.1 for AMD Radeon RX 9070 XT (radeonsi, gfx1201, ACO, DRM 3.64, 7.1.9-arch1-2)
+[2026-09-09 23:59:46.047]: Info: Streaming bitrate is 1000000
+[2026-09-09 23:59:46.047]: Info: Using normal encoding mode
+[2026-09-09 23:59:46.047]: Info: Using default rate control
+[2026-09-09 23:59:46.071]: Info: Creating encoder [hevc_vaapi]
+[2026-09-09 23:59:46.071]: Info: Color coding: SDR (Rec. 601)
+[2026-09-09 23:59:46.071]: Info: Color depth: 8-bit
+[2026-09-09 23:59:46.071]: Info: Color range: JPEG
+[2026-09-09 23:59:46.078]: Info: EGL: context priority set to HIGH
+[2026-09-09 23:59:46.083]: Info: vaapi vendor: Mesa Gallium driver 26.2.1-arch1.1 for AMD Radeon RX 9070 XT (radeonsi, gfx1201, ACO, DRM 3.64, 7.1.9-arch1-2)
+[2026-09-09 23:59:46.084]: Info: Streaming bitrate is 1000000
+[2026-09-09 23:59:46.084]: Info: Using normal encoding mode
+[2026-09-09 23:59:46.084]: Info: Using default rate control
+[2026-09-09 23:59:46.096]: Info: Creating encoder [av1_vaapi]
+[2026-09-09 23:59:46.096]: Info: Color coding: SDR (Rec. 601)
+[2026-09-09 23:59:46.096]: Info: Color depth: 8-bit
+[2026-09-09 23:59:46.096]: Info: Color range: JPEG
+[2026-09-09 23:59:46.103]: Info: EGL: context priority set to HIGH
+[2026-09-09 23:59:46.107]: Info: vaapi vendor: Mesa Gallium driver 26.2.1-arch1.1 for AMD Radeon RX 9070 XT (radeonsi, gfx1201, ACO, DRM 3.64, 7.1.9-arch1-2)
+[2026-09-09 23:59:46.107]: Info: Streaming bitrate is 1000000
+[2026-09-09 23:59:46.107]: Info: Using normal encoding mode
+[2026-09-09 23:59:46.108]: Info: Using VBR with single frame VBV size
+[2026-09-09 23:59:46.108]: Warning: [av1_vaapi @ 0x558a72bd3280] Multiple slices were requested but this codec does not support controlling slices.
+[2026-09-09 23:59:46.118]: Info: Screencasting with Wayland's protocol
+[2026-09-09 23:59:46.118]: Info: [wlgrab] Requested frame rate [60/1, approx. 60 fps]
+[2026-09-09 23:59:46.118]: Info: [wayland] Found display [wayland-1]
+[2026-09-09 23:59:46.118]: Info: [wayland] Found interface: zxdg_output_manager_v1(9) version 3
+[2026-09-09 23:59:46.118]: Info: [wayland] Found interface: zwlr_screencopy_manager_v1(61) version 3
+[2026-09-09 23:59:46.118]: Info: [wayland] Found interface: zwp_linux_dmabuf_v1(70) version 5
+[2026-09-09 23:59:46.118]: Info: [wayland] Found interface: wl_output(71) version 4
+[2026-09-09 23:59:46.118]: Info: [wayland] Resolution: 2560x1440
+[2026-09-09 23:59:46.118]: Info: [wayland] Name: DP-2
+[2026-09-09 23:59:46.118]: Info: [wayland] Found monitor: ASUSTek COMPUTER INC ASUS VG27W 0x00001C72 (DP-2)
+[2026-09-09 23:59:46.118]: Info: [wayland] Offset: 0x0
+[2026-09-09 23:59:46.118]: Info: [wayland] Logical size: 2048x1152
+[2026-09-09 23:59:46.118]: Info: [wlgrab] Selected monitor [ASUSTek COMPUTER INC ASUS VG27W 0x00001C72 (DP-2)] for streaming
+[2026-09-09 23:59:46.118]: Info: Creating encoder [hevc_vaapi]
+[2026-09-09 23:59:46.118]: Info: Color coding: SDR (Rec. 709)
+[2026-09-09 23:59:46.118]: Info: Color depth: 10-bit
+[2026-09-09 23:59:46.118]: Info: Color range: JPEG
+[2026-09-09 23:59:46.125]: Info: EGL: context priority set to HIGH
+[2026-09-09 23:59:46.130]: Info: vaapi vendor: Mesa Gallium driver 26.2.1-arch1.1 for AMD Radeon RX 9070 XT (radeonsi, gfx1201, ACO, DRM 3.64, 7.1.9-arch1-2)
+[2026-09-09 23:59:46.130]: Info: Streaming bitrate is 1000000
+[2026-09-09 23:59:46.131]: Info: Using normal encoding mode
+[2026-09-09 23:59:46.131]: Info: Using default rate control
+[2026-09-09 23:59:46.143]: Info: Creating encoder [av1_vaapi]
+[2026-09-09 23:59:46.143]: Info: Color coding: SDR (Rec. 709)
+[2026-09-09 23:59:46.143]: Info: Color depth: 10-bit
+[2026-09-09 23:59:46.143]: Info: Color range: JPEG
+[2026-09-09 23:59:46.150]: Info: EGL: context priority set to HIGH
+[2026-09-09 23:59:46.154]: Info: vaapi vendor: Mesa Gallium driver 26.2.1-arch1.1 for AMD Radeon RX 9070 XT (radeonsi, gfx1201, ACO, DRM 3.64, 7.1.9-arch1-2)
+[2026-09-09 23:59:46.154]: Info: Streaming bitrate is 1000000
+[2026-09-09 23:59:46.154]: Info: Using normal encoding mode
+[2026-09-09 23:59:46.154]: Info: Using VBR with single frame VBV size
+[2026-09-09 23:59:46.154]: Warning: [av1_vaapi @ 0x558a72bd3280] Multiple slices were requested but this codec does not support controlling slices.
+[2026-09-09 23:59:46.164]: Info: 
+[2026-09-09 23:59:46.164]: Info: // Ignore any errors mentioned above, they are not relevant. //
+[2026-09-09 23:59:46.164]: Info: 
+[2026-09-09 23:59:46.164]: Info: Found H.264 encoder: h264_vaapi [vaapi]
+[2026-09-09 23:59:46.164]: Info: Found HEVC encoder: hevc_vaapi [vaapi]
+[2026-09-09 23:59:46.164]: Info: Found AV1 encoder: av1_vaapi [vaapi]
+[2026-09-09 23:59:46.164]: Info: Starting system tray
+[2026-09-09 23:59:46.165]: Info: Adding avahi service citadel
+[2026-09-09 23:59:46.165]: Info: Configuration UI available at [https://localhost:47990]
+[2026-09-09 23:59:46.185]: Info: System tray created
+[2026-09-09 23:59:46.185]: Info: Starting main loop
+[2026-09-09 23:59:47.007]: Info: Avahi service citadel successfully established.
