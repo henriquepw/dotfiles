@@ -63,7 +63,7 @@ arch_packages=(
 	sable-bin hydra-launcher-bin
 
 	# Services used by the NixOS modules
-	podman tailscale syncthing keyd networkmanager bluez
+	podman syncthing keyd networkmanager bluez
 	pipewire wireplumber power-profiles-daemon openssh
 )
 
