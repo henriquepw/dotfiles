@@ -15,6 +15,9 @@ o.bind("SUPER + SHIFT + ALT + B", "Browser (private)", { omarchy = "browser --pr
 o.bind("SUPER + SHIFT + O", "Obsidian", { focus = "^obsidian$", launch = "obsidian" })
 o.bind("SUPER + SHIFT + S", "Steam", { focus = "^steam$", launch = "steam" })
 
+-- TV (HDMI) toggle.
+o.bind("SUPER + ALT + H", "Toggle TV", "hypr-toggle-tv")
+
 -- Web app bindings.
 o.bind("SUPER + SHIFT + D", "Sable", { focus = "^sable$", launch = "sable" })
 o.bind("SUPER + SHIFT + M", "Music", { webapp = "https://music.youtube.com/", focus = true })

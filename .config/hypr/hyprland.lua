@@ -34,29 +34,34 @@ hl.config({
 })
 
 -- Workspace layouts.
+o.window(".*", { opacity = "1 1" })
 for workspace = 1, 6 do
-	hl.workspace_rule({ workspace = tostring(workspace), monitor = "DP-3" })
+	hl.workspace_rule({ workspace = tostring(workspace), monitor = "DP-2" })
 end
 
-hl.workspace_rule({ workspace = "1", layout = "master", monitor = "DP-3" })
-hl.workspace_rule({ workspace = "2", layout = "master", monitor = "DP-3" })
-hl.workspace_rule({ workspace = "5", layout = "scrolling", monitor = "DP-3" })
-
--- Window rules.
-o.window(".*", { opacity = "1 1" })
+-- Workspace 1
+hl.workspace_rule({ workspace = "1", layout = "master", monitor = "DP-2" })
 o.window("foot", { workspace = "1" })
-o.window({ class = "^sable$" }, { workspace = "4" })
 
--- Webapps
+-- Workspace 2
+hl.workspace_rule({ workspace = "2", layout = "master", monitor = "DP-2" })
+
+-- Workspace 3
+o.window({ class = "org.freecad.FreeCAD" }, { workspace = "3" })
+o.window({ class = "orca-slicer" }, { workspace = "3" })
+
+-- Workspace 4
+o.window({ class = "^sable.*$" }, { workspace = "4" })
 o.window({ class = "^brave%-*.whatsapp.*$" }, { workspace = "4" })
 o.window({ class = "^brave%-music.*$" }, { workspace = "4" })
 o.window({ class = "^brave%-discord.*$" }, { workspace = "4" })
 
--- Steam
-o.window("steam", { workspace = "5" })
-o.window({ class = "^steam_app_.*$" }, { workspace = "6" })
-o.window({ class = "steam", title = "Steam" }, { size = "50% 100%", move = "10 36" })
-o.window({ class = "steam", title = "Friends List" }, { size = "18% 100%", move = "51% 38" })
-o.window({ class = "steam", title = "Budega do seu Vicente" }, { size = "30% 100%", move = "100% 38" })
+-- Workspace 5
+hl.workspace_rule({ workspace = "5", layout = "scrolling", monitor = "DP-2" })
 
-o.window("easyeffects", { workspace = "5" })
+o.window("steam", { float = true, idle_inhibit = "fullscreen", workspace = "5" })
+o.window({ class = "steam", title = "Steam" }, { size = "50% 700", move = "50 120" })
+o.window({ class = "steam", title = "(Friends List|Lista de amigos)" }, { size = "18% 700", move = "55% 150" })
+
+-- Workspace 6
+o.window({ class = "^steam_app_.*$" }, { workspace = "6" })
