@@ -4,6 +4,7 @@
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
+        ghostty
         zsh
         gnumake
         ripgrep

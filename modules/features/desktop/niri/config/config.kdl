@@ -1,0 +1,164 @@
+input {
+    keyboard {
+        xkb {
+            layout "us"
+            variant "intl"
+            options ""
+        }
+        repeat-rate 40
+        repeat-delay 250
+        numlock
+    }
+
+    touchpad {
+        natural-scroll
+        click-method "clickfinger"
+        scroll-factor 0.4
+        accel-speed 0.35
+        accel-profile "flat"
+    }
+
+    mouse {
+        accel-speed 0.35
+        accel-profile "flat"
+    }
+}
+
+// DP-2 is the main monitor. Coordinates are logical pixels in niri, hence
+// 2048 (= 2560 / 1.25) for the virtual output's position.
+output "DP-2" {
+    position x=0 y=0
+    scale 1.25
+    focus-at-startup
+}
+
+// Virtual display created and removed on demand by Sunshine.
+output "HEADLESS-1" {
+    mode "3840x2160@60"
+    position x=2048 y=0
+    scale 1
+}
+
+// TV over HDMI, disabled by default and toggled by the existing helper.
+output "HDMI-A-1" {
+    off
+}
+
+layout {
+    gaps 4
+
+    default-column-width { proportion 0.65; }
+
+    focus-ring {
+        off
+    }
+
+    border {
+        width 1
+    }
+}
+
+workspace "1" { open-on-output "DP-2" }
+workspace "2" { open-on-output "DP-2" }
+workspace "3" { open-on-output "DP-2" }
+workspace "4" { open-on-output "DP-2" }
+workspace "5" { open-on-output "DP-2" }
+workspace "6" { open-on-output "DP-2" }
+
+// Startup applications.
+spawn-at-startup "sunshine"
+spawn-at-startup "hushmic" "--tray"
+spawn-at-startup "foot"
+spawn-at-startup "brave-origin"
+spawn-at-startup "sable"
+spawn-at-startup "steam"
+
+binds {
+    // Applications.
+    Super+Shift+T hotkey-overlay-title="Terminal (tmux)" { spawn-sh "foot -e tmux"; }
+    Super+Shift+Alt+T hotkey-overlay-title="Terminal" { spawn "foot"; }
+    Super+Shift+F hotkey-overlay-title="File manager" { spawn "nautilus"; }
+    Super+Shift+B hotkey-overlay-title="Browser" { spawn "brave-origin"; }
+    Super+Shift+Alt+B hotkey-overlay-title="Browser (private)" { spawn "brave-origin" "--private"; }
+    Super+Shift+S hotkey-overlay-title="Steam" { spawn "steam"; }
+
+    // TV toggle and web apps.
+    Super+Alt+H hotkey-overlay-title="Toggle TV" { spawn "toggle-tv"; }
+    Super+Shift+D hotkey-overlay-title="Sable" { spawn "sable"; }
+    Super+Shift+M hotkey-overlay-title="Music" { spawn "brave-origin" "--app=https://music.youtube.com/"; }
+    Super+Shift+G hotkey-overlay-title="WhatsApp" { spawn "brave-origin" "--app=https://web.whatsapp.com/"; }
+
+    // Window management.
+    Super+M hotkey-overlay-title="Full screen" { fullscreen-window; }
+    Super+N hotkey-overlay-title="Toggle window floating/tiling" { toggle-window-floating; }
+    Super+Shift+W hotkey-overlay-title="Close window" { close-window; }
+
+    // Launcher and menu.
+    Super+Return hotkey-overlay-title="Launcher" { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
+
+    // Workspaces and focus.
+    Super+1 { focus-workspace 1; }
+    Super+2 { focus-workspace 2; }
+    Super+3 { focus-workspace 3; }
+    Super+4 { focus-workspace 4; }
+    Super+5 { focus-workspace 5; }
+    Super+6 { focus-workspace 6; }
+
+    Super+Shift+1 { move-column-to-workspace 1; }
+    Super+Shift+2 { move-column-to-workspace 2; }
+    Super+Shift+3 { move-column-to-workspace 3; }
+    Super+Shift+4 { move-column-to-workspace 4; }
+    Super+Shift+5 { move-column-to-workspace 5; }
+    Super+Shift+6 { move-column-to-workspace 6; }
+
+    Super+H { focus-column-left; }
+    Super+J { focus-window-down; }
+    Super+K { focus-window-up; }
+    Super+L { focus-column-right; }
+
+    Super+Left { move-column-left; }
+    Super+Right { move-column-right; }
+    Super+Up { move-window-up; }
+    Super+Down { move-window-down; }
+
+    // Screenshots. The region action uses Niri's built-in interactive UI.
+    Super+P hotkey-overlay-title="Screenshot of region" { screenshot; }
+    Super+Shift+P hotkey-overlay-title="Screen record a region" { spawn-sh "omarchy capture screenrecording"; }
+    Super+Alt+C hotkey-overlay-title="Color picker" { spawn-sh "pkill hyprpicker || hyprpicker -a"; }
+}
+
+// Window placement and workspace rules.
+window-rule {
+    match app-id="^foot$"
+    open-on-workspace "1"
+}
+
+window-rule {
+    match app-id="^org\.freecad\.FreeCAD$"
+    open-on-workspace "3"
+}
+
+window-rule {
+    match app-id="^orca-slicer$"
+    open-on-workspace "3"
+}
+
+window-rule {
+    match app-id="^sable"
+    open-on-workspace "4"
+}
+
+window-rule {
+    match app-id=r#"^brave-.*\.(whatsapp|music|discord)"#
+    open-on-workspace "4"
+}
+
+window-rule {
+    match app-id="^steam$"
+    open-on-workspace "5"
+}
+
+window-rule {
+    match app-id="^steam_app_.*$"
+    open-on-workspace "5"
+}

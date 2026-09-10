@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Toggle the HDMI-connected TV output in Niri.
+set -euo pipefail
+
+output="HDMI-A-1"
+
+current_mode=$(niri msg --json outputs | jq -r --arg output "$output" \
+  '.Ok.Outputs[$output].current_mode // empty')
+
+if [[ -z "$current_mode" ]]; then
+	niri msg output "$output" on
+else
+	niri msg output "$output" off
+fi
