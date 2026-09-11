@@ -5,7 +5,7 @@
     {
       environment.systemPackages = [
         unstable.brave-origin
-      ]
+      ];
 
       home-manager.sharedModules = [
         (

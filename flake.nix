@@ -22,13 +22,7 @@
     # No nixpkgs.follows: it would disable the project's binary cache and force a local native build.
     noctalia.url = "github:noctalia-dev/noctalia";
 
-    # Remote deploy for bellway (build on citadel, push closure over SSH, magic-rollback).
-    deploy-rs = {
-      url = "github:serokell/deploy-rs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # kineticwe.url = "gitlab:theblackdon/kineticwe";
+    hushmic.url = "github:Fovty/hushmic-nix";
   };
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }

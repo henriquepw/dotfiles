@@ -68,8 +68,11 @@
       gpuamd
       gaming
       sable
+      hushmic
       browser
       develop
+      android
+      ia
       git
       kde
       noctalia

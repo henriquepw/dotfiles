@@ -77,6 +77,24 @@
         "type": "github"
       }
     },
+    "hushmic-nix": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1787608289,
+        "narHash": "sha256-N0GgkenQBVUr7uZFSwHhB3+44MkLBjM8cPgS/kVbJk0=",
+        "owner": "Fovty",
+        "repo": "hushmic-nix",
+        "rev": "57a675963cfaa4e3f63810b43b43f94956fcb350",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Fovty",
+        "repo": "hushmic-nix",
+        "type": "github"
+      }
+    },
     "import-tree": {
       "locked": {
         "lastModified": 1784254960,
@@ -94,16 +112,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1787753485,
-        "narHash": "sha256-BZWCi9ZRJiARTuKTbbtvFTj7t1TK4G3UEckT3HyNfRg=",
-        "owner": "nixos",
+        "lastModified": 1787498568,
+        "narHash": "sha256-9i/VTdusq/+NM/tz+J1Re+ojkMB8MBf0QshnYfzHz30=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "062346a6d85bc4b49dfaa61c986e9c5be21217d1",
+        "rev": "56c02bc00adcf003215cc4bd996d6efaf4cff188",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-26.05",
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -141,6 +159,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1787753485,
+        "narHash": "sha256-BZWCi9ZRJiARTuKTbbtvFTj7t1TK4G3UEckT3HyNfRg=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "062346a6d85bc4b49dfaa61c986e9c5be21217d1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-26.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1787360063,
         "narHash": "sha256-95aJfHyQTLWslCXFVNB0odgmVkpdmDezQwTg9mhqV1E=",
         "rev": "2c423e03bbafcff28bfadc6781a4a8257f205cb5",
@@ -154,7 +188,7 @@
     },
     "noctalia": {
       "inputs": {
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1787858564,
@@ -198,8 +232,9 @@
         "deploy-rs": "deploy-rs",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
+        "hushmic-nix": "hushmic-nix",
         "import-tree": "import-tree",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "noctalia": "noctalia",
         "plasma-manager": "plasma-manager"

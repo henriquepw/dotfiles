@@ -13,13 +13,6 @@
 
         # devtools
         watchexec
-
-        # ai
-        claude-code
-        codex
-        opencode
       ];
-
-      my.unfree = [ "claude-code" ];
     };
 }
