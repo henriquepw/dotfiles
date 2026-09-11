@@ -63,7 +63,6 @@
       bluetooth
       network
       power
-      tailscale
       keyd
       gpuamd
       gaming
@@ -74,7 +73,7 @@
       android
       ia
       git
-      kde
+      niri
       noctalia
       nvim
       office
