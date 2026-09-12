@@ -40,10 +40,8 @@
                 "x-scheme-handler/unknown" = "brave-origin.desktop";
               };
             };
-            # force = true: KDE/Brave rewrite mimeapps.list at runtime, so overwrite it without backup (fully declarative here).
+            # force = true: Brave rewrites mimeapps.list at runtime, so overwrite it without backup (fully declarative here).
             xdg.configFile."mimeapps.list".force = true;
-            programs.plasma.configFile."kdeglobals"."General"."BrowserApplication".value =
-              "brave-origin.desktop";
 
             home.sessionVariables = {
               BROWSER = "brave-origin";

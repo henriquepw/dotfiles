@@ -1,6 +1,7 @@
 { self, inputs, ... }:
 {
   flake.nixosConfigurations.citadel = inputs.nixpkgs.lib.nixosSystem {
+    specialArgs = { inherit inputs; };
     modules = with self.nixosModules; [
       inputs.home-manager.nixosModules.home-manager
       {
@@ -73,8 +74,8 @@
       android
       ia
       git
-      niri
       noctalia
+      umbriel
       nvim
       office
       podman

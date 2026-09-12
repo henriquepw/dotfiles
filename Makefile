@@ -1,7 +1,7 @@
 SETUP_SCRIPT := scripts/setup.sh
 
 # host to build; defaults to the current machine's hostname, override with `make rebuild HOST=bellway`
-HOST ?= $(shell hostname)
+HOST ?= "$(shell hostname)"
 
 all: help
 

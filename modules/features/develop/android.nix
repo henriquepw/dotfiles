@@ -18,6 +18,23 @@
         androidPackages.androidsdk
       ];
 
-      services.udev.packages = [ pkgs.android-udev ];
+      nixpkgs.config.android_sdk.accept_license = true;
+
+      my.unfree = [
+        "androidsdk"
+        "android-sdk-cmdline-tools"
+        "android-sdk-platform-tools"
+        "android-emulator"
+        "cmdline-tools"
+        "platform-tools"
+        "platforms"
+        "platform"
+        "build-tools"
+        "emulator"
+        "addons"
+        "extras"
+        "patcher"
+        "sources"
+      ];
     };
 }
