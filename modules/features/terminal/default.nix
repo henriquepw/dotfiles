@@ -4,7 +4,19 @@
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
-        ghostty
+        # GTK 4.20 broke dead keys/cedilla on native Wayland (upstream regression);
+        # force XWayland + the cedilla IM module, same fix used for Brave.
+        (pkgs.symlinkJoin {
+          name = "ghostty";
+          paths = [ ghostty ];
+          nativeBuildInputs = [ makeWrapper ];
+          postBuild = ''
+            wrapProgram $out/bin/ghostty \
+              --set GDK_BACKEND x11 \
+              --set GTK_IM_MODULE cedilla
+          '';
+        })
+
         zsh
         gnumake
         ripgrep
