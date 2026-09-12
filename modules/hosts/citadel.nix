@@ -67,7 +67,6 @@
       keyd
       gpuamd
       gaming
-      sable
       hushmic
       nautilus
       browser
