@@ -2,7 +2,13 @@
 files = ["noctalia.toml"]
 
 [general]
-autostart = ["noctalia", "ghostty", "hushmic --tray", "sable", "steam"]
+autostart = [
+  "noctalia",
+  "ghostty",
+  "hushmic --tray",
+  "brave-origin --app=https://app.sable.moe/",
+  "steam",
+]
 mod_key = "Super"
 xwayland = true
 show_cheatsheet = false
@@ -102,7 +108,7 @@ layout.mode = "scrolling"
 "Mod+Shift+B" = "spawn:brave-origin"
 "Mod+Shift+Alt+B" = "spawn:brave-origin --private"
 "Mod+Shift+S" = "spawn:steam"
-"Mod+Shift+D" = "spawn:sable"
+"Mod+Shift+D" = "spawn:brave-origin --app=https://app.sable.moe/"
 "Mod+Shift+M" = "spawn:brave-origin --app=https://music.youtube.com/"
 "Mod+Shift+G" = "spawn:brave-origin --app=https://web.whatsapp.com/"
 "Mod+Alt+H" = "spawn:toggle-tv"
