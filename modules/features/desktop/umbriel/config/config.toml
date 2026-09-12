@@ -1,14 +1,8 @@
-[include.optional]
+[include]
 files = ["noctalia.toml"]
 
 [general]
-autostart = [
-  "noctalia",
-  "ghostty",
-  "hushmic --tray",
-  "sable",
-  "steam",
-]
+autostart = ["noctalia", "ghostty", "hushmic --tray", "sable", "steam"]
 mod_key = "Super"
 xwayland = true
 show_cheatsheet = false
@@ -70,6 +64,32 @@ blur_optimized = false
 [layer_rule.match]
 namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd)$"
 
+[layout]
+mode = "dwindle"
+
+[layout.scrolling]
+default_width_fraction = 0.6
+center_underfull_strip = true
+center_focused = "never"
+
+[layout.master]
+position = "left"
+new_on_top = false
+new_becomes_master = false
+default_width_fraction = 0.6
+
+[output.DP-1]
+workspaces = 5
+workspace_axis = "vertical"
+
+[[workspace]]
+index = 1
+layout.mode = "master"
+
+[[workspace]]
+index = 5
+layout.mode = "scrolling"
+
 [keybinds]
 "Mod+Return" = "spawn:noctalia msg panel-toggle launcher"
 "Mod+Escape" = "spawn:noctalia msg panel-toggle session"
@@ -87,7 +107,6 @@ namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd)$"
 "Mod+Shift+G" = "spawn:brave-origin --app=https://web.whatsapp.com/"
 "Mod+Alt+H" = "spawn:toggle-tv"
 
-"Mod+M" = "window-toggle-fullscreen"
 "Mod+N" = "window-toggle-floating"
 "Mod+Shift+W" = "window-close"
 "Mod+Backspace" = "window-toggle-maximize"
@@ -106,7 +125,8 @@ namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd)$"
 "Mod+Ctrl+J" = "window-move-or-output-down"
 "Mod+Ctrl+K" = "window-move-or-output-up"
 "Mod+Ctrl+L" = "window-move-or-output-right"
-"Mod+Ctrl+M" = "window-toggle-maximize"
+"Mod+Ctrl+M" = "window-toggle-fullscreen"
+"Mod+M" = "window-toggle-maximize"
 "Mod+O" = "overview-toggle"
 "Mod+P" = "spawn:noctalia msg screenshot-region"
 "Mod+Shift+P" = "spawn:noctalia msg annotate"
