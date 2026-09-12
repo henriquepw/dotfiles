@@ -5,6 +5,7 @@ font-size = 14
 
 window-padding-x = 8
 window-padding-y = 4
+window-decoration = none
 
 cursor-style = block
 cursor-style-blink = false
