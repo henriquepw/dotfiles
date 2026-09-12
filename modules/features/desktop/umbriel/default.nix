@@ -5,6 +5,8 @@
     {
       imports = [ inputs.umbriel.nixosModules.default ];
 
+      nixpkgs.overlays = [ (import ./_overlays.nix) ];
+
       programs.umbriel.enable = true;
 
       environment.systemPackages = with pkgs; [

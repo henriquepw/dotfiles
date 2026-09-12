@@ -63,7 +63,7 @@
       environment.systemPackages = with pkgs; [
         faugus-launcher
         lutris
-        protonup-qt
+        protonplus
         mangohud
         kdePackages.krfb
       ];
@@ -94,16 +94,6 @@
               terminal = false;
               settings.Keywords = "gamestream;stream;moonlight;remote play;";
             };
-
-            xdg.configFile."autostart/steam.desktop".text = ''
-              [Desktop Entry]
-              Type=Application
-              Name=Steam
-              Exec=steam -silent %U
-              Icon=steam
-              Comment=Steam Game Launcher
-              X-KDE-autostart-after=panel
-            '';
           }
         )
       ];

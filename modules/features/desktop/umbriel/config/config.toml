@@ -19,7 +19,7 @@ middle_click_paste = true
 layout = "us"
 variant = "intl"
 repeat_rate = 25
-repeat_delay = 250
+repeat_delay = 400
 numlock_toggle = false
 track_layout = "global"
 

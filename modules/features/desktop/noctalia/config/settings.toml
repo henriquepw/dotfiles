@@ -34,7 +34,12 @@ start = ["workspaces"]
 auto_hide = true
 background_opacity = 1
 enabled = true
-pinned = ["org.gnome.Nautilus", "foot", "brave-origin", "steam"]
+pinned = [
+  "org.gnome.Nautilus",
+  "com.mitchellh.ghostty",
+  "brave-origin",
+  "steam",
+]
 reserve_space = false
 show_dots = true
 show_instance_count = false
