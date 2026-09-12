@@ -1,0 +1,131 @@
+[include.optional]
+files = ["noctalia.toml"]
+
+[general]
+autostart = [
+  "noctalia",
+  "ghostty",
+  "hushmic --tray",
+  "sable",
+  "steam",
+]
+mod_key = "Super"
+xwayland = true
+show_cheatsheet = false
+focus_on_activate = false
+
+[environment]
+ELECTRON_OZONE_PLATFORM_HINT = "auto"
+SDL_VIDEODRIVER = "wayland"
+
+[input]
+middle_click_paste = true
+
+[input.keyboard]
+layout = "us"
+variant = "intl"
+repeat_rate = 25
+repeat_delay = 250
+numlock_toggle = false
+track_layout = "global"
+
+[input.mouse]
+accel_profile = "flat"
+sensitivity = 0.35
+
+[appearance]
+prefer_no_csd = true
+border_width = 1
+corner_radius = 6
+
+[appearance.blur]
+enabled = true
+optimized = true
+passes = 3
+radius = 3
+noise = 0.02
+brightness = 0.9
+contrast = 0.9
+saturation = 1.1
+
+[appearance.shadow]
+enabled = false
+
+[[window_rule]]
+blur = true
+blur_optimized = true
+
+[[window_rule]]
+default_floating = true
+default_size = [1020, 900]
+
+[window_rule.match]
+app_id = "^dev.noctalia.Noctalia$"
+
+[[layer_rule]]
+blur = true
+blur_ignore_alpha = 0.5
+blur_optimized = false
+
+[layer_rule.match]
+namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd)$"
+
+[keybinds]
+"Mod+Return" = "spawn:noctalia msg panel-toggle launcher"
+"Mod+Escape" = "spawn:noctalia msg panel-toggle session"
+"Mod+S" = "spawn:noctalia msg panel-toggle control-center"
+"Mod+Comma" = "spawn:noctalia msg settings-toggle"
+
+"Mod+Shift+T" = "spawn:ghostty -e tmux"
+"Mod+Shift+Alt+T" = "spawn:ghostty"
+"Mod+Shift+F" = "spawn:nautilus"
+"Mod+Shift+B" = "spawn:brave-origin"
+"Mod+Shift+Alt+B" = "spawn:brave-origin --private"
+"Mod+Shift+S" = "spawn:steam"
+"Mod+Shift+D" = "spawn:sable"
+"Mod+Shift+M" = "spawn:brave-origin --app=https://music.youtube.com/"
+"Mod+Shift+G" = "spawn:brave-origin --app=https://web.whatsapp.com/"
+"Mod+Alt+H" = "spawn:toggle-tv"
+
+"Mod+M" = "window-toggle-fullscreen"
+"Mod+N" = "window-toggle-floating"
+"Mod+Shift+W" = "window-close"
+"Mod+Backspace" = "window-toggle-maximize"
+
+"Mod+H" = "window-focus-left"
+"Mod+J" = "window-focus-down"
+"Mod+K" = "window-focus-up"
+"Mod+L" = "window-focus-right"
+
+"Mod+Left" = "column-move-left"
+"Mod+Down" = "window-move-down"
+"Mod+Up" = "window-move-up"
+"Mod+Right" = "column-move-right"
+
+"Mod+Ctrl+H" = "window-move-or-output-left"
+"Mod+Ctrl+J" = "window-move-or-output-down"
+"Mod+Ctrl+K" = "window-move-or-output-up"
+"Mod+Ctrl+L" = "window-move-or-output-right"
+"Mod+Ctrl+M" = "window-toggle-maximize"
+"Mod+O" = "overview-toggle"
+"Mod+P" = "spawn:noctalia msg screenshot-region"
+"Mod+Shift+P" = "spawn:noctalia msg annotate"
+
+"Mod+1" = "window-move-to-workspace:1"
+"Mod+2" = "window-move-to-workspace:2"
+"Mod+3" = "window-move-to-workspace:3"
+"Mod+4" = "window-move-to-workspace:4"
+"Mod+5" = "window-move-to-workspace:5"
+"Mod+6" = "window-move-to-workspace:6"
+"Mod+Q" = "workspace-switch:1"
+"Mod+W" = "workspace-switch:2"
+"Mod+E" = "workspace-switch:3"
+"Mod+R" = "workspace-switch:4"
+"Mod+T" = "workspace-switch:5"
+"Mod+Y" = "workspace-switch:6"
+
+"XF86AudioRaiseVolume" = "spawn:noctalia msg volume-up"
+"XF86AudioLowerVolume" = "spawn:noctalia msg volume-down"
+"XF86AudioMute" = "spawn:noctalia msg volume-mute"
+"XF86MonBrightnessUp" = "spawn:noctalia msg brightness-up"
+"XF86MonBrightnessDown" = "spawn:noctalia msg brightness-down"

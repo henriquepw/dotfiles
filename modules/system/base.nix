@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ ... }:
 {
   flake.nixosModules.base =
     {
@@ -18,9 +18,6 @@
           NIXOS_OZONE_WL = "1";
           MOZ_ENABLE_WAYLAND = "1";
         };
-
-        _module.args.unstable = inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-
         home-manager.sharedModules = [
           ({ config, ... }: {
             _module.args.repoRoot = "${config.home.homeDirectory}/.dotfiles";
@@ -34,8 +31,7 @@
           let
             n = lib.getName pkg;
           in
-          builtins.elem n config.my.unfree
-          || builtins.elem lib.teams.android (pkg.meta.teams or [ ]);
+          builtins.elem n config.my.unfree || builtins.elem lib.teams.android (pkg.meta.teams or [ ]);
 
         programs.zsh.enable = true;
 

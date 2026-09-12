@@ -1,10 +1,10 @@
 { ... }:
 {
   flake.nixosModules.sable =
-    { unstable, ... }:
+    { pkgs, ... }:
     {
-      environment.systemPackages = [
-        unstable.sable
+      environment.systemPackages = with pkgs; [
+        sable
       ];
     };
 }

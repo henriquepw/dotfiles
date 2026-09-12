@@ -172,6 +172,8 @@ do
 	local nixfmt = require("efmls-configs.formatters.nixfmt")
 	local statix = require("efmls-configs.linters.statix")
 
+	local taplo = require("efmls-configs.formatters.taplo")
+
 	vim.lsp.config("efm", {
 		filetypes = {
 			"c",
@@ -189,6 +191,7 @@ do
 			"typescriptreact",
 			"rust",
 			"nix",
+			"toml",
 		},
 		init_options = {
 			documentFormatting = true,
@@ -210,6 +213,7 @@ do
 				typescriptreact = { biome },
 				rust = { rustfmt },
 				nix = { nixfmt, statix },
+				toml = { taplo },
 			},
 		},
 	})
@@ -277,6 +281,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		"*.h",
 		"*.hpp",
 		"*.nix",
+		"*.toml",
 	},
 	callback = function(args)
 		-- avoid formatting non-file buffers (helps prevent weird write prompts)

@@ -35,6 +35,8 @@
         vtsls
         tailwindcss-language-server
 
+        taplo
+
         mermaid-cli # mmdc
       ];
 

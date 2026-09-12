@@ -38,6 +38,8 @@
             programs.foot.enable = true;
             xdg.configFile."foot/foot.ini".source = link "${featurePath}/terminal/config/foot/foot.ini";
 
+            xdg.configFile."ghostty/config".source = link "${featurePath}/terminal/config/ghostty/config";
+
             # tmux.conf is sourced from the repo at runtime — live-editable, no rebuild.
             programs.tmux = {
               enable = true;

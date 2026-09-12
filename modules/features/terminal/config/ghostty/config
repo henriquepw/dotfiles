@@ -1,0 +1,15 @@
+theme = noctalia
+
+font-family = JetBrains Mono
+font-size = 18
+
+window-padding-x = 8
+window-padding-y = 4
+
+cursor-style = block
+cursor-style-blink = false
+
+keybind = ctrl+shift+c=copy_to_clipboard
+keybind = ctrl+insert=copy_to_clipboard
+keybind = ctrl+shift+v=paste_from_clipboard
+keybind = shift+insert=paste_from_clipboard

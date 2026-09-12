@@ -1,7 +1,15 @@
 config_version = 2
 
+[plugins]
+enabled = ["noctalia/screen_recorder"]
+auto_update = "all"
+
+[location]
+auto_locate = false
+address = "Campina Grande - Paraíba, Brasil"
+
 [bar.default]
-background_opacity = 0.74999998323619366
+background_opacity = 0.75
 end = [
     "cpu",
     "ram",
@@ -24,9 +32,9 @@ start = [ "workspaces" ]
 
 [dock]
 auto_hide = true
-background_opacity = 0.99999997764825821
+background_opacity = 1
 enabled = true
-pinned = [ "org.kde.dolphin", "foot", "brave-origin", "steam" ]
+pinned = [ "neutilus", "foot", "brave-origin", "steam" ]
 reserve_space = false
 show_dots = true
 show_instance_count = false
