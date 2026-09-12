@@ -69,6 +69,7 @@
       gaming
       sable
       hushmic
+      nautilus
       browser
       develop
       android
