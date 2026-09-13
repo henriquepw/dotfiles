@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Focus a window by app_id, or spawn it if none is open.
+# Usage: focus-or-launch <app_id-regex> <command> [args...]
+set -euo pipefail
+
+app_id_pattern=$1
+shift
+
+id=$(umbriel windows --json | jq -r --arg pat "$app_id_pattern" \
+  '[.[] | select(.app_id | test($pat))][0].id // empty')
+
+if [[ -n "$id" ]]; then
+  exec umbriel msg "window-focus:$id"
+else
+  exec "$@"
+fi

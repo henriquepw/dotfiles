@@ -66,6 +66,7 @@
       power
       keyd
       gpuamd
+      inputMethod
       gaming
       hushmic
       nautilus

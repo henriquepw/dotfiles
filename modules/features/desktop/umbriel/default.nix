@@ -35,6 +35,9 @@
               package = null;
               settings = link "${featurePath}/desktop/umbriel/config/config.toml";
             };
+
+            home.file.".local/bin/focus-or-launch".source =
+              link "${featurePath}/desktop/umbriel/config/focus-or-launch";
           }
         )
       ];

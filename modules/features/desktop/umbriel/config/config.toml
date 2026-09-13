@@ -3,10 +3,13 @@ files = ["noctalia.toml"]
 
 [general]
 autostart = [
+  "fcitx5",
   "noctalia",
-  "ghostty",
   "hushmic --tray",
-  "brave-origin --app=https://app.sable.moe/",
+  "ghostty -e tmux new-session -A -s main",
+  "brave-origin --app-id=cinhimbnkkaeohfgghhklpknlkffjgod", # youtube music
+  "brave-origin --app-id=bihdiinlknbhociakahmdjfokjkobgmp", # sable
+  "brave-origin --app-id=hnpfjngllnobngcgfapefoaidbinmjnm", # whatsapp
   "steam",
 ]
 mod_key = "Super"
@@ -92,11 +95,37 @@ workspace_axis = "vertical"
 index = 1
 layout.mode = "master"
 
+[[scratchpad]]
+name = "music"
+
 [[workspace]]
 index = 5
 layout.mode = "scrolling"
 
+[[window_rule]]
+match.app_id = "com.mitchellh.ghostty"
+default_workspace = 1
+
+[[window_rule]]
+match.app_id = "^brave-.*-Default$"
+match.title = "^(WhatsApp|Sable).*$"
+default_workspace = 4
+
+
+[[window_rule]]
+match.app_id = "brave-cinhimbnkkaeohfgghhklpknlkffjgod-Default"
+default_scratchpad = "music"
+default_floating = true
+default_focused = false
+default_position = { x = 0, y = 40, anchor = "top" }
+default_size = [1225, 936]
+
+[[window_rule]]
+match.app_id = "steam"
+default_workspace = 5
+
 [keybinds]
+
 "Mod+Return" = "spawn:noctalia msg panel-toggle launcher"
 "Mod+Escape" = "spawn:noctalia msg panel-toggle session"
 "Mod+S" = "spawn:noctalia msg panel-toggle control-center"
@@ -108,9 +137,10 @@ layout.mode = "scrolling"
 "Mod+Shift+B" = "spawn:brave-origin"
 "Mod+Shift+Alt+B" = "spawn:brave-origin --private"
 "Mod+Shift+S" = "spawn:steam"
-"Mod+Shift+D" = "spawn:brave-origin --app=https://app.sable.moe/"
-"Mod+Shift+M" = "spawn:brave-origin --app=https://music.youtube.com/"
-"Mod+Shift+G" = "spawn:brave-origin --app=https://web.whatsapp.com/"
+"Mod+Shift+M" = "scratchpad-toggle:music"
+"Mod+Shift+D" = "spawn:focus-or-launch ^brave-bihdiinlknbhociakahmdjfokjkobgmp-Default$ brave-origin --app-id=bihdiinlknbhociakahmdjfokjkobgmp" # Sable
+"Mod+Shift+G" = "spawn:focus-or-launch ^brave-hnpfjngllnobngcgfapefoaidbinmjnm-Default$ brave-origin --app-id=hnpfjngllnobngcgfapefoaidbinmjnm" # WhatsApp
+
 "Mod+Alt+H" = "spawn:toggle-tv"
 
 "Mod+N" = "window-toggle-floating"
