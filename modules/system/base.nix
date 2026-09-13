@@ -23,6 +23,13 @@
             _module.args.repoRoot = "${config.home.homeDirectory}/.dotfiles";
             _module.args.featurePath = "${config.home.homeDirectory}/.dotfiles/modules/features";
             _module.args.link = config.lib.file.mkOutOfStoreSymlink;
+
+            home.file.".XCompose".text = ''
+              <dead_acute> <c> : "ç" ccedilla
+              <dead_acute> <C> : "Ç" Ccedilla
+
+              include "%L"
+            '';
           })
         ];
 
