@@ -1,4 +1,7 @@
 [include]
+files = []
+
+[include.optional]
 files = ["noctalia.toml"]
 
 [general]
