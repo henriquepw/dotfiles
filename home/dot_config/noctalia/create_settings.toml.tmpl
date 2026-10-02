@@ -88,13 +88,13 @@ builtin_ids = ["btop", "foot", "gtk3", "gtk4", "ghostty", "qt"]
 community_ids = ["obsidian", "opencode", "papirus-icons", "pi-agent", "yazi"]
 
 [wallpaper]
-directory = "/home/henrique/.dotfiles/assets"
+directory = "{{ .chezmoi.homeDir }}/.local/share/wallpapers"
 
 [wallpaper.default]
-path = "/home/henrique/.dotfiles/assets/wallpaper.png"
+path = "{{ .chezmoi.homeDir }}/.local/share/wallpapers/wallpaper.png"
 
 [wallpaper.last]
-path = "/home/henrique/.dotfiles/assets/wallpaper.png"
+path = "{{ .chezmoi.homeDir }}/.local/share/wallpapers/wallpaper.png"
 
 [widget.clock]
 format = "{:%H:%M %a %d/%m}"

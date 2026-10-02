@@ -1,6 +1,1 @@
 .DS_Store
-
-# estado/segredos gerados pelo sunshine (a pasta vira symlink pro repo via stow)
-.config/sunshine/credentials/
-sunshine_state.json
-sunshine.log
