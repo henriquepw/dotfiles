@@ -1,0 +1,131 @@
+# Migrado de ../dotfiles/modules/features/desktop/umbriel/config/config.toml
+# (originalmente também portado pro mango, mas o mango não tem build pra
+# nenhuma versão estável do Fedora — só rawhide no Terra — então voltamos
+# pro sway, que já vem pronto na imagem ghcr.io/ublue-os/sway-atomic-main)
+#
+# NOTA: sway/wlroots puro não tem blur, sombra ou corner-radius como o
+# mango/hyprland tinham. Essa parte da estética do umbriel não é portável
+# aqui sem plugins/patches (ex: swayfx, que também está no Terra e teria o
+# mesmo problema de disponibilidade pro Fedora atual).
+
+# integra com systemd (cgroups por app, XDG_CURRENT_DESKTOP=sway pro
+# xdg-desktop-portal, sway-session.target) — ver /etc/sway/config.d/
+include /etc/sway/config.d/*
+
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+set $term ghostty
+
+### saída / papel de parede
+output * bg /usr/share/backgrounds/default.jxl fill
+
+### teclado / mouse
+input type:keyboard {
+    xkb_layout us
+    xkb_variant intl
+    repeat_rate 25
+    repeat_delay 400
+}
+
+input type:pointer {
+    accel_profile flat
+    pointer_accel 0.35
+}
+
+default_border pixel 1
+default_floating_border pixel 1
+
+### autostart
+exec fcitx5
+exec noctalia
+exec hushmic --tray
+exec $term -e tmux new-session -A -s main
+exec brave-origin --app-id=cinhimbnkkaeohfgghhklpknlkffjgod
+exec brave-origin --app-id=bihdiinlknbhociakahmdjfokjkobgmp
+exec brave-origin --app-id=hnpfjngllnobngcgfapefoaidbinmjnm
+exec steam
+
+exec swayidle -w \
+    timeout 600 'swaylock -f -c 000000' \
+    before-sleep 'swaylock -f -c 000000'
+
+bar {
+    swaybar_command waybar
+}
+
+### window rules
+for_window [app_id="^dev\.noctalia\.Noctalia$"] floating enable, resize set 1020 900
+for_window [app_id="^com\.mitchellh\.ghostty$"] move to workspace 1
+for_window [app_id="^brave-.*-Default$" title="^(WhatsApp|Sable).*$"] move to workspace 4
+for_window [app_id="^steam$"] move to workspace 5
+
+# scratchpad de música (youtube music) — sway tem scratchpad nativo, mas
+# sem o "abre-se-não-tiver-rodando" que o mango/umbriel tinham; o exec do
+# autostart já sobe o app e essa regra só joga ele pro scratchpad ao abrir.
+for_window [app_id="^brave-cinhimbnkkaeohfgghhklpknlkffjgod-Default$"] floating enable, resize set 1225 936, move scratchpad
+
+### keybinds
+bindsym $mod+Return exec noctalia msg panel-toggle launcher
+bindsym $mod+Escape exec noctalia msg panel-toggle session
+bindsym $mod+s exec noctalia msg panel-toggle control-center
+bindsym $mod+comma exec noctalia msg settings-toggle
+
+bindsym $mod+Shift+t exec $term -e tmux new-session -A -s main
+bindsym $mod+Shift+Mod1+t exec $term
+bindsym $mod+Shift+f exec nautilus
+bindsym $mod+Shift+b exec brave-origin
+bindsym $mod+Shift+Mod1+b exec brave-origin --private
+bindsym $mod+Shift+s exec steam
+bindsym $mod+Shift+m scratchpad show
+
+# focus-or-launch (script próprio, ver .local/bin) — usa a IPC do sway
+bindsym $mod+Shift+d exec focus-or-launch "^brave-bihdiinlknbhociakahmdjfokjkobgmp-Default$" brave-origin --app-id=bihdiinlknbhociakahmdjfokjkobgmp
+bindsym $mod+Shift+g exec focus-or-launch "^brave-hnpfjngllnobngcgfapefoaidbinmjnm-Default$" brave-origin --app-id=hnpfjngllnobngcgfapefoaidbinmjnm
+
+# ajuste "HDMI-A-1" pro nome real da saída (confira com `swaymsg -t get_outputs`)
+bindsym $mod+Mod1+h exec swaymsg output HDMI-A-1 toggle
+
+bindsym $mod+n floating toggle
+bindsym $mod+Shift+w kill
+bindsym $mod+BackSpace fullscreen toggle
+bindsym $mod+m fullscreen toggle
+
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+bindsym $mod+Left move left
+bindsym $mod+Down move down
+bindsym $mod+Up move up
+bindsym $mod+Right move right
+
+# sway não tem "overview mode" nativo (isso era feature do mango/niri) — sem substituto direto
+bindsym $mod+p exec noctalia msg screenshot-region
+bindsym $mod+Shift+p exec noctalia msg annotate
+
+bindsym $mod+1 move container to workspace number 1
+bindsym $mod+2 move container to workspace number 2
+bindsym $mod+3 move container to workspace number 3
+bindsym $mod+4 move container to workspace number 4
+bindsym $mod+5 move container to workspace number 5
+bindsym $mod+6 move container to workspace number 6
+
+bindsym $mod+q workspace number 1
+bindsym $mod+w workspace number 2
+bindsym $mod+e workspace number 3
+bindsym $mod+r workspace number 4
+bindsym $mod+t workspace number 5
+bindsym $mod+y workspace number 6
+
+bindsym --locked XF86AudioRaiseVolume exec noctalia msg volume-up
+bindsym --locked XF86AudioLowerVolume exec noctalia msg volume-down
+bindsym --locked XF86AudioMute exec noctalia msg volume-mute
+bindsym --locked XF86MonBrightnessUp exec noctalia msg brightness-up
+bindsym --locked XF86MonBrightnessDown exec noctalia msg brightness-down
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+q exit

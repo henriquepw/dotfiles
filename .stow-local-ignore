@@ -1,0 +1,8 @@
+# substitui a lista padrão do stow
+\.git
+\.gitignore
+\.stow-local-ignore
+^/README.*
+^/LICENSE.*
+^/Makefile
+^/assets

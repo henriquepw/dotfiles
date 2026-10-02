@@ -1,36 +1,25 @@
-SETUP_SCRIPT := scripts/setup.sh
-
-# host to build; defaults to the current machine's hostname, override with `make rebuild HOST=bellway`
-HOST ?= "$(shell hostname)"
-
 all: help
 
 .PHONY: help
 help:
 	@echo
-	@echo "Choose a make command to run (override host with HOST=<name>)"
+	@echo "Choose a make command to run"
 	@echo
-	@sed -n 's/^##//p' $< | column -t -s ':' |  sed -e 's/^/ /'
+	@sed -n 's/^##//p' $(MAKEFILE_LIST) | column -t -s ':' |  sed -e 's/^/ /'
 	@echo
 
-# a config nix referencia o repo via ~/.dotfiles, então o clone pode viver em qualquer pasta
+## link: remove links antigos da imagem citadel e linka os dotfiles em $HOME
 .PHONY: link
 link:
-	@ln -sfn $(CURDIR) $$HOME/.dotfiles
+	@find "$$HOME" -xdev -maxdepth 3 -type l -lname '/usr/share/citadel-dotfiles/*' -print -delete
+	@stow --target="$$HOME" --restow .
 
-## install: full setup for HOST (default: current hostname)
-.PHONY: install
-install:
-	@echo "▶ Running full setup for $(HOST)"
-	@bash $(SETUP_SCRIPT) $(HOST)
+## check: mostra o que o stow faria, sem alterar nada
+.PHONY: check
+check:
+	@stow --target="$$HOME" --no --verbose --restow .
 
-## rebuild: apply NixOS configuration for HOST (default: current hostname)
-.PHONY: rebuild
-rebuild: link
-	@sudo nixos-rebuild switch --flake .#$(HOST)
-
-## update: update flake inputs and apply configuration for HOST
-.PHONY: update
-update: link
-	@nix flake update --flake .
-	@sudo nixos-rebuild switch --flake .#$(HOST)
+## unlink: remove os links dos dotfiles de $HOME
+.PHONY: unlink
+unlink:
+	@stow --target="$$HOME" --delete .

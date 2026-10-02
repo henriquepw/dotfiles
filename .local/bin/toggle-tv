@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Liga/desliga a TV ligada no HDMI.
+# O umbriel faz isso nativo (output-toggle:HDMI-A-1), então só niri e mango
+# passam por aqui.
+set -euo pipefail
+
+output="HDMI-A-1"
+
+case "${XDG_CURRENT_DESKTOP:-}" in
+niri)
+	current_mode=$(niri msg --json outputs | jq -r --arg output "$output" \
+		'((.Ok.Outputs // .)[$output].current_mode) // empty')
+
+	if [[ -z "$current_mode" ]]; then
+		exec niri msg output "$output" on
+	else
+		exec niri msg output "$output" off
+	fi
+	;;
+mango)
+	exec mmsg dispatch toggle_monitor,"$output"
+	;;
+umbriel)
+	exec umbriel msg "output-toggle:$output"
+	;;
+esac
