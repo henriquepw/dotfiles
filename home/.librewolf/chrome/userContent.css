@@ -1,0 +1,22 @@
+:root, :host { --user-radius: 6px; }
+
+@-moz-document url-prefix("about:logins") {
+    :root,
+    :host {
+        --border-radius-xsmall: var(--user-radius) !important;
+        --border-radius-small: var(--user-radius) !important;
+        --border-radius-medium: var(--user-radius) !important;
+        --border-radius-large: var(--user-radius) !important;
+        --button-border-radius: var(--user-radius) !important;
+        --input-border-radius: var(--user-radius) !important;
+    }
+
+    button,
+    input,
+    textarea,
+    select,
+    moz-button,
+    moz-button::part(button) {
+        border-radius: var(--user-radius) !important;
+    }
+}

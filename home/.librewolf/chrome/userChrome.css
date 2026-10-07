@@ -1,0 +1,191 @@
+:root, :host { --user-radius: 6px; }
+
+#tabbrowser-tabs {
+    --user-tab-rounding: var(--user-radius);
+}
+
+.tab-background {
+    border-radius: var(--user-tab-rounding) var(--user-tab-rounding) 0px 0px !important;
+    margin-block: 1px 0 !important;
+}
+#scrollbutton-up, #scrollbutton-down {
+    border-top-width: 1px !important;
+    border-bottom-width: 0 !important;
+}
+
+.tabbrowser-tab[usercontextid] > .tab-stack > .tab-background > .tab-context-line {
+    margin: 0px max(calc(var(--user-tab-rounding) - 3px), 0px) !important;
+}
+
+.tabbrowser-tab:not([selected=true]):not([multiselected=true]):not([beforeselected-visible="true"]) .tab-background {
+    border-right: 1px solid var(--lwt-background-tab-separator-color, rgba(0, 0, 0, .20)) !important;
+}
+
+[brighttext="true"] .tabbrowser-tab:not([selected=true]):not([multiselected=true]):not([beforeselected-visible="true"]) .tab-background {
+    border-right: 1px solid var(--lwt-background-tab-separator-color, var(--lwt-selected-tab-background-color, rgba(255, 255, 255, .20))) !important;
+}
+.tabbrowser-tab:not([selected=true]):not([multiselected=true]) .tab-background {
+    border-radius: 0 !important;
+}
+
+.tabbrowser-tab {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+#TabsToolbar {
+    --user-mute-button-height: 20px;
+}
+
+.tab-icon-overlay:not([pinned], [sharing], [crashed]):is([soundplaying], [muted]) {
+    width: var(--user-mute-button-height) !important;
+    height: var(--user-mute-button-height) !important;
+    margin-left: calc(var(--user-mute-button-height) / 2 + 2px) !important;
+    margin-right: 2px !important;
+    padding: 0 !important;
+}
+
+.tab-icon-stack:not([pinned], [sharing], [crashed]):is([soundplaying], [muted]) > :not(.tab-icon-overlay) {
+    margin-left: -4px !important;
+    margin-top: calc((var(--user-mute-button-height) - 16px) / 2) !important;
+}
+
+.tabbrowser-tab:not(:hover) .tab-icon-overlay:not([pinned], [sharing], [crashed]):is([soundplaying], [muted]),
+
+.tabbrowser-tab:hover .tab-icon-stack:not([pinned], [sharing], [crashed]):is([soundplaying], [muted]) > :not(.tab-icon-overlay),
+
+:root[uidensity="compact"] .tab-icon-stack:not([pinned], [sharing], [crashed]):is([soundplaying], [muted]) > :not(.tab-icon-overlay) {
+    opacity: 1 !important;
+}
+
+.tab-icon-overlay:not([pinned], [sharing], [crashed]):is([soundplaying], [muted]):hover {
+    fill: green !important;
+}
+[lwthemetextcolor="bright"] .tab-icon-overlay:not([pinned], [sharing], [crashed]):is([soundplaying], [muted]):hover {
+    fill: lightgreen !important;
+}
+
+.tabbrowser-tab {
+    font-weight: 400 !important;
+}
+
+menupopup:not(.in-menulist) > menuitem,
+menupopup:not(.in-menulist) > menu {
+  padding-block: 4px !important;
+  min-height: unset !important;
+}
+:root {
+  --arrowpanel-menuitem-padding: 4px 8px !important;
+}
+
+@layer tokens-foundation {
+  :root,
+  :host(.anonymous-content-host) {
+
+	--border-radius-xsmall: var(--user-radius) !important;
+    --border-radius-small: var(--user-radius) !important;
+    --border-radius-medium: var(--user-radius) !important;
+    --border-radius-large: var(--user-radius) !important;
+  }
+}
+
+#urlbar-background,
+#searchbar,
+menupopup,
+.menupopup-arrowscrollbox{ border-radius: var(--user-radius) !important; }
+:root{--arrowpanel-border-radius: var(--user-radius) !important;}
+
+#alltabs-button { display: none !important; }
+
+toolbaritem,
+toolbaritem *,
+toolbarbutton,
+toolbarbutton * {
+    --urlbar-border-radius: var(--user-radius) !important;
+    --toolbarbutton-border-radius: var(--user-radius) !important;
+    border-radius: var(--user-radius) !important;
+}
+
+panel,
+panel::part(content),
+panelmultiview,
+panelview,
+panelview *,
+.panel-viewcontainer,
+.panel-viewstack {
+    --arrowpanel-border-radius: var(--user-radius) !important;
+    --panel-border-radius: var(--user-radius) !important;
+    border-radius: var(--user-radius) !important;
+}
+
+button,
+input,
+textarea,
+select,
+menulist,
+search-textbox,
+moz-button,
+moz-button::part(button),
+moz-input-search,
+moz-input-text {
+    --button-border-radius: var(--user-radius) !important;
+    --input-border-radius: var(--user-radius) !important;
+    border-radius: var(--user-radius) !important;
+}
+
+#nav-bar {
+    --user-navbar-height: 46px;
+    height: var(--user-navbar-height) !important;
+    min-height: var(--user-navbar-height) !important;
+    align-items: center !important;
+}
+
+.tabbrowser-tab:not([hidden], [selected]):not(.tabbrowser-tab:not([hidden]) ~ .tabbrowser-tab) .tab-background {
+    border-left-color: var(--lwt-background-tab-separator-color, rgba(0, 0, 0, .20)) !important;
+}
+
+.tabbrowser-tab[selected] .tab-background {
+    border-bottom-width: 0 !important;
+}
+
+/* radius interno: elementos dentro de algo arredondado usam um radius menor */
+:root { --user-radius-inner: calc(var(--user-radius) - 2px); }
+
+/* abas verticais: arredondar os 4 cantos, sem os separadores das abas horizontais */
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab .tab-background,
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab:not([selected=true]):not([multiselected=true]) .tab-background {
+    border-radius: var(--user-radius) !important;
+    border-right: none !important;
+    border-left: none !important;
+    margin-block: 0 !important;
+}
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab[usercontextid] > .tab-stack > .tab-background > .tab-context-line {
+    margin: 0 !important;
+}
+#tabs-newtab-button,
+#vertical-tabs-newtab-button,
+#tabs-newtab-button > .toolbarbutton-icon,
+#vertical-tabs-newtab-button > .toolbarbutton-icon {
+    border-radius: var(--user-radius) !important;
+}
+.tab-close-button,
+.tab-icon-overlay {
+    border-radius: var(--user-radius-inner) !important;
+}
+
+/* dentro da barra de endereço/busca */
+#urlbar #urlbar-background,
+#searchbar {
+    border-radius: var(--user-radius) !important;
+}
+#urlbar-input-container *,
+#urlbar-searchmode-switcher,
+#searchmode-switcher-chicklet,
+#identity-box *,
+#tracking-protection-icon-container,
+#page-action-buttons *,
+.urlbar-page-action,
+.urlbar-revert-button,
+#searchbar * {
+    border-radius: var(--user-radius-inner) !important;
+}
