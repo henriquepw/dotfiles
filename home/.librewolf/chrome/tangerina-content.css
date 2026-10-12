@@ -1,0 +1,26 @@
+/* tangerina: páginas internas (about:*) */
+
+@-moz-document url-prefix("about:") {
+  :root {
+    color-scheme: dark !important;
+    --background-color-canvas: #121212 !important;
+    --in-content-page-background: #121212 !important;
+    --in-content-box-background: #1a1a1a !important;
+    --newtab-background-color: #121212 !important;
+    --newtab-background-color-secondary: #1a1a1a !important;
+    --background-color-box: #1a1a1a !important;
+    --text-color: #bebebe !important;
+    --in-content-page-color: #bebebe !important;
+    --text-color-deemphasized: #8a8a8d !important;
+    --border-color: #333333 !important;
+    --color-accent-primary: #f59e0b !important;
+    --color-accent-primary-hover: #e8950a !important;
+    --color-accent-primary-active: #e8950a !important;
+    --button-background-color-primary: #f59e0b !important;
+    --button-background-color-primary-hover: #e8950a !important;
+    --button-text-color-primary: #121212 !important;
+    --link-color: #f59e0b !important;
+    --link-color-hover: #e8950a !important;
+    --focus-outline-color: #f59e0b !important;
+  }
+}

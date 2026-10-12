@@ -12,6 +12,8 @@ alias gz="lazygit"
 alias c="clear"
 alias vim="nvim"
 alias ls="ls --color -a"
+alias rebase="rpm-ostree rebase ostree-unverified-registry:ghcr.io/henriquepw/citadel:latest"
+alias rebase2="rpm-ostree rebase ostree-image-signed:docker://ghcr.io/henriquepw/citadel:latest"
 
 ZINIT="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT ] && mkdir -p "$(dirname $ZINIT)"

@@ -1,3 +1,5 @@
+@import url("tangerina.css");
+
 :root, :host { --user-radius: 6px; }
 
 #tabbrowser-tabs {

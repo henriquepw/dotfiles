@@ -2,6 +2,8 @@
 # librewolf profile dirs have random names, so copy the css into every profile
 # userChrome.css hash: {{ include ".librewolf/chrome/userChrome.css" | sha256sum }}
 # userContent.css hash: {{ include ".librewolf/chrome/userContent.css" | sha256sum }}
+# tangerina.css hash: {{ include ".librewolf/chrome/tangerina.css" | sha256sum }}
+# tangerina-content.css hash: {{ include ".librewolf/chrome/tangerina-content.css" | sha256sum }}
 set -euo pipefail
 
 src="{{ .chezmoi.sourceDir }}/.librewolf/chrome"
@@ -14,6 +16,6 @@ grep -oP '^Path=\K.*' "$root/profiles.ini" | while read -r profile; do
     dir="$root/$profile"
     [ -d "$dir" ] || continue
     mkdir -p "$dir/chrome"
-    cp "$src/userChrome.css" "$src/userContent.css" "$dir/chrome/"
+    cp "$src/userChrome.css" "$src/userContent.css" "$src/tangerina.css" "$src/tangerina-content.css" "$dir/chrome/"
     grep -qxF "$pref" "$dir/user.js" 2>/dev/null || echo "$pref" >> "$dir/user.js"
 done

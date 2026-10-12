@@ -1,3 +1,5 @@
+@import url("tangerina-content.css");
+
 :root, :host { --user-radius: 6px; }
 
 @-moz-document url-prefix("about:logins") {
