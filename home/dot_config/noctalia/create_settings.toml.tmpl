@@ -10,6 +10,7 @@ address = "Campina Grande - Paraíba, Brasil"
 
 [bar.default]
 background_opacity = 0.75
+capsule_radius = 4
 end = [
   "cpu",
   "ram",
@@ -18,36 +19,45 @@ end = [
   "tray",
   "notifications",
   "clipboard",
-  "bluetooth",
   "volume",
-  "control-center",
   "session",
 ]
 font_family = "JetBrainsMono NF"
 margin_edge = 0
 margin_ends = 0
 radius = 0
+scale = 1.05
 shadow = false
 start = ["workspaces"]
 
 [dock]
 auto_hide = true
-background_opacity = 1
+background_opacity = 0.85
+concave_edge_corners = false
 enabled = true
 pinned = [
   "org.gnome.Nautilus",
   "com.mitchellh.ghostty",
   "brave-origin",
   "steam",
+  "zapfast",
 ]
+radius = 12
+radius_bottom_left = 0
+radius_bottom_right = 0
+radius_top_left = 12
 reserve_space = false
+shadow = false
 show_dots = true
 show_instance_count = false
+
+[lockscreen]
+blur_intensity = 0.8
 
 [lockscreen_widgets]
 enabled = false
 schema_version = 2
-widget_order = ["lockscreen-login-box@DP-1"]
+widget_order = ["lockscreen-login-box@DP-2", "lockscreen-login-box@DP-1"]
 
 [lockscreen_widgets.grid]
 cell_size = 16
@@ -55,11 +65,13 @@ major_interval = 4
 visible = true
 
 [lockscreen_widgets.widget."lockscreen-login-box@DP-1"]
-box_height = 70.0
-box_width = 400.0
+box_height = 196.0
+box_width = 720.0
 cx = 1280.0
 cy = 1321.0
 output = "DP-1"
+placement_height = 1440.0
+placement_width = 2560.0
 rotation = 0.0
 type = "login_box"
 
@@ -67,25 +79,79 @@ type = "login_box"
 background_color = "surface_variant"
 background_opacity = 0.88
 background_radius = 12.0
+center_password_text = false
 input_opacity = 1.0
 input_radius = 6.0
+layout = "regular"
 show_caps_lock = true
 show_keyboard_layout = true
 show_login_button = true
+show_media = true
+show_session_buttons = true
+show_unlock_hint = true
+show_weather = true
+
+[lockscreen_widgets.widget."lockscreen-login-box@DP-2"]
+box_height = 196.0
+box_width = 810.0
+cx = 1280.0
+cy = 1258.0
+output = "DP-2"
+placement_height = 1440.0
+placement_width = 2560.0
+rotation = 0.0
+type = "login_box"
+
+[lockscreen_widgets.widget."lockscreen-login-box@DP-2".settings]
+background_color = "surface_variant"
+background_opacity = 0.88
+background_radius = 12.0
+center_password_text = false
+input_opacity = 1.0
+input_radius = 6.0
+layout = "regular"
+show_caps_lock = true
+show_keyboard_layout = true
+show_login_button = true
+show_media = true
+show_session_buttons = true
+show_unlock_hint = true
+show_weather = true
 
 [shell]
+app_icon_color = "primary"
 font_family = "JetBrainsMono NF"
 lang = "en"
+popup_shadows = false
+
+[shell.panel]
+open_near_click_control_center = true
+shadow = false
+
+[shell.shadow]
+alpha = 0.5
 
 [theme]
 builtin = "Ayu"
-source = "custom"
+community_palette = "Oxocarbon"
 custom_palette = "tangerina"
+mode = "dark"
+source = "custom"
 wallpaper_scheme = "m3-rainbow"
 
 [theme.templates]
 builtin_ids = ["btop", "foot", "gtk3", "gtk4", "ghostty", "qt"]
-community_ids = ["obsidian", "opencode", "papirus-icons", "pi-agent", "yazi"]
+community_ids = [
+  "brave-origin",
+  "heroiclauncher",
+  "obsidian",
+  "opencode",
+  "papirus-icons",
+  "pi-agent",
+  "steam",
+  "yazi",
+  "zapfast",
+]
 
 [wallpaper]
 directory = "{{ .chezmoi.homeDir }}/.local/share/wallpapers"
@@ -94,6 +160,9 @@ directory = "{{ .chezmoi.homeDir }}/.local/share/wallpapers"
 path = "{{ .chezmoi.homeDir }}/.local/share/wallpapers/wallpaper.png"
 
 [wallpaper.last]
+path = "{{ .chezmoi.homeDir }}/.local/share/wallpapers/wallpaper.png"
+
+[[wallpaper.favorite]]
 path = "{{ .chezmoi.homeDir }}/.local/share/wallpapers/wallpaper.png"
 
 [widget.clock]
