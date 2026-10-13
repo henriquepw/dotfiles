@@ -59,8 +59,6 @@ local setup_treesitter = function()
 	})
 end
 
--- language servers, linters and formatters come from the citadel image (modules/lsp/lsp.sh)
-
 setup_treesitter()
 
 -- incremental selection via treesitter
@@ -244,30 +242,9 @@ end
 
 vim.api.nvim_create_autocmd("LspAttach", { group = augroup, callback = lsp_on_attach })
 
--- Format on save (ONLY real file buffers, ONLY when efm is attached)
+-- Format on save (only real file buffers); prefer efm, fall back to any LSP that can format
 vim.api.nvim_create_autocmd("BufWritePre", {
 	group = augroup,
-	pattern = {
-		"*.lua",
-		"*.py",
-		"*.go",
-		"*.js",
-		"*.jsx",
-		"*.ts",
-		"*.tsx",
-		"*.json",
-		"*.css",
-		"*.scss",
-		"*.html",
-		"*.sh",
-		"*.bash",
-		"*.zsh",
-		"*.c",
-		"*.cpp",
-		"*.h",
-		"*.hpp",
-		"*.toml",
-	},
 	callback = function(args)
 		-- avoid formatting non-file buffers (helps prevent weird write prompts)
 		if vim.bo[args.buf].buftype ~= "" then
@@ -280,22 +257,20 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 			return
 		end
 
-		local has_efm = false
-		for _, c in ipairs(vim.lsp.get_clients({ bufnr = args.buf })) do
-			if c.name == "efm" then
-				has_efm = true
-				break
-			end
-		end
-		if not has_efm then
+		local clients = vim.lsp.get_clients({ bufnr = args.buf, method = "textDocument/formatting" })
+		if #clients == 0 then
 			return
 		end
+
+		local has_efm = vim.iter(clients):any(function(c)
+			return c.name == "efm"
+		end)
 
 		pcall(vim.lsp.buf.format, {
 			bufnr = args.buf,
 			timeout_ms = 2000,
 			filter = function(c)
-				return c.name == "efm"
+				return not has_efm or c.name == "efm"
 			end,
 		})
 	end,
