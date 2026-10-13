@@ -3,6 +3,12 @@ if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
 
+# golang
+if ! [[ "$PATH" =~ "$HOME/go/bin" ]]; then
+    PATH="$PATH:$HOME/go/bin"
+fi
+
+# android
 export JAVA_HOME="$(brew --prefix openjdk@17)/libexec"
 export ANDROID_HOME="$HOME/Android/Sdk"
 export PATH="$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$PATH"
@@ -10,6 +16,9 @@ export PATH="$JAVA_HOME/bin:$PATH"
 export PATH="/var/home/henrique/.bun/bin:$PATH"
 
 export YDOTOOL_SOCKET=/tmp/.ydotool_socket
+
+# docker cli -> podman
+export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"
 
 # Aliases
 alias gf="git-clean-branches"
