@@ -135,7 +135,22 @@ vim.lsp.config("lua_ls", {
 })
 
 vim.lsp.config("bashls", {})
-vim.lsp.config("vtsls", {})
+do
+	local inlay_hints = {
+		parameterNames = { enabled = "literals" },
+		parameterTypes = { enabled = true },
+		variableTypes = { enabled = true },
+		propertyDeclarationTypes = { enabled = true },
+		functionLikeReturnTypes = { enabled = true },
+		enumMemberValues = { enabled = true },
+	}
+	vim.lsp.config("vtsls", {
+		settings = {
+			typescript = { inlayHints = inlay_hints },
+			javascript = { inlayHints = inlay_hints },
+		},
+	})
+end
 vim.lsp.config("gopls", {})
 vim.lsp.config("clangd", {})
 vim.lsp.config("rust-analyzer", {})
