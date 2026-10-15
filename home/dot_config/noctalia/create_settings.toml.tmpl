@@ -9,22 +9,21 @@ auto_locate = false
 address = "Campina Grande - Paraíba, Brasil"
 
 [bar.default]
-background_opacity = 0.75
-capsule_radius = 4
+background_opacity = 0.95
+capsule_radius = 2
 end = [
   "cpu",
   "ram",
-  "temp",
   "spacer_2",
   "tray",
   "notifications",
-  "clipboard",
   "volume",
   "session",
 ]
 font_family = "JetBrainsMono NF"
 margin_edge = 0
 margin_ends = 0
+panel_overlap = 0
 radius = 0
 scale = 1.05
 shadow = false
@@ -118,8 +117,17 @@ show_session_buttons = true
 show_unlock_hint = true
 show_weather = true
 
+[notification]
+border = false
+border_width = 0.0
+
+[osd]
+border = false
+border_width = 0.0
+
 [shell]
 app_icon_color = "primary"
+avatar_path = "{{ .chezmoi.homeDir }}/Pictures/wallpaper-2.jpg"
 font_family = "JetBrainsMono NF"
 lang = "en"
 popup_shadows = false
@@ -157,13 +165,40 @@ community_ids = [
 directory = "{{ .chezmoi.homeDir }}/.local/share/wallpapers"
 
 [wallpaper.default]
-path = "{{ .chezmoi.homeDir }}/.local/share/wallpapers/wallpaper.png"
+path = "{{ .chezmoi.homeDir }}/.local/share/wallpapers/wallhaven-zxr7dj.jpg"
 
 [wallpaper.last]
-path = "{{ .chezmoi.homeDir }}/.local/share/wallpapers/wallpaper.png"
+path = "{{ .chezmoi.homeDir }}/.local/share/wallpapers/wallhaven-zxr7dj.jpg"
+
+[wallpaper.monitors.DP-2]
+path = "{{ .chezmoi.homeDir }}/.local/share/wallpapers/wallhaven-zxr7dj.jpg"
 
 [[wallpaper.favorite]]
 path = "{{ .chezmoi.homeDir }}/.local/share/wallpapers/wallpaper.png"
+
+[[wallpaper.favorite]]
+custom_palette = "tangerina"
+palette_source = "custom"
+path = "{{ .chezmoi.homeDir }}/.local/share/wallpapers/wallhaven-lmo5gq.jpg"
+theme_mode = "dark"
+
+[[wallpaper.favorite]]
+custom_palette = "tangerina"
+palette_source = "custom"
+path = "{{ .chezmoi.homeDir }}/.local/share/wallpapers/wallhaven-w8zlv7.jpg"
+theme_mode = "dark"
+
+[[wallpaper.favorite]]
+custom_palette = "tangerina"
+palette_source = "custom"
+path = "{{ .chezmoi.homeDir }}/.local/share/wallpapers/wallhaven-zmeqyg.jpg"
+theme_mode = "dark"
+
+[[wallpaper.favorite]]
+custom_palette = "tangerina"
+palette_source = "custom"
+path = "{{ .chezmoi.homeDir }}/.local/share/wallpapers/wallhaven-zxr7dj.jpg"
+theme_mode = "dark"
 
 [widget.clock]
 format = "{:%H:%M %a %d/%m}"
@@ -189,5 +224,6 @@ drawer = true
 [widget.workspaces]
 active_pill_size = 1.0
 capsule_radius = 2
-empty_color = "shadow"
-occupied_color = "outline"
+empty_color = "outline"
+occupied_color = "on_surface"
+style = "minimal"
