@@ -1,40 +1,12 @@
 local map = vim.keymap.set
 
-local function add_word_to_lang(lang)
-	-- Find word under cursor
-	local word = vim.fn.expand("<cword>")
-	if word == "" then
-		print("No word under cursor.")
-		return
-	end
-
-	-- Save original language and spellfile
-	local original_lang = vim.opt.spelllang:get()
-	local original_spellfile = vim.opt.spellfile
-
-	-- Get the current language file
-	local spellfile_path = vim.fn.expand(string.format("~/.config/nvim/spell/%s.utf-8.add", lang))
-
-	-- Temporarily set spelllang to only the desired language
-	vim.opt.spelllang = { lang }
-	vim.opt.spellfile = spellfile_path
-
-	-- Mark word as good and save spellfile
-	vim.cmd("silent! spellgood " .. word)
-	vim.cmd("silent! mkspell! " .. spellfile_path)
-
-	-- Restore original settings
-	vim.opt.spelllang = original_lang
-	vim.opt.spellfile = original_spellfile
-
-	print("Added '" .. word .. "' to " .. lang)
-end
+local spell_dir = vim.fn.stdpath("config") .. "/spell/"
+vim.opt.spelllang = { "pt_br", "en_us" }
+vim.opt.spellfile = {
+	spell_dir .. "pt.utf-8.add",
+	spell_dir .. "en.utf-8.add",
+}
 
 map("n", "<leader>z", "", { desc = "Spelling" })
-map("n", "<leader>zp", function()
-	add_word_to_lang("pt_br")
-end, { desc = "Add word to Portuguese" })
-map("n", "<leader>ze", function()
-	add_word_to_lang("en_us")
-end, { desc = "Add word to English" })
-
+map("n", "<leader>zp", "1zg", { desc = "Add word to Portuguese" })
+map("n", "<leader>ze", "2zg", { desc = "Add word to English" })
