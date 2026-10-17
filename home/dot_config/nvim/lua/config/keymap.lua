@@ -91,4 +91,5 @@ map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Actions" })
 map("n", "<leader>sr", vim.lsp.buf.rename, { desc = "Rename" })
 
 map("n", "K", vim.lsp.buf.hover, { desc = "Details" })
+map("n", "gd", vim.lsp.buf.definition, { desc = "Goto Definition" })
 
