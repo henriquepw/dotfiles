@@ -219,7 +219,105 @@ do
 	})
 end
 
+-- oxlint/oxfmt: only attach in repos configured for them (standalone config or a Vite+
+-- `lint`/`fmt` block in vite.config.*); there oxfmt takes over formatting from biome
+do
+	local vite_configs = {
+		"vite.config.ts",
+		"vite.config.mts",
+		"vite.config.cts",
+		"vite.config.js",
+		"vite.config.mjs",
+		"vite.config.cjs",
+	}
+
+	local function has_vite_plus_block(file, key)
+		local ok, lines = pcall(vim.fn.readfile, file)
+		if not ok then
+			return false
+		end
+		local content = "\n" .. table.concat(lines, "\n")
+		return content:find("vite%-plus") ~= nil and content:find("\n%s*" .. key .. "%s*:") ~= nil
+	end
+
+	local function ox_root_dir(markers, key)
+		return function(bufnr, on_dir)
+			local fname = vim.api.nvim_buf_get_name(bufnr)
+			if fname == "" then
+				return
+			end
+			local found = vim.fs.find(function(name, path)
+				if vim.list_contains(markers, name) then
+					return true
+				end
+				return vim.list_contains(vite_configs, name) and has_vite_plus_block(vim.fs.joinpath(path, name), key)
+			end, { path = vim.fs.dirname(fname), upward = true, limit = 1 })[1]
+			if found then
+				on_dir(vim.fs.dirname(found))
+			end
+		end
+	end
+
+	-- resolve project-local binaries (npm/pnpm .bin or bun's isolated store), walking up for
+	-- monorepos; mirror the env `vp lint`/`vp fmt` set: Vite+ configs are only read when
+	-- VP_VERSION is set, and type-aware linting needs OXLINT_TSGOLINT_PATH
+	local function ox_cmd(bin)
+		return function(dispatchers, config)
+			local root = config.root_dir
+			local dirs = { root }
+			for dir in vim.fs.parents(root) do
+				table.insert(dirs, dir)
+			end
+
+			local function find_local(rels)
+				for _, dir in ipairs(dirs) do
+					for _, rel in ipairs(rels) do
+						local candidate = vim.fs.joinpath(dir, "node_modules", rel)
+						if vim.fn.executable(candidate) == 1 then
+							return candidate
+						end
+					end
+				end
+			end
+
+			local env = {}
+			for _, dir in ipairs(dirs) do
+				local ok, pkg = pcall(function()
+					local file = vim.fs.joinpath(dir, "node_modules", "vite-plus", "package.json")
+					return vim.json.decode(table.concat(vim.fn.readfile(file), "\n"))
+				end)
+				if ok then
+					env.VP_VERSION = pkg.version
+					break
+				end
+			end
+			if bin == "oxlint" then
+				env.OXLINT_TSGOLINT_PATH = find_local({
+					".bin/tsgolint",
+					"oxlint-tsgolint/bin/tsgolint.js",
+					".bun/node_modules/oxlint-tsgolint/bin/tsgolint.js",
+				})
+			end
+
+			local exe = find_local({ ".bin/" .. bin, ".bun/node_modules/" .. bin .. "/bin/" .. bin }) or bin
+			return vim.lsp.rpc.start({ exe, "--lsp" }, dispatchers, { cwd = root, env = env })
+		end
+	end
+
+	vim.lsp.config("oxlint", {
+		cmd = ox_cmd("oxlint"),
+		root_dir = ox_root_dir({ ".oxlintrc.json", ".oxlintrc.jsonc", "oxlint.config.ts" }, "lint"),
+		settings = { disableNestedConfig = true },
+	})
+	vim.lsp.config("oxfmt", {
+		cmd = ox_cmd("oxfmt"),
+		root_dir = ox_root_dir({ ".oxfmtrc.json", ".oxfmtrc.jsonc", "oxfmt.config.ts" }, "fmt"),
+	})
+end
+
 vim.lsp.enable({
+	"oxlint",
+	"oxfmt",
 	"efm",
 	"lua_ls",
 	"bashls",
@@ -257,7 +355,7 @@ end
 
 vim.api.nvim_create_autocmd("LspAttach", { group = augroup, callback = lsp_on_attach })
 
--- Format on save (only real file buffers); prefer efm, fall back to any LSP that can format
+-- Format on save (only real file buffers); prefer oxfmt, then efm, fall back to any LSP that can format
 vim.api.nvim_create_autocmd("BufWritePre", {
 	group = augroup,
 	callback = function(args)
@@ -277,15 +375,17 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 			return
 		end
 
-		local has_efm = vim.iter(clients):any(function(c)
-			return c.name == "efm"
+		local preferred = vim.iter({ "oxfmt", "efm" }):find(function(name)
+			return vim.iter(clients):any(function(c)
+				return c.name == name
+			end)
 		end)
 
 		pcall(vim.lsp.buf.format, {
 			bufnr = args.buf,
 			timeout_ms = 2000,
 			filter = function(c)
-				return not has_efm or c.name == "efm"
+				return not preferred or c.name == preferred
 			end,
 		})
 	end,
