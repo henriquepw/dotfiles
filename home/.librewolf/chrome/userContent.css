@@ -1,24 +1,49 @@
 @import url("tangerina-content.css");
 
-:root, :host { --user-radius: 6px; }
+#root.root {
+	--general-border-radius: 0px;
+}
 
-@-moz-document url-prefix("about:logins") {
-    :root,
-    :host {
-        --border-radius-xsmall: var(--user-radius) !important;
-        --border-radius-small: var(--user-radius) !important;
-        --border-radius-medium: var(--user-radius) !important;
-        --border-radius-large: var(--user-radius) !important;
-        --button-border-radius: var(--user-radius) !important;
-        --input-border-radius: var(--user-radius) !important;
-    }
+@-moz-document url-prefix("about:") {
+	body {
+		background-color: var(--tg-bg) !important;
+		color: var(--tg-text-soft) !important;
+	}
 
-    button,
-    input,
-    textarea,
-    select,
-    moz-button,
-    moz-button::part(button) {
-        border-radius: var(--user-radius) !important;
-    }
+	* {
+		border-radius: 0px !important;
+	}
+
+	button:hover,
+	.button:hover {
+		background-color: var(--tg-primary) !important;
+		color: var(--tg-on-primary) !important;
+	}
+
+	* {
+		--text-color: var(--tg-text-soft) !important;
+		--color-accent-primary: var(--tg-primary) !important;
+		--color-accent-secondary: var(--tg-primary-hover) !important;
+	}
+
+	* {
+		--background-color-box: var(--tg-surface) !important;
+		--background-color-box-info: var(--tg-surface) !important;
+		--background-color-information: var(--tg-surface-hi) !important;
+		--background-color-canvas: var(--tg-bg) !important;
+		--border-color: var(--tg-outline) !important;
+		--border-color-deemphasized: var(--tg-outline) !important;
+		--button-background-color-muted: var(--tg-surface-hi) !important;
+		--button-text-color-ghost-disabled: var(--tg-text-muted) !important;
+		--button-border: 2px solid var(--border-color) !important;
+		--table-row-background-color-alternate: var(--tg-surface) !important;
+		--text-color-accent-primary-selected: var(--text-color) !important;
+	}
+
+	* {
+		--table-background-color: var(--background-color-box) !important;
+		--table-border-color: var(--border-color) !important;
+		--table-header-background-color: var(--color-accent-primary) !important;
+		--table-row-background-color: var(--background-color-canvas) !important;
+	}
 }
