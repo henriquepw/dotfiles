@@ -1,0 +1,87 @@
+export DOC="/Volumes/server/documents"
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Path
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH="$PATH:$HOME/.cargo/bin:/Volumes/server/apps/bin:/opt/homebrew/opt/mysql-client/bin"
+
+# golang
+if ! [[ "$PATH" =~ "$HOME/go/bin" ]]; then
+    PATH="$PATH:$HOME/go/bin"
+fi
+
+# android
+export JAVA_HOME=`/usr/libexec/java_home`
+export ANDROID_HOME="/Volumes/server/apps/android/sdk"
+export PATH="$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
+
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
+# docker
+export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin"
+fpath=($HOME/.docker/completions $fpath)
+
+# Aliases
+alias gf="git-clean-branches"
+alias gz="lazygit"
+alias c="clear"
+alias vim="nvim"
+alias ls="ls --color -a"
+alias up="brew update && brew upgrade && brew cleanup"
+ZINIT="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT ] && mkdir -p "$(dirname $ZINIT)"
+[ ! -d $ZINIT/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT"
+source "${ZINIT}/zinit.zsh"
+
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+
+autoload -U compinit && compinit
+zinit cdreplay -q
+
+bindkey '^l' forward-char
+bindkey '^k' history-search-backward
+bindkey '^j' history-search-forward
+
+# History
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+# Shell integrations
+eval "$(zoxide init --cmd cd zsh)"
+eval "$(starship init zsh)"
+
+# Vite+ bin (https://viteplus.dev)
+. "$HOME/.vite-plus/env"

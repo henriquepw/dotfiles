@@ -1,0 +1,21 @@
+theme = tangerina
+
+font-family = JetBrains Mono
+font-size = 20
+font-feature = -calt, -liga, -dlig
+
+window-padding-x = 8
+window-padding-y = 4
+background-opacity = 0.9
+
+cursor-style = block
+cursor-style-blink = false
+
+keybind = super+q=unbind
+keybind = super+w=unbind
+keybind = super+e=unbind
+keybind = super+r=unbind
+keybind = super+t=unbind
+keybind = super+y=unbind
+
+macos-option-as-alt = true
