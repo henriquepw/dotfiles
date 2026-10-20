@@ -90,7 +90,32 @@
     {
       "type": "packages",
       "key": "│ ├󰏖",
-      "keyColor": "blue"
+      "keyColor": "blue",
+      "format": "{brew} (brew)"
+    },
+    {
+      "type": "packages",
+      "key": "│ ├󰏖",
+      "keyColor": "blue",
+      "format": "{brew-cask} (brew-cask)"
+    },
+    {
+      "type": "packages",
+      "key": "│ ├󰏖",
+      "keyColor": "blue",
+      "format": "{flatpak-system} (flatpak-system)"
+    },
+    {
+      "type": "packages",
+      "key": "│ ├󰏖",
+      "keyColor": "blue",
+      "format": "{flatpak-user} (flatpak-user)"
+    },
+    {
+      "type": "packages",
+      "key": "│ ├󰏖",
+      "keyColor": "blue",
+      "format": "{rpm} (rpm)"
     },
     {
       "type": "wmtheme",

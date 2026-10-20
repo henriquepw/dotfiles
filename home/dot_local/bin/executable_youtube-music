@@ -1,0 +1,8 @@
+#!/bin/sh
+# YouTube Music as a standalone LibreWolf window: own profile (separate instance)
+# and app_id "youtube-music" so mango rules can match it.
+profile="$HOME/.var/app/io.gitlab.librewolf-community/youtube-music"
+mkdir -p "$profile/chrome"
+[ -f "$profile/user.js" ] || echo 'user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);' >"$profile/user.js"
+[ -f "$profile/chrome/userChrome.css" ] || echo '#TabsToolbar, #nav-bar { visibility: collapse !important; }' >"$profile/chrome/userChrome.css"
+exec flatpak run io.gitlab.librewolf-community --profile "$profile" --name youtube-music --class youtube-music https://music.youtube.com "$@"
