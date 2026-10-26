@@ -156,6 +156,23 @@ vim.lsp.config("clangd", {})
 vim.lsp.config("rust-analyzer", {})
 vim.lsp.config("tailwindcss", {})
 
+-- biome LSP (diagnostics): only attach when the repo root has a biome config; formatting stays with efm
+vim.lsp.config("biome", {
+	-- biome rejects a null `workspace/configuration` response, so give it an empty section
+	settings = { biome = {} },
+	root_dir = function(bufnr, on_dir)
+		local root = vim.fs.root(bufnr, ".git")
+		if not root then
+			return
+		end
+		for _, name in ipairs({ "biome.json", "biome.jsonc" }) do
+			if vim.uv.fs_stat(vim.fs.joinpath(root, name)) then
+				return on_dir(root)
+			end
+		end
+	end,
+})
+
 do
 	-- local luacheck = require("efmls-configs.linters.luacheck")
 	local stylua = require("efmls-configs.formatters.stylua")
@@ -316,6 +333,7 @@ do
 end
 
 vim.lsp.enable({
+	"biome",
 	"oxlint",
 	"oxfmt",
 	"efm",

@@ -29,6 +29,20 @@ alias ls="ls --color -a"
 alias rebase="rpm-ostree rebase ostree-unverified-registry:ghcr.io/henriquepw/citadel:latest"
 alias rebase2="rpm-ostree rebase ostree-image-signed:docker://ghcr.io/henriquepw/citadel:latest"
 
+
+stop-work() {
+  local dev_re='org\.gradle\.launcher\.daemon\.bootstrap\.GradleDaemon|org\.jetbrains\.kotlin\.daemon\.KotlinCompileDaemon|typescript/lib/tsserver\.js|tailwindcss-language-server|vite/bin/vite\.js dev|@biomejs/cli[^ ]* __run_server'
+
+  pkill -TERM -f "$dev_re" 2>/dev/null
+  sleep 2
+
+  if pgrep -af "$dev_re"; then
+    print "Alguns processos ainda estão encerrando."
+  else
+    print "Daemons, servidores e ferramentas de desenvolvimento encerrados."
+  fi
+}
+
 ZINIT="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT ] && mkdir -p "$(dirname $ZINIT)"
 [ ! -d $ZINIT/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT"
