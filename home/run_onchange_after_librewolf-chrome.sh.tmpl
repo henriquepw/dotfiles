@@ -6,7 +6,7 @@
 set -euo pipefail
 
 src="{{ .chezmoi.sourceDir }}/.librewolf/chrome"
-root="$HOME/.var/app/io.gitlab.librewolf-community/config/librewolf/librewolf"
+root="$HOME/.config/librewolf/librewolf"
 pref='user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);'
 
 [ -f "$root/profiles.ini" ] || exit 0

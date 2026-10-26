@@ -25,3 +25,32 @@
 * {
 	border-radius: 0px !important;
 }
+
+/* barra de endereço: destaque na cor primária do tangerina em vez do azul padrão */
+:root {
+	--focus-outline-color: #e97115 !important;
+	--toolbar-field-focus-border-color: #e97115 !important;
+	--lwt-toolbar-field-highlight: #e97115 !important;
+	--lwt-toolbar-field-highlight-text: #0f0f0f !important;
+	--link-color: #e97115 !important;
+	--urlbar-popup-url-color: #e97115 !important;
+	--urlbarView-url-color: #e97115 !important;
+	--urlbarView-action-color: #e97115 !important;
+	--color-accent-primary: #e97115 !important;
+	--color-accent-primary-hover: #dd6b14 !important;
+	--color-accent-primary-active: #dd6b14 !important;
+}
+
+#urlbar[focused] > .urlbar-background {
+	outline-color: #e97115 !important;
+	border-color: #e97115 !important;
+}
+
+#urlbar ::selection {
+	background-color: #e97115 !important;
+	color: #0f0f0f !important;
+}
+
+.urlbarView-url {
+	color: #e97115 !important;
+}
