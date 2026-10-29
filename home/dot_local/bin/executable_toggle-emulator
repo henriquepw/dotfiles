@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# Alterna o emulador Android no scratchpad junto com a barra de controles.
+# O mango vê duas janelas (tela + controles), então as duas são alternadas
+# para o mesmo estado.
+set -euo pipefail
+
+main_title='^Android Emulator'
+controls_title='^Emulator$'
+
+clients=$(mmsg get all-clients)
+
+shown() {
+	jq -e --arg t "$1" \
+		'any(.clients[]; .appid == "Emulator" and (.title | test($t)) and .is_visible and (.is_minimized | not))' \
+		<<<"$clients" >/dev/null
+}
+
+exists() {
+	jq -e --arg t "$1" \
+		'any(.clients[]; .appid == "Emulator" and (.title | test($t)))' \
+		<<<"$clients" >/dev/null
+}
+
+if ! exists "$main_title"; then
+	exec ~/Android/Sdk/emulator/emulator -avd Medium_Phone_API_37.0
+fi
+
+# Estado alvo vem da tela principal; cada janela só é alternada se estiver
+# fora dele. Os controles vão primeiro para o foco terminar na tela.
+shown "$main_title" && want=hide || want=show
+
+for title in "$controls_title" "$main_title"; do
+	exists "$title" || continue
+	shown "$title" && state=hide || state=show
+	if [[ $state == "$want" ]]; then
+		mmsg dispatch "toggle_named_scratchpad,^Emulator$,$title,none"
+	fi
+done
