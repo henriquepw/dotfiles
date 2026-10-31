@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-# Liga/desliga a TV ligada no HDMI.
-set -euo pipefail
-
-exec mmsg dispatch toggle_monitor,HDMI-A-1

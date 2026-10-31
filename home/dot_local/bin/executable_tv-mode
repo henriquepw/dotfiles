@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+monitor=DP-2
+tv=HDMI-A-1
+
+width() {
+	mmsg get monitor "$1" | jq -r '.width'
+}
+
+if [[ $(width "$monitor") -gt 0 ]]; then
+	mmsg dispatch "enable_monitor,$tv"
+	mmsg dispatch "disable_monitor,$monitor"
+	steam steam://open/bigpicture
+else
+	mmsg dispatch "enable_monitor,$monitor"
+	mmsg dispatch "disable_monitor,$tv"
+	if pgrep -x steam >/dev/null; then
+		steam steam://close/bigpicture
+	fi
+fi
