@@ -12,5 +12,7 @@ background-opacity = 0.9
 cursor-style = block
 cursor-style-blink = false
 
+app-notifications = no-clipboard-copy
+
 keybind = performable:ctrl+c=copy_to_clipboard
 keybind = ctrl+v=paste_from_clipboard
