@@ -4,6 +4,7 @@ set -euo pipefail
 monitor=DP-2
 tv=HDMI-A-1
 card=alsa_card.pci-0000_09_00.1
+tv_profile=output:hdmi-stereo-extra3
 state=${XDG_RUNTIME_DIR:-/tmp}/tv-mode-audio
 
 width() {
@@ -14,55 +15,54 @@ card_json() {
 	pactl -f json list cards | jq --arg card "$card" '.[] | select(.name == $card)'
 }
 
-available_ports() {
-	card_json | jq -c '[.ports | to_entries[] | select(.value.availability == "available") | .key]'
-}
-
-# Perfil da primeira porta HDMI que ficou disponível depois de ligar a TV
-new_port_profile() {
-	card_json | jq -r --argjson before "$1" '
-		[.ports | to_entries[]
-			| select(.value.availability == "available" and (.key | IN($before[]) | not))
-			| .value.profiles[0]]
-		| first // empty'
-}
-
 use_tv_audio() {
-	local before=$1 profile=
-	for _ in {1..20}; do
-		profile=$(new_port_profile "$before")
-		[[ -n $profile ]] && break
-		sleep 0.5
-	done
-	if [[ -z $profile ]]; then
-		echo "tv-mode: saída de áudio da TV não encontrada" >&2
-		return
-	fi
-	pactl set-card-profile "$card" "$profile"
-	pactl set-default-sink "alsa_output.pci-0000_09_00.1.${profile#output:}"
+	pactl set-card-profile "$card" "$tv_profile"
+	pactl set-default-sink "alsa_output.pci-0000_09_00.1.${tv_profile#output:}"
 }
 
 restore_audio() {
 	[[ -f $state ]] || return 0
 	local sink profile
-	{ read -r sink; read -r profile; } <"$state"
+	{
+		read -r sink
+		read -r profile
+	} <"$state"
 	pactl set-card-profile "$card" "$profile"
 	pactl set-default-sink "$sink"
 	rm -f "$state"
 }
 
+stop_steam() {
+	pgrep -x steam >/dev/null || return 0
+	steam -shutdown
+	for _ in {1..30}; do
+		pgrep -x steam >/dev/null || return 0
+		sleep 0.5
+	done
+	echo "tv-mode: steam não fechou a tempo" >&2
+}
+
+start_gamescope_steam() {
+	setsid -f gamescope -e -f -W 3840 -H 2160 -r 120 --hdr-enabled --adaptive-sync \
+		-- steam -gamepadui steam://open/bigpicture >/dev/null 2>&1
+}
+
 if [[ $(width "$monitor") -gt 0 ]]; then
 	printf '%s\n%s\n' "$(pactl get-default-sink)" "$(card_json | jq -r '.active_profile')" >"$state"
-	before=$(available_ports)
+	stop_steam
 	mmsg dispatch "enable_monitor,$tv"
 	mmsg dispatch "disable_monitor,$monitor"
-	use_tv_audio "$before"
-	steam steam://open/bigpicture
+	use_tv_audio
+	pkill -x zapfast || true
+	if flatpak ps --columns=application | grep -qx moe.sable.client; then
+		flatpak kill moe.sable.client
+	fi
+	start_gamescope_steam
 else
+	stop_steam
+	pkill -x gamescope || true
 	mmsg dispatch "enable_monitor,$monitor"
 	mmsg dispatch "disable_monitor,$tv"
 	restore_audio
-	if pgrep -x steam >/dev/null; then
-		steam steam://close/bigpicture
-	fi
+	setsid -f steam -silent >/dev/null 2>&1
 fi

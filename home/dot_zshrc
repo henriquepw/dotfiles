@@ -28,6 +28,7 @@ alias vim="nvim"
 alias ls="ls --color -a"
 alias rebase="rpm-ostree rebase ostree-unverified-registry:ghcr.io/henriquepw/citadel:latest"
 alias rebase2="rpm-ostree rebase ostree-image-signed:docker://ghcr.io/henriquepw/citadel:latest"
+alias upgrade="rpm-ostree upgrade"
 
 
 stop-work() {
