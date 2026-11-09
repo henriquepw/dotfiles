@@ -17,19 +17,27 @@ type ADB struct {
 }
 
 func (t ADB) Wake(ctx context.Context) error {
-	// in deep standby the TV only comes back to the network with Wake-on-LAN
-	if err := wakeOnLAN(t.MAC); err != nil {
-		return err
-	}
-
 	for {
-		if t.adb("connect", t.Addr) == nil && t.keyevent("KEYCODE_WAKEUP") == nil {
+		// in deep standby the TV only comes back to the network with
+		// Wake-on-LAN, and a single packet can get lost
+		if err := wakeOnLAN(t.MAC); err != nil {
+			return err
+		}
+
+		err := t.adb("connect", t.Addr)
+		if err == nil {
+			err = t.keyevent("KEYCODE_WAKEUP")
+		}
+		if err == nil {
 			break
 		}
+		// after the TV sleeps, the adb server keeps a dead "offline"
+		// connection that blocks reconnecting until it is dropped
+		t.adb("disconnect", t.Addr)
 
 		select {
 		case <-ctx.Done():
-			return fmt.Errorf("TV não respondeu ao adb em %s", t.Addr)
+			return fmt.Errorf("TV não respondeu ao adb em %s: %w", t.Addr, err)
 		case <-time.After(time.Second):
 		}
 	}
@@ -63,7 +71,7 @@ func (t ADB) output(args ...string) (string, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
-	if args[0] != "connect" {
+	if args[0] != "connect" && args[0] != "disconnect" {
 		args = append([]string{"-s", t.Addr}, args...)
 	}
 
@@ -90,7 +98,6 @@ func wakeOnLAN(mac string) error {
 	for range 6 {
 		packet = append(packet, 0xff)
 	}
-
 	for range 16 {
 		packet = append(packet, hw...)
 	}
