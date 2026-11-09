@@ -1,0 +1,25 @@
+gamescope = ["-e", "-f", "-W", "3840", "-H", "2160", "-r", "120", "--hdr-enabled", "--adaptive-sync"]
+
+[gamepad]
+vendor = 0x2dc8 # 8BitDo
+combo = ["BTN_SELECT", "BTN_START"]
+hold = "1.5s"
+
+[tv]
+adb = "192.168.1.182:5555"
+mac = "08:9b:27:12:26:54"
+hdmi_port = 1
+wake_timeout = "15s"
+
+[outputs]
+tv = "HDMI-A-1"
+pc = ["DP-2"]
+
+[audio]
+card = "alsa_card.pci-0000_09_00.1"
+tv_profile = "output:hdmi-stereo-extra3"
+tv_sink = "alsa_output.pci-0000_09_00.1.hdmi-stereo-extra3"
+
+[close]
+processes = ["zapfast"]
+flatpaks = ["moe.sable.client"]

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# compila o relaxa (fora do chezmoiroot) e recarrega o serviço
+# relaxa hash: {{ output "sh" "-c" (printf "cd %q && find . -type f -name '*.go' -o -name 'go.*' | sort | xargs cat" (joinPath .chezmoi.workingTree "relaxa")) | sha256sum }}
+# service hash: {{ include "dot_config/systemd/user/relaxa.service" | sha256sum }}
+set -euo pipefail
+
+cd "{{ joinPath .chezmoi.workingTree "relaxa" }}"
+go build -o "$HOME/.local/bin/relaxa" .
+
+systemctl --user daemon-reload
+systemctl --user try-restart relaxa.service
