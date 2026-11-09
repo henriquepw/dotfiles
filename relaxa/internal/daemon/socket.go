@@ -17,7 +17,7 @@ func socketPath() string {
 func Send(cmd string) (string, error) {
 	conn, err := net.Dial("unix", socketPath())
 	if err != nil {
-		return "", fmt.Errorf("daemon não está rodando: %w", err)
+		return "", fmt.Errorf("daemon is not running: %w", err)
 	}
 	defer conn.Close()
 
@@ -28,10 +28,12 @@ func Send(cmd string) (string, error) {
 	if err != nil {
 		return "", err
 	}
+
 	reply = strings.TrimSpace(reply)
 	if msg, ok := strings.CutPrefix(reply, "error: "); ok {
 		return "", fmt.Errorf("%s", msg)
 	}
+
 	return reply, nil
 }
 
@@ -41,6 +43,7 @@ func serve(ln net.Listener, requests chan<- request) {
 		if err != nil {
 			return
 		}
+
 		go func() {
 			defer conn.Close()
 			line, err := bufio.NewReader(conn).ReadString('\n')

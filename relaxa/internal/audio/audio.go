@@ -15,11 +15,17 @@ type State struct {
 	Profile string
 }
 
+type Card struct {
+	Name          string `json:"name"`
+	ActiveProfile string `json:"active_profile"`
+}
+
 func Current(card string) (State, error) {
 	sink, err := exec.Command("pactl", "get-default-sink").Output()
 	if err != nil {
 		return State{}, err
 	}
+
 	profile, err := activeProfile(card)
 	return State{Sink: strings.TrimSpace(string(sink)), Profile: profile}, err
 }
@@ -30,6 +36,7 @@ func Use(card string, s State) error {
 	if err := proc.Run("pactl", "set-card-profile", card, s.Profile); err != nil {
 		return err
 	}
+
 	return proc.Run("pactl", "set-default-sink", s.Sink)
 }
 
@@ -38,17 +45,17 @@ func activeProfile(card string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	var cards []struct {
-		Name          string `json:"name"`
-		ActiveProfile string `json:"active_profile"`
-	}
+
+	var cards []Card
 	if err := json.Unmarshal(out, &cards); err != nil {
 		return "", err
 	}
+
 	for _, c := range cards {
 		if c.Name == card {
 			return c.ActiveProfile, nil
 		}
 	}
-	return "", fmt.Errorf("placa de áudio %s não encontrada", card)
+
+	return "", fmt.Errorf("audio card %s not found", card)
 }

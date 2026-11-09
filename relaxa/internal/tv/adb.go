@@ -3,20 +3,19 @@ package tv
 import (
 	"context"
 	"fmt"
-	"net"
 	"os/exec"
 	"strings"
 	"time"
 )
 
-// ADB controls an Android TV through adb over the network.
-type ADB struct {
+// adb controls an Android TV through adb over the network.
+type adb struct {
 	Addr     string
 	MAC      string
 	HDMIPort int
 }
 
-func (t ADB) Wake(ctx context.Context) error {
+func (t adb) Wake(ctx context.Context) error {
 	for {
 		// in deep standby the TV only comes back to the network with
 		// Wake-on-LAN, and a single packet can get lost
@@ -24,7 +23,7 @@ func (t ADB) Wake(ctx context.Context) error {
 			return err
 		}
 
-		err := t.adb("connect", t.Addr)
+		_, err := t.output("connect", t.Addr)
 		if err == nil {
 			err = t.keyevent("KEYCODE_WAKEUP")
 		}
@@ -33,7 +32,7 @@ func (t ADB) Wake(ctx context.Context) error {
 		}
 		// after the TV sleeps, the adb server keeps a dead "offline"
 		// connection that blocks reconnecting until it is dropped
-		t.adb("disconnect", t.Addr)
+		_, _ = t.output("disconnect", t.Addr)
 
 		select {
 		case <-ctx.Done():
@@ -45,11 +44,11 @@ func (t ADB) Wake(ctx context.Context) error {
 	return t.keyevent(fmt.Sprintf("KEYCODE_TV_INPUT_HDMI_%d", t.HDMIPort))
 }
 
-func (t ADB) Sleep() error {
+func (t adb) Sleep() error {
 	return t.keyevent("KEYCODE_SLEEP")
 }
 
-func (t ADB) Awake() (bool, error) {
+func (t adb) Awake() (bool, error) {
 	out, err := t.output("shell", "dumpsys", "power")
 	if err != nil {
 		return false, err
@@ -58,16 +57,12 @@ func (t ADB) Awake() (bool, error) {
 	return strings.Contains(out, "mWakefulness=Awake"), nil
 }
 
-func (t ADB) keyevent(key string) error {
-	return t.adb("shell", "input", "keyevent", key)
-}
-
-func (t ADB) adb(args ...string) error {
-	_, err := t.output(args...)
+func (t adb) keyevent(key string) error {
+	_, err := t.output("shell", "input", "keyevent", key)
 	return err
 }
 
-func (t ADB) output(args ...string) (string, error) {
+func (t adb) output(args ...string) (string, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
@@ -86,28 +81,4 @@ func (t ADB) output(args ...string) (string, error) {
 	}
 
 	return string(out), nil
-}
-
-func wakeOnLAN(mac string) error {
-	hw, err := net.ParseMAC(mac)
-	if err != nil {
-		return err
-	}
-
-	packet := make([]byte, 0, 102)
-	for range 6 {
-		packet = append(packet, 0xff)
-	}
-	for range 16 {
-		packet = append(packet, hw...)
-	}
-
-	conn, err := net.Dial("udp", "255.255.255.255:9")
-	if err != nil {
-		return err
-	}
-	defer conn.Close()
-
-	_, err = conn.Write(packet)
-	return err
 }

@@ -24,10 +24,10 @@ type request struct {
 
 type daemon struct {
 	cfg       config.Config
-	tv        tv.TV
 	comp      compositor.Compositor
-	inTV      bool
 	prevAudio audio.State
+	tv        tv.TV
+	inTV      bool
 	tvMissing int
 }
 
@@ -45,7 +45,7 @@ func Run() error {
 	d := &daemon{
 		cfg:  cfg,
 		comp: comp,
-		tv:   tv.ADB{Addr: cfg.TV.ADB, MAC: cfg.TV.MAC, HDMIPort: cfg.TV.HDMIPort},
+		tv:   tv.New(cfg.TV.ADB, cfg.TV.MAC, cfg.TV.HDMIPort),
 	}
 
 	requests := make(chan request)
@@ -94,15 +94,16 @@ func (d *daemon) handle(req request) string {
 		want = false
 	case "status":
 	default:
-		return "error: comando desconhecido: " + req.cmd
+		return "error: unknown command: " + req.cmd
 	}
 
-	switch {
-	case want && !d.inTV:
+	if want && !d.inTV {
 		d.enterTV(req.gamepad)
-	case !want && d.inTV:
+	}
+	if !want && d.inTV {
 		d.leaveTV(req.gamepad)
 	}
+
 	if d.inTV {
 		return "tv"
 	}
@@ -113,6 +114,7 @@ func (d *daemon) enterTV(g *gamepad.Gamepad) {
 	if g != nil {
 		g.Rumble(1)
 	}
+
 	ctx, cancel := context.WithTimeout(context.Background(), d.cfg.TV.WakeTimeout)
 	defer cancel()
 	if err := d.tv.Wake(ctx); err != nil {
@@ -128,7 +130,9 @@ func (d *daemon) enterTV(g *gamepad.Gamepad) {
 	for _, out := range d.cfg.Outputs.PC {
 		d.must(d.comp.Disable(out))
 	}
-	d.must(audio.Use(d.cfg.Audio.Card, audio.State{Sink: d.cfg.Audio.TVSink, Profile: d.cfg.Audio.TVProfile}))
+
+	audioState := audio.State{Sink: d.cfg.Audio.TVSink, Profile: d.cfg.Audio.TVProfile}
+	d.must(audio.Use(d.cfg.Audio.Card, audioState))
 
 	for _, name := range d.cfg.Close.Processes {
 		exec.Command("pkill", "-x", name).Run()
@@ -170,6 +174,7 @@ func (d *daemon) tvOff() bool {
 		d.tvMissing++
 		return d.tvMissing >= 3
 	}
+
 	d.tvMissing = 0
 	return !awake
 }

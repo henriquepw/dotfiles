@@ -30,8 +30,7 @@ type Config struct {
 		TVSink    string `toml:"tv_sink"`
 	}
 	Gamescope []string
-	// apps closed when entering TV mode
-	Close struct {
+	Close     struct {
 		Processes []string
 		Flatpaks  []string
 	}

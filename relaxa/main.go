@@ -16,7 +16,7 @@ comandos:
   tv       entra no modo TV
   pc       volta pro modo PC
   status   mostra o modo atual
-  help     mostra esta ajuda`
+`
 
 func main() {
 	cmd := "help"
@@ -26,8 +26,6 @@ func main() {
 
 	var err error
 	switch cmd {
-	case "help":
-		fmt.Println(help)
 	case "daemon":
 		err = daemon.Run()
 	case "toggle", "tv", "pc", "status":
@@ -36,9 +34,9 @@ func main() {
 			fmt.Println(reply)
 		}
 	default:
-		fmt.Fprintf(os.Stderr, "relaxa: comando desconhecido: %s\n\n%s\n", cmd, help)
-		os.Exit(2)
+		fmt.Println(help)
 	}
+
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "relaxa:", err)
 		os.Exit(1)

@@ -8,3 +8,11 @@ type TV interface {
 	Sleep() error
 	Awake() (bool, error)
 }
+
+func New(adr, mac string, hdmiPort int) TV {
+	return adb{
+		Addr:     adr,
+		MAC:      mac,
+		HDMIPort: hdmiPort,
+	}
+}

@@ -15,6 +15,6 @@ func Detect() (Compositor, error) {
 	case "mango":
 		return Mango{}, nil
 	default:
-		return nil, fmt.Errorf("compositor não suportado: %q", desktop)
+		return nil, fmt.Errorf("unsupported compositor: %q", desktop)
 	}
 }

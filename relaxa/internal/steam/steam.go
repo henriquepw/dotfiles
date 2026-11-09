@@ -9,6 +9,10 @@ import (
 	"github.com/henriquepw/relaxa/internal/proc"
 )
 
+func running(name string) bool {
+	return exec.Command("pgrep", "-x", name).Run() == nil
+}
+
 // Stop shuts steam down and waits for it to exit, so it can be restarted in a
 // different mode.
 func Stop() error {
@@ -42,8 +46,4 @@ func StopGamescope() {
 
 func StartSilent() error {
 	return proc.Spawn("steam", "-silent")
-}
-
-func running(name string) bool {
-	return exec.Command("pgrep", "-x", name).Run() == nil
 }
