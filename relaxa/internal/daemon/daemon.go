@@ -45,7 +45,7 @@ func Run() error {
 	d := &daemon{
 		cfg:  cfg,
 		comp: comp,
-		tv:   tv.New(cfg.TV.ADB, cfg.TV.MAC, cfg.TV.HDMIPort),
+		tv:   tv.New(cfg.TV.ADB, cfg.TV.MAC, cfg.TV.Input),
 	}
 
 	requests := make(chan request)

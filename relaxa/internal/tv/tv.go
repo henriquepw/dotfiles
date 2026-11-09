@@ -9,10 +9,10 @@ type TV interface {
 	Awake() (bool, error)
 }
 
-func New(adr, mac string, hdmiPort int) TV {
+func New(adr, mac, input string) TV {
 	return adb{
-		Addr:     adr,
-		MAC:      mac,
-		HDMIPort: hdmiPort,
+		Addr:  adr,
+		MAC:   mac,
+		Input: input,
 	}
 }

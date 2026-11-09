@@ -3,16 +3,20 @@ package tv
 import (
 	"context"
 	"fmt"
+	"net/url"
+	"os"
 	"os/exec"
 	"strings"
 	"time"
 )
 
+const serverPort = "5038"
+
 // adb controls an Android TV through adb over the network.
 type adb struct {
-	Addr     string
-	MAC      string
-	HDMIPort int
+	Addr  string
+	MAC   string
+	Input string // TvInputInfo id, listed by `dumpsys tv_input`
 }
 
 func (t adb) Wake(ctx context.Context) error {
@@ -31,8 +35,8 @@ func (t adb) Wake(ctx context.Context) error {
 			break
 		}
 		// after the TV sleeps, the adb server keeps a dead "offline"
-		// connection that blocks reconnecting until it is dropped
-		_, _ = t.output("disconnect", t.Addr)
+		// connection that only goes away when the server restarts
+		_, _ = t.output("kill-server")
 
 		select {
 		case <-ctx.Done():
@@ -41,7 +45,11 @@ func (t adb) Wake(ctx context.Context) error {
 		}
 	}
 
-	return t.keyevent(fmt.Sprintf("KEYCODE_TV_INPUT_HDMI_%d", t.HDMIPort))
+	// some TVs (TCL) ignore KEYCODE_TV_INPUT_HDMI_N, but every Android TV opens
+	// the input through its passthrough uri
+	_, err := t.output("shell", "am", "start", "-a", "android.intent.action.VIEW",
+		"-d", "content://android.media.tv/passthrough/"+url.PathEscape(t.Input))
+	return err
 }
 
 func (t adb) Sleep() error {
@@ -66,11 +74,14 @@ func (t adb) output(args ...string) (string, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
-	if args[0] != "connect" && args[0] != "disconnect" {
+	if args[0] != "connect" && args[0] != "kill-server" {
 		args = append([]string{"-s", t.Addr}, args...)
 	}
 
-	out, err := exec.CommandContext(ctx, "adb", args...).CombinedOutput()
+	cmd := exec.CommandContext(ctx, "adb", args...)
+	// own adb server, so restarting it doesn't drop the user's devices
+	cmd.Env = append(os.Environ(), "ANDROID_ADB_SERVER_PORT="+serverPort)
+	out, err := cmd.CombinedOutput()
 	if err != nil {
 		return "", fmt.Errorf("adb %s: %w: %s", strings.Join(args, " "), err, out)
 	}

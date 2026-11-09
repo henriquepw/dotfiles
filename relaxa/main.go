@@ -34,7 +34,7 @@ func main() {
 			fmt.Println(reply)
 		}
 	default:
-		fmt.Println(help)
+		fmt.Print(help)
 	}
 
 	if err != nil {

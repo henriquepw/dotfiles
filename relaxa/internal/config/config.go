@@ -17,7 +17,7 @@ type Config struct {
 	TV struct {
 		ADB         string
 		MAC         string
-		HDMIPort    int           `toml:"hdmi_port"`
+		Input       string
 		WakeTimeout time.Duration `toml:"wake_timeout"`
 	}
 	Outputs struct {
