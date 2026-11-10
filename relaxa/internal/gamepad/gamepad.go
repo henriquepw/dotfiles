@@ -88,16 +88,32 @@ func (g *Gamepad) Rumble(n int) {
 	time.Sleep(150 * time.Millisecond)
 }
 
-// Watch reads every device from the vendor and calls onCombo when the combo is
-// held for hold. Gamepads turned on later are picked up by the periodic scan.
-func Watch(vendor uint16, combo []string, hold time.Duration, onCombo func(*Gamepad)) error {
-	codes := make(map[uint16]bool, len(combo))
-	for _, name := range combo {
-		code, ok := buttons[name]
-		if !ok {
-			return fmt.Errorf("botão desconhecido: %s", name)
+// Bind calls Fire when every button in Combo is held for Hold.
+type Bind struct {
+	Combo []string
+	Hold  time.Duration
+	Fire  func(*Gamepad)
+}
+
+type combo struct {
+	codes map[uint16]bool
+	hold  time.Duration
+	fire  func(*Gamepad)
+}
+
+// Watch reads every device from the vendor and fires the binds. Gamepads
+// turned on later are picked up by the periodic scan.
+func Watch(vendor uint16, binds []Bind) error {
+	combos := make([]combo, len(binds))
+	for i, b := range binds {
+		combos[i] = combo{codes: map[uint16]bool{}, hold: b.Hold, fire: b.Fire}
+		for _, name := range b.Combo {
+			code, ok := buttons[name]
+			if !ok {
+				return fmt.Errorf("unknown button: %s", name)
+			}
+			combos[i].codes[code] = true
 		}
-		codes[code] = true
 	}
 
 	var mu sync.Mutex
@@ -123,7 +139,7 @@ func Watch(vendor uint16, combo []string, hold time.Duration, onCombo func(*Game
 				mu.Unlock()
 
 				go func() {
-					readCombo(g, codes, hold, onCombo)
+					readCombos(g, combos)
 					g.f.Close()
 					mu.Lock()
 					delete(open, path)
@@ -145,42 +161,50 @@ func openGamepad(path string, vendor uint16) (*Gamepad, error) {
 	var id inputID
 	if _, _, errno := unix.Syscall(unix.SYS_IOCTL, f.Fd(), eviocgid, uintptr(unsafe.Pointer(&id))); errno != 0 || id.Vendor != vendor {
 		f.Close()
-		return nil, fmt.Errorf("%s: não é do vendor %04x", path, vendor)
+		return nil, fmt.Errorf("%s: not from vendor %04x", path, vendor)
 	}
 	return &Gamepad{f: f}, nil
 }
 
-// readCombo runs until the device goes away.
-func readCombo(g *Gamepad, codes map[uint16]bool, hold time.Duration, onCombo func(*Gamepad)) {
+// readCombos runs until the device goes away.
+func readCombos(g *Gamepad, combos []combo) {
 	pressed := map[uint16]bool{}
-	var timer *time.Timer
+	timers := make([]*time.Timer, len(combos))
 	for {
 		var ev inputEvent
 		if err := binary.Read(g.f, binary.NativeEndian, &ev); err != nil {
-			if timer != nil {
-				timer.Stop()
+			for _, timer := range timers {
+				if timer != nil {
+					timer.Stop()
+				}
 			}
 			log.Printf("%s: %v", g.f.Name(), err)
 			return
 		}
 
-		if ev.Type != evKey || !codes[ev.Code] {
+		if ev.Type != evKey {
 			continue
 		}
 
 		pressed[ev.Code] = ev.Value != 0
 
-		all := true
-		for code := range codes {
-			all = all && pressed[code]
-		}
+		for i, c := range combos {
+			if !c.codes[ev.Code] {
+				continue
+			}
 
-		switch {
-		case all && timer == nil:
-			timer = time.AfterFunc(hold, func() { onCombo(g) })
-		case !all && timer != nil:
-			timer.Stop()
-			timer = nil
+			all := true
+			for code := range c.codes {
+				all = all && pressed[code]
+			}
+
+			switch {
+			case all && timers[i] == nil:
+				timers[i] = time.AfterFunc(c.hold, func() { c.fire(g) })
+			case !all && timers[i] != nil:
+				timers[i].Stop()
+				timers[i] = nil
+			}
 		}
 	}
 }

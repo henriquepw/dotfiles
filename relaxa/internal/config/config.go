@@ -10,9 +10,10 @@ import (
 
 type Config struct {
 	Gamepad struct {
-		Vendor uint16
-		Combo  []string
-		Hold   time.Duration
+		Vendor   uint16
+		Toggle   Combo
+		MangoHud Combo
+		FPSLimit Combo `toml:"fps_limit"`
 	}
 	TV struct {
 		ADB         string
@@ -34,6 +35,11 @@ type Config struct {
 		Processes []string
 		Flatpaks  []string
 	}
+}
+
+type Combo struct {
+	Combo []string
+	Hold  time.Duration
 }
 
 func Load() (Config, error) {

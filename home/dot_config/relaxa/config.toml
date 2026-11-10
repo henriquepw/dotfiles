@@ -2,8 +2,18 @@ gamescope = ["-e", "-f", "-W", "3840", "-H", "2160", "-r", "120", "--hdr-enabled
 
 [gamepad]
 vendor = 0x2dc8 # 8BitDo
+
+[gamepad.toggle]
 combo = ["BTN_SELECT", "BTN_START"]
 hold = "1.5s"
+
+[gamepad.mangohud]
+combo = ["BTN_SELECT", "BTN_THUMBR"]
+hold = "0.5s"
+
+[gamepad.fps_limit]
+combo = ["BTN_SELECT", "BTN_THUMBL"]
+hold = "0.5s"
 
 [tv]
 adb = "192.168.1.182:5555"

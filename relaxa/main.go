@@ -8,14 +8,14 @@ import (
 	"github.com/henriquepw/relaxa/internal/daemon"
 )
 
-const help = `uso: relaxa <comando>
+const help = `usage: relaxa <command>
 
-comandos:
-  daemon   roda o daemon (lê os controles e escuta o socket)
-  toggle   alterna entre modo PC e modo TV
-  tv       entra no modo TV
-  pc       volta pro modo PC
-  status   mostra o modo atual
+commands:
+  daemon   run the daemon (reads the gamepads and listens on the socket)
+  toggle   switch between PC mode and TV mode
+  tv       enter TV mode
+  pc       go back to PC mode
+  status   show the current mode
 `
 
 func main() {

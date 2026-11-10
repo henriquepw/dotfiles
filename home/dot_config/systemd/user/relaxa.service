@@ -1,5 +1,5 @@
 [Unit]
-Description=relaxa: alterna entre modo PC e modo TV
+Description=relaxa: switch between PC mode and TV mode
 
 [Service]
 ExecStart=%h/.local/bin/relaxa daemon

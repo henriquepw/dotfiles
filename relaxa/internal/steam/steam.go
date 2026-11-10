@@ -31,7 +31,7 @@ func Stop() error {
 		time.Sleep(500 * time.Millisecond)
 	}
 
-	return fmt.Errorf("steam não fechou a tempo")
+	return fmt.Errorf("steam did not exit in time")
 }
 
 // StartGamescope opens steam in Big Picture inside gamescope.

@@ -12,8 +12,10 @@ import (
 	"github.com/henriquepw/relaxa/internal/compositor"
 	"github.com/henriquepw/relaxa/internal/config"
 	"github.com/henriquepw/relaxa/internal/gamepad"
+	"github.com/henriquepw/relaxa/internal/mangohud"
 	"github.com/henriquepw/relaxa/internal/steam"
 	"github.com/henriquepw/relaxa/internal/tv"
+	"github.com/henriquepw/relaxa/internal/uinput"
 )
 
 type request struct {
@@ -48,9 +50,40 @@ func Run() error {
 		tv:   tv.New(cfg.TV.ADB, cfg.TV.MAC, cfg.TV.Input),
 	}
 
+	// created up front, so the compositor already knows the device when it is used
+	kb, err := uinput.NewKeyboard(uinput.KeyLeftAlt, uinput.Key7)
+	if err != nil {
+		return err
+	}
+
 	requests := make(chan request)
-	err = gamepad.Watch(cfg.Gamepad.Vendor, cfg.Gamepad.Combo, cfg.Gamepad.Hold, func(g *gamepad.Gamepad) {
-		requests <- request{cmd: "toggle", gamepad: g}
+	err = gamepad.Watch(cfg.Gamepad.Vendor, []gamepad.Bind{
+		{
+			Combo: cfg.Gamepad.Toggle.Combo,
+			Hold:  cfg.Gamepad.Toggle.Hold,
+			Fire: func(g *gamepad.Gamepad) {
+				requests <- request{cmd: "toggle", gamepad: g}
+			},
+		},
+		{
+			Combo: cfg.Gamepad.MangoHud.Combo,
+			Hold:  cfg.Gamepad.MangoHud.Hold,
+			Fire: func(*gamepad.Gamepad) {
+				// fails when no game with mangohud is running
+				if err := mangohud.Toggle(); err != nil {
+					log.Print(err)
+				}
+			},
+		},
+		{
+			Combo: cfg.Gamepad.FPSLimit.Combo,
+			Hold:  cfg.Gamepad.FPSLimit.Hold,
+			Fire: func(*gamepad.Gamepad) {
+				if err := mangohud.ToggleFPSLimit(kb); err != nil {
+					log.Print(err)
+				}
+			},
+		},
 	})
 	if err != nil {
 		return err
@@ -76,7 +109,7 @@ func Run() error {
 			}
 		case <-poll.C:
 			if d.inTV && d.tvOff() {
-				log.Print("TV desligou, voltando pro modo PC")
+				log.Print("TV turned off, going back to PC mode")
 				d.leaveTV(nil)
 			}
 		}

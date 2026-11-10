@@ -40,7 +40,7 @@ func (t adb) Wake(ctx context.Context) error {
 
 		select {
 		case <-ctx.Done():
-			return fmt.Errorf("TV não respondeu ao adb em %s: %w", t.Addr, err)
+			return fmt.Errorf("TV did not answer adb at %s: %w", t.Addr, err)
 		case <-time.After(time.Second):
 		}
 	}
