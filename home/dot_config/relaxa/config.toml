@@ -9,7 +9,7 @@ hold = "1.5s"
 adb = "192.168.1.182:5555"
 mac = "08:9b:27:12:26:54"
 input = "com.tcl.tvinput/.TvPassThroughService/HW15" # HDMI 1
-wake_timeout = "15s"
+wake_timeout = "20s"
 
 [outputs]
 tv = "HDMI-A-1"
