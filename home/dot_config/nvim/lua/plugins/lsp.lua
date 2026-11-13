@@ -121,6 +121,9 @@ do
 	end, { desc = "TS shrink selection" })
 end
 
+-- servers were installed by mason, which is no longer loaded to put its bin on PATH
+vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin:" .. vim.env.PATH
+
 vim.lsp.config["*"] = {
 	capabilities = require("blink.cmp").get_lsp_capabilities(),
 }
