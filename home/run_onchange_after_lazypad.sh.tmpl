@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# instala o lazypad (github.com/henriquepw/lazypad) e recarrega o serviço
+# drop-in hash: {{ include "dot_config/systemd/user/lazypad.service.d/path.conf" | sha256sum }}
+set -euo pipefail
+
+GOBIN="$HOME/.local/bin" go install github.com/henriquepw/lazypad@latest
+"$HOME/.local/bin/lazypad" install
+
+systemctl --user try-restart lazypad.service

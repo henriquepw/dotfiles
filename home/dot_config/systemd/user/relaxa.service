@@ -1,8 +1,0 @@
-[Unit]
-Description=relaxa: switch between PC mode and TV mode
-
-[Service]
-ExecStart=%h/.local/bin/relaxa daemon
-Environment=PATH=%h/.local/bin:%h/Android/Sdk/platform-tools:/usr/local/bin:/usr/bin
-Restart=on-failure
-KillMode=process
