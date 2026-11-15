@@ -76,6 +76,6 @@ output = "STREAM"
 
 [modes.couch.tv]
 type = "appletv"
-addr = "192.168.1.234"
+addr = "192.168.1.100"
 app = "com.moonlight-stream.Moonlight"
 wake_timeout = "20s"
