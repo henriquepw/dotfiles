@@ -57,17 +57,7 @@ sink = "alsa_output.pci-0000_09_00.1.hdmi-stereo-extra3"
 [modes.couch]
 combo = ["BTN_THUMBL", "BTN_THUMBR"]
 hold = "1.5s"
-gamescope = [
-  "-e",
-  "-f",
-  "-W",
-  "3840",
-  "-H",
-  "2160",
-  "-r",
-  "60",
-  "--hdr-enabled",
-]
+gamescope = ["-e", "-f", "-W", "3840", "-H", "2160", "-r", "60"]
 
 # captured by Sunshine; its resolution comes from the monitor_rule in mango
 [modes.couch.display]
@@ -78,4 +68,6 @@ output = "STREAM"
 type = "appletv"
 addr = "192.168.1.100"
 app = "com.moonlight-stream.Moonlight"
+# opens the host and starts Steam; the delays give Moonlight time to find the PC
+remote = ["delay=3000", "select", "delay=2000", "select"]
 wake_timeout = "20s"

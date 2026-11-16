@@ -8,8 +8,8 @@
 			"image-path": "steam.png",
 			"prep-cmd": [
 				{
-					"do": "lazypad mode couch",
-					"undo": "lazypad desktop",
+					"do": "lazypad mode couch --no-tv",
+					"undo": "lazypad desktop --no-tv",
 					"elevated": "false"
 				}
 			]
