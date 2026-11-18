@@ -69,5 +69,5 @@ type = "appletv"
 addr = "192.168.1.100"
 app = "com.moonlight-stream.Moonlight"
 # opens the host and starts Steam; the delays give Moonlight time to find the PC
-remote = ["delay=3000", "select", "delay=2000", "select"]
+remote = ["delay=3000", "select", "delay=4000", "select"]
 wake_timeout = "20s"
