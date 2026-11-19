@@ -21,6 +21,7 @@ local setup_treesitter = function()
 		"c",
 		"cpp",
 		"go",
+		"templ",
 		"html",
 		"css",
 		"javascript",
@@ -152,6 +153,7 @@ do
 	})
 end
 vim.lsp.config("gopls", {})
+vim.lsp.config("templ", {})
 vim.lsp.config("clangd", {})
 vim.lsp.config("rust-analyzer", {})
 vim.lsp.config("tailwindcss", {})
@@ -341,6 +343,7 @@ vim.lsp.enable({
 	"bashls",
 	"vtsls",
 	"gopls",
+	"templ",
 	"clangd",
 	"rust-analyzer",
 	"tailwindcss",
