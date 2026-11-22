@@ -157,6 +157,7 @@ vim.lsp.config("templ", {})
 vim.lsp.config("clangd", {})
 vim.lsp.config("rust-analyzer", {})
 vim.lsp.config("tailwindcss", {})
+vim.lsp.config("sqls", {})
 
 -- biome LSP (diagnostics): only attach when the repo root has a biome config; formatting stays with efm
 vim.lsp.config("biome", {
@@ -347,6 +348,7 @@ vim.lsp.enable({
 	"clangd",
 	"rust-analyzer",
 	"tailwindcss",
+	"sqls",
 })
 
 local augroup = vim.api.nvim_create_augroup("lsp", { clear = true })
